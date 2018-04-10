@@ -1,0 +1,140 @@
+\documentclass[11pt,a4paper,twoside,openright]{report}
+
+% Packages 
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{makeidx}
+\usepackage{graphicx}
+\usepackage{afterpage}
+\usepackage{cite}
+\usepackage{longtable}
+
+\usepackage[section]{placeins}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{color}
+
+\usepackage{booktabs} % To thicken table lines
+\usepackage{pgfplotstable}
+\usepackage[final]{pdfpages}
+
+
+\usepackage[hidelinks]{hyperref}
+%\usepackage{minitoc}
+
+\usepackage{cleveref}
+
+\usepackage{geometry} 
+
+
+
+\lstset{frame=tb,
+	language=R,
+	keywordstyle=\color{blue},
+	alsoletter={.}
+}
+
+\usepackage{enumitem}
+\renewcommand\descriptionlabel[1]{\textbf{#1 :}}
+
+\usepackage{subfig}
+\usepackage{graphicx}
+
+\usepackage{array}
+
+% Evite les gros début de chapitre inutiles. 
+\usepackage{titlesec}
+
+% niveaux de table des matières
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+
+
+\titleformat{\chapter}
+{\normalfont\LARGE\bfseries}{\thechapter}{1em}{}
+\titlespacing*{\chapter}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+
+% Modification de commandes 
+
+\newcommand\blankpage{%
+	\null
+	\thispagestyle{empty}%
+	\addtocounter{page}{-1}%
+	\newpage}
+
+%\graphicspath{{img}}
+
+
+\author{Thibault Schowing and Wiebke Schmitt}
+
+
+\usepackage{fancyhdr,graphicx,lastpage}% http://ctan.org/pkg/{fancyhdr,graphicx,lastpage}
+\fancypagestyle{plain}{
+	\fancyhf{}% Clear header/footer
+	\fancyhead[R]{Thibault Schowing and Wiebke Schmitt}% Right header
+	\fancyhead[L]{Bioinformatics III}% Left footer
+	\fancyfoot[R]{\thepage}% Right footer
+}
+
+
+
+
+
+\begin{document}	
+	% Page de titre
+	\pagestyle{plain}% Set page style to plain.
+
+	\newgeometry{hmarginratio=1:1}
+	
+	\pagenumbering{gobble}
+	
+	\begin{titlepage}
+		\centering
+		
+		%\vspace{0.5cm}
+		\small{Saarland University  \par}
+		\huge{Bioinformatics III\par}
+		\vspace{1cm}
+		
+		
+		
+		\vspace{1cm}
+		%MODIFY HERE
+		\Large{Assignement X\par}
+		\vspace{1.5cm}
+		%MODIFY HERE (day - month - year)
+		\small{Due Date: xx.xx.xxxx  \par}
+		\vspace{1cm}
+		
+		
+		
+		\vspace{2cm}
+		\small\textit{Thibault \textsc{Schowing} Mat. 2571837}\par
+		\small\textit{Wiebke \textsc{Schmitt} Mat. 2543675}\par
+		
+		\small{\today\par}
+		
+		\vfill
+		
+		
+	\end{titlepage}
+	% Geometry centrée pour page de titre: off
+	\restoregeometry 
+	%\afterpage{\blankpage}
+	
+	
+	\include{problem1}
+	
+	\include{problem2}
+	
+	\include{problem3}
+	
+	\include{problem4}
+
+	
+\end{document}
