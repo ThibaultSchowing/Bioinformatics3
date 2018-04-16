@@ -1,3 +1,4 @@
+#Bioinformatics 3 : Wiebke Schmitt & Thibault Schowing
 class DegreeDistribution:
     """Calculates a degree distribution for a network"""
 

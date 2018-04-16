@@ -1,3 +1,4 @@
+#Bioinformatics 3 : Wiebke Schmitt & Thibault Schowing
 import matplotlib.pyplot as plt
 
 def plotDistributionComparison(histograms, legend, title):
