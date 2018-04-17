@@ -4,4 +4,6 @@ from RandomNetwork import RandomNetwork
 from DegreeDistribution import DegreeDistribution
 
 if __name__== "__main__":
-    RandomNetwork(10,5)
+    rand_net = RandomNetwork(10,5)
+    rand_degree = DegreeDistribution(rand_net).getNormalizedDistribution()
+    print(rand_degree)
