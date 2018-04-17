@@ -28,9 +28,9 @@ class AbstractNetwork:
         Returns the maximum degree in this network
         """
         deg_list = []
-        for n in self.nodes:
-            deg_list.append(degree(n))
-            print "Debug: deg_list ", deg_list
+        for key, value in self.nodes.items():
+            deg_list.append(value.degree())
+            print("Debug: deg_list ", deg_list)
         return max(deg_list)
 
     def size(self):

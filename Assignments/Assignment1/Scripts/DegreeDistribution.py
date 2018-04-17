@@ -6,7 +6,20 @@ class DegreeDistribution:
         """
         Inits DegreeDistribution with a network and calculate its distribution
         """
-    
+        self.histogram = [0] * (network.maxDegree() + 1)
+
+        for key, node in network.nodes.items():
+            self.histogram[node.degree()] += 1
+
+
+        # Other option:
+        # Dict containing {id:degree}
+        # self.degrees = {}
+        # for node in network.nodes.iteritems():
+        # self.degrees[node.identifier] = node.degree()
+        # for i in range(0, network.maxDegree() + 1:
+        #     self.histogram[i] = self.degrees.values().count(i)
+
     def getNormalizedDistribution(self):
         '''
         Returns the computed normalized distribution
