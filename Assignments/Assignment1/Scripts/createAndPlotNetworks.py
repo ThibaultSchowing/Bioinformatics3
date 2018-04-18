@@ -4,6 +4,11 @@ from RandomNetwork import RandomNetwork
 from DegreeDistribution import DegreeDistribution
 import Tools
 
+# To save figure files, comment if not needed
+
+
+
+
 plot1 = [(50,100),(500,1000),(5000,10000),(50000,100000)]
 plot2 = [(20000,5000),(20000,17000),(20000,40000),(20000,70000)]
 
@@ -38,3 +43,5 @@ for nodes, edges in plot2:
     plot_legend.append("p:"+str(nodes)+"/"+str(edges))
 
 Tools.plotDistributionComparison(plot_data, plot_legend, "Plot 2")
+
+#Save the pictures

@@ -8,7 +8,8 @@ class Node:
         """
         self.identifier = identifier
 
-        # More about lists in Python 3.5: https://docs.python.org/3.5/tutorial/datastructures.html
+        # More about lists in Python 3.5:
+        # https://docs.python.org/3.5/tutorial/datastructures.html
         self.neighbours_list = []
 
     def hasLinkTo(self, node):

@@ -5,7 +5,7 @@ import math
 
 def poisson(k, lambda_):
 
-    #If k == 0, the first part is equal to 1
+    #If k == 0, the first part is equal to 1 -> less computation (?)
     if k == 0:
         return math.exp(-lambda_)
     else:
@@ -17,8 +17,15 @@ def plotDistributionComparison(histograms, legend, title):
     Plots a list of histograms with matching list of descriptions as the legend
     '''
     # adjust size of elements in histogram
+    # https://stackoverflow.com/questions/13400876/python-length-of-longest-sublist
 
-        
+    maxlength = len(max(histograms,key=len))
+    #print("Debug max len", maxlength)
+    for h in histograms:
+        # Expant the current histogram (table) to the size of the biggest one
+        h.extend([0.0] * (maxlength - len(h)))
+
+    fig = plt.figure()
     # plots histograms
     for h in histograms:
         plt.plot(range(len(h)), h, marker = 'x')
@@ -31,7 +38,13 @@ def plotDistributionComparison(histograms, legend, title):
     plt.legend(legend)
     plt.title(title)
     plt.tight_layout()# might throw a warning, no problem
-    plt.show()
+
+    # Uncomment the line below to display normally
+    #plt.show()
+
+    # Comment the 2 lines below to display normally
+    filename = title + ".png"
+    fig.savefig(filename)
 
 
 def getPoissonDistributionHistogram(num_nodes, num_links, k):
@@ -43,11 +56,11 @@ def getPoissonDistributionHistogram(num_nodes, num_links, k):
 
     poissonDistribution = []
 
-    for i in range(0,k + 1):
+    # From 0 to k included
+    for i in range(0, k + 1):
         poissonDistribution.append(poisson(i, lambda_))
 
-    print("Debug Poisson histogram", poissonDistribution)
-    #print(type(poissonDistribution))
+    #print("Debug Poisson histogram", poissonDistribution)
     return poissonDistribution
 
 

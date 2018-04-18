@@ -11,7 +11,7 @@ class DegreeDistribution:
         for key, node in network.nodes.items():
             self.histogram[node.degree()] += 1
 
-        print("Debug: histogram list ", self.histogram)
+        #print("Debug: histogram list ", self.histogram)
 
         # Other option:
         # Dict containing {id:degree}
@@ -28,5 +28,5 @@ class DegreeDistribution:
 
         maxvalue = max(self.histogram)
         norm = [float(i) / maxvalue for i in self.histogram]
-        print("Debug: normalized histogram ", norm)
+        #print("Debug: normalized histogram ", norm)
         return norm

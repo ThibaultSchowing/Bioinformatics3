@@ -13,7 +13,7 @@ class RandomNetwork(AbstractNetwork):
         2. For i=#links steps, add a connection between for two randomly chosen nodes that are not yet connected
         """
 
-        print("debug: Init RandomNetwork")
+        #print("debug: Init RandomNetwork")
 
         random.seed()
 

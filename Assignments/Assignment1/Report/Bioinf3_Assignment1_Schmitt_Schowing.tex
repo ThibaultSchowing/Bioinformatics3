@@ -8,7 +8,8 @@
 \usepackage{amssymb} % 
 \usepackage{a4wide} % wide pages
 \usepackage{fancyhdr} % nice headers
-\lstset{basicstyle=\footnotesize,language=Python,numbers=left, numberstyle=\tiny, stepnumber=5,firstnumber=0, numbersep=5pt} % set up listings
+\usepackage{float}
+\lstset{basicstyle=\footnotesize,language=Python,breaklines=true,numbers=left, numberstyle=\tiny, stepnumber=5,firstnumber=0, numbersep=5pt} % set up listings
 \pagestyle{fancy}             % header
 \setlength{\parindent}{0pt}   % no indentation
 
@@ -62,12 +63,70 @@
 
 \exercise{The random network}
 \begin{enumerate}
-\item Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+\item Implementation of the missing methods for the Node-class. Listing \ref{ex1-a} shows source code of Node.py.
 
-Listing \ref{ex1-1} shows source code.
+\lstinputlisting[label=ex1-a,caption={Node.py}] {../Scripts/Node.py}
 
-%\lstinputlisting[label=ex1-1,caption={Example Listing of source code}] {Node.py}
+\item Implementation of the missing methods for the AbstractNetwork-class. Listing \ref{ex1-b} shows source code of AbstractNetwork.py. 
 
-Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+\lstinputlisting[label=ex1-b, caption={AbstractNetwork.py}] {../Scripts/AbstractNetwork.py}
+
+\item Implementation of the missing methods for the RandomNetwork-class. Listing \ref{ex1-c} shows source code of RandomNetwork.py. 
+
+\lstinputlisting[label=ex1-c, caption={RandomNetwork.py}] {../Scripts/RandomNetwork.py}
+
+\end{enumerate}
+
+
+
+\exercise{Degree distribution of random networks }
+\begin{enumerate}
+	\item Implementation of the missing methods for the DegreeDistribution-class. Listing \ref{ex2-a} shows source code of DegreeDistribution.py. 
+	
+	\lstinputlisting[label=ex2-a, caption={DegreeDistribution.py}] {../Scripts/DegreeDistribution.py}
+	
+	\item Implementation of the missing methods for the Tools.py methods. Listing \ref{ex2-b} shows source code of Tools.py
+	\lstinputlisting[label=ex2-b, caption={Tools.py}] {../Scripts/Tools.py}
+	
+	To get visually pleasing plots ensure that all distributions that are plotted together have the same length. This can be done by appropriately extending the shorter ones. Why does 	this happen and how do you need to "fill" the shorter distributions? Are the ranges of the discrete distributions we obtain in (c) deterministic in our case?
+	
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{tabledata}
+	\caption{}
+	\label{fig:tabledata}
+\end{figure}
+
+	The data in the figure \ref{fig:tabledata}, corresponds with figure \ref{fig:plot-1} (plot 1) and figure \ref{fig:plot-2} (plot 2). In figure \ref{fig:plot-1} we can observe that the ratio node/edges is equal among all plots. We have seen in the lectures that the larger is the graph, the more the probability that a random node has a link to \textit{k} other nodes is Poisson distributed. In the second plot, we keep the same number of nodes but increase the number of edges. This has the effect to increase the mean of the Poisson distribution. We can easily observe the orange, red, brown and grey bell curves sliding to the right as the number of edges increases. \\
+	
+	
+	We fill the shorter distributions with zeros because Poisson distributions tend to zero and we assume the missing values (\textit{P(k)}) at the end of our tables, so for large \textit{k's}, will tend to zero. \\
+	
+	
+	The ranges of the discrete distributions we obtain cannot be deterministic because we generate our graphs randomly. So the max degree of the distribution is random. 
+	 
+
+
+	
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{"../Scripts/Plot 1"}
+	\caption{}
+	\label{fig:plot-1}
+\end{figure}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{"../Scripts/Plot 2"}
+	\caption{}
+	\label{fig:plot-2}
+\end{figure}
+
+
+
+
+
+
 \end{enumerate}
 \end{document}

@@ -31,8 +31,8 @@ class AbstractNetwork:
         for key, value in self.nodes.items():
             deg_list.append(value.degree())
 
-        print("Debug: deg_list ", deg_list)
-        print("Debug: max degree: ", max(deg_list))
+        #print("Debug: deg_list ", deg_list)
+        #print("Debug: max degree: ", max(deg_list))
         return max(deg_list)
 
     def size(self):
