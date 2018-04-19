@@ -7,3 +7,4 @@ if __name__== "__main__":
     rand_net = RandomNetwork(10,5)
     rand_degree = DegreeDistribution(rand_net).getNormalizedDistribution()
     print(rand_degree)
+    print(rand_net)

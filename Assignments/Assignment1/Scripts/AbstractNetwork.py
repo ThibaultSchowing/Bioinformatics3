@@ -49,7 +49,10 @@ class AbstractNetwork:
         self.networkdict = {}
         for n in self.nodes.values():
             # n is a node -> contains identifier and neighbours
-            self.networkdict[n.identifier] = n.neighbours_list
+            nblist = []
+            for elem in n.neighbours_list:
+                nblist.append(elem.identifier)
+            self.networkdict[n.identifier] = nblist
         return str(self.networkdict)
 
 

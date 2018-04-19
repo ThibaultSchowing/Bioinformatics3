@@ -23,6 +23,7 @@ class RandomNetwork(AbstractNetwork):
             # https://docs.python.org/2/library/exceptions.html
             raise ValueError("The requested number of link (amount_links) is too high compared to the number of nodes (amount_nodes).")
 
+
         # Probability for an edge between two randomly selected nodes.
         self.probability = amount_links / self.maxLink
 
