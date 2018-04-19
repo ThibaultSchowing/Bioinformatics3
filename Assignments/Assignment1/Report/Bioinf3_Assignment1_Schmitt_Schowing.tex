@@ -36,7 +36,7 @@
 \newcommand{\authors}{
   \begin{tabular}{rl}
     \href{mailto:s8tbscho@stud.uni-saarland.de}{Thibault Schowing} & (2571837)\\
-    \href{mailto:email2}{Wiebke Schmitt} & (2543675)
+    \href{mailto:wiebkeschmitt@outlook.de}{Wiebke Schmitt} & (2543675)
   \end{tabular}
 }
 
@@ -88,8 +88,11 @@
 	\item Implementation of the missing methods for the Tools.py methods. Listing \ref{ex2-b} shows source code of Tools.py
 	\lstinputlisting[label=ex2-b, caption={Tools.py}] {../Scripts/Tools.py}
 	
-	To get visually pleasing plots ensure that all distributions that are plotted together have the same length. This can be done by appropriately extending the shorter ones. Why does 	this happen and how do you need to "fill" the shorter distributions? Are the ranges of the discrete distributions we obtain in (c) deterministic in our case?
+	\newpage
 	
+	\item To get visually pleasing plots ensure that all distributions that are plotted together have the same length. This can be done by appropriately extending the shorter ones. Why does 	this happen and how do you need to "fill" the shorter distributions? Are the ranges of the discrete distributions we obtain in (c) deterministic in our case?
+	
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{tabledata}
@@ -97,36 +100,35 @@
 	\label{fig:tabledata}
 \end{figure}
 
-	The data in the figure \ref{fig:tabledata}, corresponds with figure \ref{fig:plot-1} (plot 1) and figure \ref{fig:plot-2} (plot 2). In figure \ref{fig:plot-1} we can observe that the ratio node/edges is equal among all plots. We have seen in the lectures that the larger is the graph, the more the probability that a random node has a link to \textit{k} other nodes is Poisson distributed. In the second plot, we keep the same number of nodes but increase the number of edges. This has the effect to increase the mean of the Poisson distribution. We can easily observe the orange, red, brown and grey bell curves sliding to the right as the number of edges increases. \\
+	The data in the figure \ref{fig:tabledata}, corresponds with figure \ref{fig:plot-1} (plot 1) and figure \ref{fig:plot-2} (plot 2). The \textit{r} means normalized distribution and the \textit{p} means Poisson distribution. \\
+	
+	In figure \ref{fig:plot-1} we can observe that the ratio node/edges is equal among all plots. We have seen in the lectures that the larger is the graph, the more the probability that a random node has a link to \textit{k} other nodes is Poisson distributed. In the second plot, we keep the same number of nodes but increase the number of edges. This has the effect to increase the mean of the Poisson distribution. We can easily observe the orange, red, brown and grey bell curves sliding to the right as the number of edges increases. \\
 	
 	
-	We fill the shorter distributions with zeros because Poisson distributions tend to zero and we assume the missing values (\textit{P(k)}) at the end of our tables, so for large \textit{k's}, will tend to zero. \\
+	We fill the shorter distributions with zeros because Poisson distributions tend to zero and we assume that the missing values, \textit{P(k)}, at the end of our tables will tend to zero for large \textit{k's}. \\
 	
 	
 	The ranges of the discrete distributions we obtain cannot be deterministic because we generate our graphs randomly. So the max degree of the distribution is random. 
 	 
 
 
+\end{enumerate}
 	
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\linewidth]{"../Scripts/Plot 1"}
-	\caption{}
+	\includegraphics[width=0.8\linewidth]{"../Scripts/Plot 1"}
+	\caption{\textit{k}: number of neighboors,  \textit{p(k)}: probability to have \textit{k} neighbours. Note: The grey, brown, red and orange curves may be superposed in the picture.}
 	\label{fig:plot-1}
 \end{figure}
 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\linewidth]{"../Scripts/Plot 2"}
-	\caption{}
+	\includegraphics[width=0.8\linewidth]{"../Scripts/Plot 2"}
+	\caption{\textit{k}: number of neighboors,  \textit{p(k)}: probability to have \textit{k} neighbours}
 	\label{fig:plot-2}
 \end{figure}
 
 
 
-
-
-
-\end{enumerate}
 \end{document}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.11.22)  18 APR 2018 18:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.11.22)  19 APR 2018 14:45
 entering extended mode
 **./Bioinf3_Assignment1_Schmitt_Schowing.tex
 (Bioinf3_Assignment1_Schmitt_Schowing.tex
@@ -731,60 +731,66 @@ File: omlcmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OML/cmr/m/it' in size <8> not available
 (Font)              Font shape `OML/cmm/m/it' tried instead on input line 48.
-) [2]
+ [2])
 (../Scripts/RandomNetwork.py
 LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <8> not available
 (Font)              Font shape `OML/cmm/m/it' tried instead on input line 22.
-) [3] (../Scripts/DegreeDistribution.py)
-(../Scripts/Tools.py [4]) <tabledata.png, id=264, 675.7245pt x 60.82726pt>
+ [3]) (../Scripts/DegreeDistribution.py)
+(../Scripts/Tools.py [4]) [5] <tabledata.png, id=320, 675.7245pt x 60.82726pt>
 File: tabledata.png Graphic file (type png)
 
 <use tabledata.png>
-Package pdftex.def Info: tabledata.png used on input line 95.
+Package pdftex.def Info: tabledata.png used on input line 98.
 (pdftex.def)             Requested size: 297.20906pt x 26.75386pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 100--101
-
- []
-
-[5 <./tabledata.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 103--104
 
  []
 
-<"../Scripts/Plot 1".png, id=327, 462.528pt x 346.896pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 105--106
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 108--109
+
+ []
+
+<"../Scripts/Plot 1".png, id=326, 462.528pt x 346.896pt>
 File: "../Scripts/Plot 1".png Graphic file (type png)
 
 <use "../Scripts/Plot 1".png>
-Package pdftex.def Info: "../Scripts/Plot 1".png used on input line 113.
-(pdftex.def)             Requested size: 382.12502pt x 286.60559pt.
+Package pdftex.def Info: "../Scripts/Plot 1".png used on input line 119.
+(pdftex.def)             Requested size: 339.67029pt x 254.767pt.
 
-<"../Scripts/Plot 2".png, id=328, 462.528pt x 346.896pt>
+<"../Scripts/Plot 2".png, id=327, 462.528pt x 346.896pt>
 File: "../Scripts/Plot 2".png Graphic file (type png)
 
 <use "../Scripts/Plot 2".png>
-Package pdftex.def Info: "../Scripts/Plot 2".png used on input line 121.
-(pdftex.def)             Requested size: 382.12502pt x 286.60559pt.
- [6 <../Scripts/Plot 1.png>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 132.
- [7 <../Scripts/Plot 2.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 132.
+Package pdftex.def Info: "../Scripts/Plot 2".png used on input line 127.
+(pdftex.def)             Requested size: 339.67029pt x 254.767pt.
+ [6 <./tabledata.png> <../Scripts/Plot 1.png>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 134.
+
+[7 <../Scripts/Plot 2.png>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 134.
  (Bioinf3_Assignment1_Schmitt_Schowing.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 132.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 132.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 134.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 134.
 Package rerunfilecheck Info: File `Bioinf3_Assignment1_Schmitt_Schowing.out' ha
 s not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 132.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 134.
  ) 
 Here is how much of TeX's memory you used:
- 12015 strings out of 493333
- 162003 string characters out of 3139193
- 385267 words of memory out of 3000000
- 15134 multiletter control sequences out of 15000+200000
+ 12022 strings out of 493333
+ 162085 string characters out of 3139193
+ 381508 words of memory out of 3000000
+ 15136 multiletter control sequences out of 15000+200000
  12510 words of font info for 48 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 37i,17n,43p,735b,1988s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 45i,18n,43p,603b,2014s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Fi
 les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx8.pfb><C:/Program Files/MiKTe
@@ -795,10 +801,10 @@ sfonts/cm/cmr5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
 cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Prog
 ram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti8.pfb>
-Output written on Bioinf3_Assignment1_Schmitt_Schowing.pdf (7 pages, 352620 byt
+Output written on Bioinf3_Assignment1_Schmitt_Schowing.pdf (7 pages, 354309 byt
 es).
 PDF statistics:
- 438 PDF objects out of 1000 (max. 8388607)
- 278 named destinations out of 1000 (max. 500000)
+ 444 PDF objects out of 1000 (max. 8388607)
+ 283 named destinations out of 1000 (max. 500000)
  16 words of extra memory for PDF output out of 10000 (max. 10000000)
 
