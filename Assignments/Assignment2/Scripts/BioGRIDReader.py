@@ -1,5 +1,7 @@
 import operator
 from GenericNetwork import GenericNetwork
+from DegreeDistribution import DegreeDistribution
+import Tools as Tools
 
 class BioGRIDReader:
     '''Reads BioGRID tab files'''
@@ -147,12 +149,22 @@ class BioGRIDReader:
 
 if __name__== "__main__":
 
-    bio = BioGRIDReader("BIOGRID-ALL-3.4.159.tab.txt")
+    path = "../../../../Bioinformatics3_data/assignment2/BIOGRID-ALL-3.4.159.tab.txt"
+    bio = BioGRIDReader(path)
     abundantTaxon = bio.getMostAbundantTaxonIDs(5)
     print("The most abundent TaxonIDs are (id, qty): ", abundantTaxon)
     bio.getHumanInteraction()
 
-    bio.writeInteractionFile('9606', "humanFile.txt")
+    # Export human interactions to a file
+    EXPORT_FILE_NAME = "humanFile.txt"
+    EXPORT_ORGANISM = "9606"
+    bio.writeInteractionFile(EXPORT_ORGANISM, EXPORT_FILE_NAME)
 
-    gen = GenericNetwork("humanFile.txt")
+    # Create GenericNetwork with previously exported file
+    gen = GenericNetwork(EXPORT_FILE_NAME)
     print(str(gen))
+
+    # Get distribution
+    gen_degree = DegreeDistribution(gen).getNormalizedDistribution()
+    # Plot the degree distribution
+    Tools.plotDistributionComparisonLogLog([gen_degree], ["Human"],"Degree Distribution Generic network ")

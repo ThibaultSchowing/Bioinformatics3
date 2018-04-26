@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import math
 
+
 def plotDistributionComparison(histograms, legend, title):
     '''
     Plots a list of histograms with matching list of descriptions as the legend
@@ -26,10 +27,12 @@ def plotDistributionComparison(histograms, legend, title):
     plt.tight_layout()
     plt.show()
 
+
 def plotDistributionComparisonLogLog(histograms, legend, title):
     '''
     Plots a list of histograms with matching list of descriptions as the legend
     '''
+    fig = plt.figure()
     ax = plt.subplot()
     # determine max. length
     max_length = max(len(x) for x in histograms)
@@ -53,26 +56,35 @@ def plotDistributionComparisonLogLog(histograms, legend, title):
     plt.legend(legend)
     plt.title(title)
     plt.tight_layout()
-    plt.show()
-    
+
+    # Uncomment the line below to display normally
+    # plt.show()
+
+    # Comment the 2 lines below to display normally
+    filename = title + ".png"
+    fig.savefig(filename)
+
+
 def getScaleFreeDistributionHistogram(gamma, k):
     '''
     Generates a Power law distribution histogram with slope gamma up to degree k
     '''
     histogram = []
+    # NORMALISATION_CONSTANT \
+    # Todo here or in ScaleFreeTest.py
 
-    for i in range(k):
-        histogram.append(k**-gamma)
+    for i in range(1, k):
+        histogram.append(i**-gamma)
+
 
     return histogram
 
-    
 
 def simpleKSdist(histogram_a, histogram_b):
     '''
     Simple Kolmogorov-Smirnov distance implementation
     '''
-    print("KSDIST: size hist 1: ", len(histogram_a), "  Size hist2: ", len(histogram_b))
+    #print("KSDIST: size hist 1: ", len(histogram_a), "  Size hist2: ", len(histogram_b))
     D = 0
     # Assume that the two hists have the same length
     for i in range(0, len(histogram_a)-1):

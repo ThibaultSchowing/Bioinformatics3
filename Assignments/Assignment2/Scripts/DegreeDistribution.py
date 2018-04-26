@@ -27,9 +27,5 @@ class DegreeDistribution:
         Returns the computed normalized distribution
         '''
 
-        #maxvalue = max(self.histogram)
-        #norm = [float(i) / maxvalue for i in self.histogram]
-
         norm = [x/float(self.network.size()) for x in self.histogram]
-        #print("Debug: normalized histogram ", norm)
         return norm

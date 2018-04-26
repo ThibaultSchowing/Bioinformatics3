@@ -1,12 +1,7 @@
+#Bioinformatics 3 : Wiebke Schmitt & Thibault Schowing
 import random
 from Node import Node
 from AbstractNetwork import AbstractNetwork
-
-
-
-
-
-
 
 class ScaleFreeNetwork(AbstractNetwork):
     """Scale-free network implementation of AbstractNetwork"""
