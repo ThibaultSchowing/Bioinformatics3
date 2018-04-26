@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import math
+from itertools import accumulate
 
 
 def plotDistributionComparison(histograms, legend, title):
@@ -73,11 +74,14 @@ def getScaleFreeDistributionHistogram(gamma, k):
     # NORMALISATION_CONSTANT \
     # Todo here or in ScaleFreeTest.py
 
-    for i in range(1, k):
+    for i in range(1, k+1):
         histogram.append(i**-gamma)
 
+    #Normalisation
 
-    return histogram
+    norm_hist = [i / sum(histogram) for i in histogram]
+
+    return norm_hist
 
 
 def simpleKSdist(histogram_a, histogram_b):
@@ -86,8 +90,25 @@ def simpleKSdist(histogram_a, histogram_b):
     '''
     #print("KSDIST: size hist 1: ", len(histogram_a), "  Size hist2: ", len(histogram_b))
     D = 0
-    # Assume that the two hists have the same length
-    for i in range(0, len(histogram_a)-1):
-        D = max(D, (histogram_a[i] - histogram_b[i]))
+    # Assume that the two hists have the same size
+    histograms = [histogram_a,histogram_b]
 
-    return D
+    #for i in range(0, len(histogram_a)-1):
+    #    D = max(D, (histogram_a[i] - histogram_b[i]))
+    max_len = max(len(x) for x in histograms)
+
+    for x in histograms:
+        x.extend([0.0] * (max_len - len(x)))
+
+    for i in range(0, 2):  # accumulative distribution
+        histograms[i] = list(accumulate(histograms[i]))
+
+    ksdist = []
+
+    for i in range(max_len):
+        ksdist.append(abs(histogram_a[i] - histogram_b[i]))
+
+    print("DEBUG: distanceKS: ", ksdist)
+
+    # PROBLEM: maximum is always 1.0 !!!!
+    return max(ksdist)

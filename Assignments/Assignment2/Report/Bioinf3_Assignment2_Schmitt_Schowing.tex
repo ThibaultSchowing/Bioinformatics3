@@ -123,26 +123,34 @@ Implementation of the missing methods for the ScaleFreeNetwork-class. Listing \r
 \end{enumerate}
 
 
-
+\newpage
 \exercise{Classify real-world network examples}
 \begin{enumerate}
-	\item bla 
+	\item File sharing services\\
+	
+	 The two first listed services, Megaupload and Rapidshare, are more server oriented. The servers host the content, and the client download it. This is more like a scale-free network with a few big central servers around the world (so also like a clustered-network). About directions, each client can upload and download files (media like music and movies are certainly the most famous example). Of course, people uploading files are rarer than people downloading the contend. The traffic, so the directions, are more oriented from the hubs to the leaves/final client. 
 	
 	
-	\item bla
+	\item Social networks\\
+	
+	These are undirected networks. Two people are friends or not, but there is no directionality to
+	the relation.
+	A social network can be considered to be a scale-free network, because people with many
+	friends are more likely to make new friends than people who are not as active socially. It can
+	therefore also be considered to be a clustered network, because there tend to be people that
+	are much more connected than others for geographical reasons.
 	
 	
-	\item bla
+	\item Broadcasting networks\\
+	
+	This is hierarchical networks. Main TV/Radio companies send contents over cables or satelite connexion. For cables, city-relays, neighbourhood-relays or other structure can transmit the information stream from the central node, to the final one (TV or radio). The signal is directed from the broadcasting company to the client, so is the network.   
 	
 
 \end{enumerate}
 	
 	
-	
-	
-	
-	
-	
+
+\newpage
 \exercise{Real interaction networks}
 \begin{enumerate}
 	\item Here is the implementation of the BioGRIDReader-class
@@ -157,8 +165,8 @@ Implementation of the missing methods for the ScaleFreeNetwork-class. Listing \r
 		degree? Take one of them as an example and briefly explain the biology behind the
 		connectivity.}\\
 	
-	%TODO answer question properly
-	The most abundent TaxonIDs are (id, qty):  [('559292', 704012), ('9606', 414501), ('316407', 184023), ('284812', 72149), ('7227', 67935)]
+	
+	\textbf{The most abundent TaxonIDs are (id, qty):  [('559292', 704012), ('9606', 414501), ('316407', 184023), ('284812', 72149), ('7227', 67935)]}
 	
 	\begin{itemize}
 		\item 559292: Saccharomyces cerevisiae (Baker's Yeast)
@@ -168,13 +176,15 @@ Implementation of the missing methods for the ScaleFreeNetwork-class. Listing \r
 		\item   7227: Drosophila melanogaster
 	\end{itemize}
 	
-	Number of Human-Human interactions (human id = 9606):  386192
+	\textbf{Number of Human-Human interactions (human id = 9606):  386192}
 	
 	The  10  proteins with the highest degree are: 
-	[('ETG7157', 3024), ('ETG7706', 2559), ('ETG351', 2454), ('ETG1956', 2134), ('ETG7316', 2042), ('ETG4914', 2002), ('ETG4193', 1939), ('ETG672', 1876), ('ETG1994', 1840), ('RP4-811H24.2', 1646)]
+	\textbf{[('TP53', 3024), ('TRIM25', 2559), ('APP', 2454), ('EGFR', 2134), ('UBC', 2042), ('NTRK1', 2002), ('MDM2', 1939), ('BRCA1', 1876), ('ELAVL1', 1840), ('HDAC1', 1646)]}\\
 	
 	
-	This network has  17087 nodes.
+	The gene/protein P53 is the most present in the data. The protein's full name is "Cellular Tumor Antigen p53". "p53 has many mechanisms of anticancer function and plays a role in apoptosis, genomic stability, and inhibition of angiogenesis."\footnote{https://en.wikipedia.org/wiki/P53} This protein interacts with many cellular processes and thus, has many interactions with many other genes/proteins. 
+	
+	In our case, the human interaction network has \textbf{17087} nodes and \textbf{772384} links.
 	
 	\item Generic network implementation 
 	\lstinputlisting[label=ex23-d, caption={GenericNetwork.py}] {../Scripts/GenericNetwork.py}

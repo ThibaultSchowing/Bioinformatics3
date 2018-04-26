@@ -17,8 +17,8 @@ class BioGRIDReader:
 
         self.INTERACTOR_A = []
         self.INTERACTOR_B = []
-        self.OFFICIAL_SYMBOL_FOR_A = []
-        self.OFFICIAL_SYMBOL_FOR_B = []
+        self.OFFICIAL_SYMBOL_A = []
+        self.OFFICIAL_SYMBOL_B = []
         self.ALIASES_FOR_A = []
         self.ALIASES_FOR_B = []
         self.EXPERIMENTAL_SYSTEM = []
@@ -39,8 +39,8 @@ class BioGRIDReader:
 
                     self.INTERACTOR_A.append(line_tab[0])
                     self.INTERACTOR_B.append(line_tab[1])
-                    self.OFFICIAL_SYMBOL_FOR_A.append(line_tab[2])
-                    self.OFFICIAL_SYMBOL_FOR_B.append(line_tab[3])
+                    self.OFFICIAL_SYMBOL_A.append(line_tab[2])
+                    self.OFFICIAL_SYMBOL_B.append(line_tab[3])
                     self.ALIASES_FOR_A.append(line_tab[4])
                     self.ALIASES_FOR_B.append(line_tab[5])
                     self.EXPERIMENTAL_SYSTEM.append(line_tab[6])
@@ -106,8 +106,8 @@ class BioGRIDReader:
         # Get intersection
         indexes = list(set(indexesA).intersection(indexesB))
 
-        proteins = [self.INTERACTOR_A[i] for i in indexes]
-        proteins.extend([self.INTERACTOR_B[i] for i in indexes])
+        proteins = [self.OFFICIAL_SYMBOL_A[i] for i in indexes]
+        proteins.extend([self.OFFICIAL_SYMBOL_B[i] for i in indexes])
 
         proteins_count = {}
         for prot in proteins:
@@ -137,11 +137,11 @@ class BioGRIDReader:
 
         # Get intersection
         indexes = list(set(indexesA).intersection(indexesB))
-        
+
         for i in indexes:
-            file.write(self.INTERACTOR_A[i])
+            file.write(self.OFFICIAL_SYMBOL_A[i])
             file.write("\t")
-            file.write(self.INTERACTOR_B[i])
+            file.write(self.OFFICIAL_SYMBOL_B[i])
             file.write("\n")
 
         file.close()
@@ -163,6 +163,7 @@ if __name__== "__main__":
     # Create GenericNetwork with previously exported file
     gen = GenericNetwork(EXPORT_FILE_NAME)
     print(str(gen))
+    print("The network has ", gen.degreeSum(), " links.\n")
 
     # Get distribution
     gen_degree = DegreeDistribution(gen).getNormalizedDistribution()

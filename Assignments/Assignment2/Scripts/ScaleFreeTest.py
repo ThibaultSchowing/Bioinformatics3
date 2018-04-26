@@ -28,7 +28,7 @@ if __name__== "__main__":
 
     # TASK 2.1 c
 
-    sf_net_c = ScaleFreeNetwork(10000, 2)
+    sf_net_c = ScaleFreeNetwork(1000, 2)
     sf_net_c_degree = DegreeDistribution(sf_net_c).getNormalizedDistribution()
 
     k = len(sf_net_c_degree)
@@ -42,11 +42,11 @@ if __name__== "__main__":
         #Normalize
         #TODO normalize according to what ?
 
-        distance = Tools.simpleKSdist(sf_net_c_degree, theoretical_dist)
+        distance = Tools.simpleKSdist(theoretical_dist, sf_net_c_degree)
         gamma_distance.append((gamma, distance))
 
     # Sort the distances-gamma tuples
-    gamma_distance.sort(key=lambda x: x[1], reverse=True)
+    gamma_distance.sort(key=lambda x: x[1], reverse=False)
 
     print("All gamma-distance: ", gamma_distance)
     print("Best gamma: ", gamma_distance[0][0])
@@ -54,3 +54,6 @@ if __name__== "__main__":
     # Optimal theoretical distribution (powerlaw)
     optimal_theoretical = Tools.getScaleFreeDistributionHistogram(gamma_distance[0][0], k)
     Tools.plotDistributionComparisonLogLog([sf_net_c_degree, optimal_theoretical], ['Scale Free Network', 'PowerLaw'],'Compare theory to practice')
+
+    print("DEBUG SHIT POWERLAW")
+    print(Tools.getScaleFreeDistributionHistogram(13.5, k))
