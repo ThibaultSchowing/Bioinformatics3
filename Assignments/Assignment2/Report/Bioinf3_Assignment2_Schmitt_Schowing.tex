@@ -87,12 +87,14 @@ Implementation of the missing methods for the ScaleFreeNetwork-class. Listing \r
 
 %TODO insert image with the two scale free and the random distrib
 
+
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\linewidth]{../Scripts/Figure_1}
-	\caption[Scale-Free vs Random]{We can observe that the Scale-Free distribution follow a power-law style, as it is almost a straight line when ploted with log-log axes. On the other hand, the random network is more Poisson distributed as seen in Assignment 1.}
-	\label{fig:figure1}
+	\includegraphics[width=0.7\linewidth]{"../Scripts/Plot_Degree Distribution ScaleFree vs Random Network"}
+	\caption[Scale-Free vs Random]{We can observe that the Scale-Free distribution follow a power-law style, as it is almost a straight line when plotted with log-log axes. On the other hand, the random network is more Poisson distributed as seen in Assignment 1.}
+	\label{fig:plot2degree-distribution-scalefree-vs-random-network}
 \end{figure}
+
 
 
 \lstinputlisting[label=ex2-b, caption={ScaleFreeTest.py}] {../Scripts/ScaleFreeTest.py}
@@ -100,6 +102,8 @@ Implementation of the missing methods for the ScaleFreeNetwork-class. Listing \r
 \item \textit{The degree distribution of a scale-free network follows a power law, which has the form $P(k) ~ k^{-\lambda}$ To simplify the exercise, we assume $P(k) ~ Ck^{-\lambda}$ with $C$ being a fixed normalization
 	constant to obtain a proper distribution. Try to fit this theoretical distribution to the
 	degree distribution of a random network using the Kolmogorov-Smirnov distance. }
+
+
 
 
 \lstinputlisting[label=ex2-c, caption={Tools.py}] {../Scripts/Tools.py}
@@ -114,9 +118,8 @@ Implementation of the missing methods for the ScaleFreeNetwork-class. Listing \r
 %TODO discussion.... follows the theory until some point 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\linewidth]{"../Scripts/Compare theory to practice"}
+	\includegraphics[width=0.7\linewidth]{"../Scripts/Plot_Compare theory to practice"}
 	\caption[Theory vs Practice]{}
-	\caption{}
 	\label{fig:compare-theory-to-practice}
 \end{figure}
 
@@ -186,7 +189,18 @@ Implementation of the missing methods for the ScaleFreeNetwork-class. Listing \r
 	
 	In our case, the human interaction network has \textbf{17087} nodes and \textbf{772384} links.
 	
-	\item Generic network implementation 
+	
+	\item Generic network distribution and implementation 
+	
+	
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{"../Scripts/Plot_Degree Distribution Generic Network "}
+	\caption[Human interaction network plot]{}
+	\caption{}
+	\label{fig:plot4degree-distribution-generic-network-}
+\end{figure}
+	
 	\lstinputlisting[label=ex23-d, caption={GenericNetwork.py}] {../Scripts/GenericNetwork.py}
 	
 	

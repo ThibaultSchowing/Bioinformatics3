@@ -88,13 +88,8 @@ def simpleKSdist(histogram_a, histogram_b):
     '''
     Simple Kolmogorov-Smirnov distance implementation
     '''
-    #print("KSDIST: size hist 1: ", len(histogram_a), "  Size hist2: ", len(histogram_b))
-    D = 0
-    # Assume that the two hists have the same size
     histograms = [histogram_a,histogram_b]
 
-    #for i in range(0, len(histogram_a)-1):
-    #    D = max(D, (histogram_a[i] - histogram_b[i]))
     max_len = max(len(x) for x in histograms)
 
     for x in histograms:
@@ -108,7 +103,4 @@ def simpleKSdist(histogram_a, histogram_b):
     for i in range(max_len):
         ksdist.append(abs(histogram_a[i] - histogram_b[i]))
 
-    print("DEBUG: distanceKS: ", ksdist)
-
-    # PROBLEM: maximum is always 1.0 !!!!
     return max(ksdist)

@@ -24,9 +24,9 @@ if __name__== "__main__":
     rand_degree = DegreeDistribution(rand_net).getNormalizedDistribution()
 
     # Plot the degree distribution
-    Tools.plotDistributionComparisonLogLog([sf_degree, sf_degree2],[small,big], "Plot1_Degree Distribution of Scale-Free networks")
+    Tools.plotDistributionComparisonLogLog([sf_degree, sf_degree2],["10'000 Scale-Free","100'000 Scale-Free"], "Plot_Degree Distribution of ScaleFree networks")
 
-    Tools.plotDistributionComparisonLogLog([sf_degree2, rand_degree], [big, "rand"],"Plot2_Degree Distribution - Scale-Free vs Random Network")
+    Tools.plotDistributionComparisonLogLog([sf_degree2, rand_degree], ["100'000 Scale-Free", "Random (10'000 x 100'000"],"Plot_Degree Distribution ScaleFree vs Random Network")
 
     # TASK 2.1 c
 
@@ -52,4 +52,4 @@ if __name__== "__main__":
 
     # Optimal theoretical distribution (powerlaw) with the best gamma
     optimal_theoretical = Tools.getScaleFreeDistributionHistogram(gamma_distance[0][0], k)
-    Tools.plotDistributionComparisonLogLog([sf_net_c_degree, optimal_theoretical], ['Scale Free Network', 'PowerLaw'],'Plot3_Compare theory to practice')
+    Tools.plotDistributionComparisonLogLog([sf_net_c_degree, optimal_theoretical], ['Scale Free Network', 'PowerLaw'],'Plot_Compare theory to practice')
