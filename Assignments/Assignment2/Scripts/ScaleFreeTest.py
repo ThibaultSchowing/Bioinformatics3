@@ -11,6 +11,7 @@ if __name__== "__main__":
 
     # TASK 2.1 a AND b
     # Creating two networks and taking the degree distributions
+    #TODO update number of nodes and run it during ages
     small = 100
     big = 1000
     sf_net = ScaleFreeNetwork(small,2)
@@ -23,8 +24,9 @@ if __name__== "__main__":
     rand_degree = DegreeDistribution(rand_net).getNormalizedDistribution()
 
     # Plot the degree distribution
-    Tools.plotDistributionComparisonLogLog([sf_degree, sf_degree2, rand_degree],[small,big, "rand"], "Degree Distribution Scale-Free network ")
-    Tools.plotDistributionComparisonLogLog([sf_degree2, rand_degree], [big, "rand"],"Degree Distribution - Scale-Free vs Random Network")
+    Tools.plotDistributionComparisonLogLog([sf_degree, sf_degree2],[small,big], "Plot1_Degree Distribution of Scale-Free networks")
+
+    Tools.plotDistributionComparisonLogLog([sf_degree2, rand_degree], [big, "rand"],"Plot2_Degree Distribution - Scale-Free vs Random Network")
 
     # TASK 2.1 c
 
@@ -39,9 +41,6 @@ if __name__== "__main__":
     steps = [x * 0.1 for x in range(10, 30)]
     for gamma in steps:
         theoretical_dist = Tools.getScaleFreeDistributionHistogram(gamma, k)
-        #Normalize
-        #TODO normalize according to what ?
-
         distance = Tools.simpleKSdist(theoretical_dist, sf_net_c_degree)
         gamma_distance.append((gamma, distance))
 
@@ -51,9 +50,6 @@ if __name__== "__main__":
     print("All gamma-distance: ", gamma_distance)
     print("Best gamma: ", gamma_distance[0][0])
 
-    # Optimal theoretical distribution (powerlaw)
+    # Optimal theoretical distribution (powerlaw) with the best gamma
     optimal_theoretical = Tools.getScaleFreeDistributionHistogram(gamma_distance[0][0], k)
-    Tools.plotDistributionComparisonLogLog([sf_net_c_degree, optimal_theoretical], ['Scale Free Network', 'PowerLaw'],'Compare theory to practice')
-
-    print("DEBUG SHIT POWERLAW")
-    print(Tools.getScaleFreeDistributionHistogram(13.5, k))
+    Tools.plotDistributionComparisonLogLog([sf_net_c_degree, optimal_theoretical], ['Scale Free Network', 'PowerLaw'],'Plot3_Compare theory to practice')

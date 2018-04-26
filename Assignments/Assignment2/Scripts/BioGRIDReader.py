@@ -168,4 +168,4 @@ if __name__== "__main__":
     # Get distribution
     gen_degree = DegreeDistribution(gen).getNormalizedDistribution()
     # Plot the degree distribution
-    Tools.plotDistributionComparisonLogLog([gen_degree], ["Human"],"Degree Distribution Generic network ")
+    Tools.plotDistributionComparisonLogLog([gen_degree], ["Human"],"Plot4_Degree Distribution Generic Network ")
