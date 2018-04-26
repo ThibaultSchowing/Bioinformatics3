@@ -71,8 +71,24 @@
 	To obtain a much faster implementation and full points, think of a method to map the
 	probabilities to connect to nodes somehow instead of computing them from scratch in each
 	iteration.}\\
+
+Note: We first generated the probability distribution en each iteration and use the function \textit{random.choices(pop, prob
+	)} to select a node according to its probability (Method 1). After an intense reflection and the understanding of what what said during the tutorial, we tried a second option (Method 2) commented in the listing \ref{ex2-a}. The benchmark below (figure \ref{fig:timemethod1}) shows that the first option seems more time-efficient. 
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{img/time_method1}
+	\caption{Time of execution with method 1, with 1000 and 10'000 nodes}
+	\includegraphics[width=0.7\linewidth]{img/time_method2}
+	\caption{Time of execution with method 2, with 1000 and 10'000 nodes}
+	\label{fig:timemethod1}
+\end{figure}
+
+
 Implementation of the missing methods for the ScaleFreeNetwork-class. Listing \ref{ex2-a} shows source code of ScaleFreeNetwork.py.
 
+\newpage
 \lstinputlisting[label=ex2-a,caption={ScaleFreeNetwork.py}] {../Scripts/ScaleFreeNetwork.py}
 
 \item \textit{Determine the degree distributions for scale-free networks of 10 000 and 100 000 nodes
@@ -86,6 +102,14 @@ Implementation of the missing methods for the ScaleFreeNetwork-class. Listing \r
 
 
 %TODO insert image with the two scale free and the random distrib
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{"../Scripts/Plot_Degree Distribution of ScaleFree networks"}
+	\caption{Two scale-free network, one with 10000 nodes and one with 100000 nodes.}
+	\label{fig:plotdegree-distribution-of-scalefree-networks}
+\end{figure}
+
 
 
 \begin{figure}[H]
@@ -119,7 +143,7 @@ Implementation of the missing methods for the ScaleFreeNetwork-class. Listing \r
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{"../Scripts/Plot_Compare theory to practice"}
-	\caption[Theory vs Practice]{}
+	\caption[Theory vs Practice]{We can see that the theoretical distribution fits the Scale-Free network like linear regression. This doesn't get the information that really few nodes will have high degrees. By fitting the Power-Law distribution only to the lower-degree nodes (consider big hubs as outliers), the power-law would fit the distribution more accurately, at least for the first part. The higher degree nodes would fit a more linear function.}
 	\label{fig:compare-theory-to-practice}
 \end{figure}
 
@@ -161,13 +185,8 @@ Implementation of the missing methods for the ScaleFreeNetwork-class. Listing \r
 	
 	
 	
+	
 	\item The class getMostAbundantTaxonIDs(n) is listed in the listing \ref{ex23-c} above. 
-	
-	
-	\item \textit{How big is the human interaction network and which are the 10 proteins with the highest
-		degree? Take one of them as an example and briefly explain the biology behind the
-		connectivity.}\\
-	
 	
 	\textbf{The most abundent TaxonIDs are (id, qty):  [('559292', 704012), ('9606', 414501), ('316407', 184023), ('284812', 72149), ('7227', 67935)]}
 	
@@ -178,6 +197,17 @@ Implementation of the missing methods for the ScaleFreeNetwork-class. Listing \r
 		\item 284812: Schizosaccharomyces pombe (Fission yeast)
 		\item   7227: Drosophila melanogaster
 	\end{itemize}
+	
+	
+	
+	
+	
+	\item \textit{How big is the human interaction network and which are the 10 proteins with the highest
+		degree? Take one of them as an example and briefly explain the biology behind the
+		connectivity.}\\
+	
+	
+	
 	
 	\textbf{Number of Human-Human interactions (human id = 9606):  386192}
 	
@@ -193,7 +223,7 @@ Implementation of the missing methods for the ScaleFreeNetwork-class. Listing \r
 	\item Generic network distribution and implementation 
 	
 	
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{"../Scripts/Plot_Degree Distribution Generic Network "}
 	\caption[Human interaction network plot]{}

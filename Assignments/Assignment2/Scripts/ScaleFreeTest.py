@@ -3,6 +3,7 @@
 from ScaleFreeNetwork import ScaleFreeNetwork
 from DegreeDistribution import DegreeDistribution
 from RandomNetwork import RandomNetwork
+import time
 import matplotlib.pyplot as plt
 import Tools as Tools
 
@@ -10,27 +11,43 @@ import Tools as Tools
 if __name__== "__main__":
 
     # TASK 2.1 a AND b
-    # Creating two networks and taking the degree distributions
-    #TODO update number of nodes and run it during ages
-    small = 100
-    big = 1000
-    sf_net = ScaleFreeNetwork(small,2)
-    sf_net2 = ScaleFreeNetwork(big,2)
+    # Number of nodes and link per node
+    SMALL = 1000
+    BIG = 10000
+    NB_LINK = 2
 
-    rand_net = RandomNetwork(10000, 100000)
+    # Create first network
+    time1 = time.time()
+    sf_net = ScaleFreeNetwork(SMALL,NB_LINK)
+    time2 = time.time()
+    print("Network created -> Time elapsed: ", (time2 - time1)/60, " minutes")
 
+    # Create second network
+    time1 = time.time()
+    sf_net2 = ScaleFreeNetwork(BIG,NB_LINK)
+    time2 = time.time()
+    print("Network created -> Time elapsed: ", (time2 - time1)/60, " minutes")
+
+    # Create random network
+    rand_net = RandomNetwork(1000, 10000)
+
+    # Network's normalized distributions
     sf_degree = DegreeDistribution(sf_net).getNormalizedDistribution()
     sf_degree2 = DegreeDistribution(sf_net2).getNormalizedDistribution()
     rand_degree = DegreeDistribution(rand_net).getNormalizedDistribution()
 
-    # Plot the degree distribution
-    Tools.plotDistributionComparisonLogLog([sf_degree, sf_degree2],["10'000 Scale-Free","100'000 Scale-Free"], "Plot_Degree Distribution of ScaleFree networks")
+    # Plot the degree distributions
+    # Small vs Big scale-free network
+    legend1 = str(SMALL) + "Scale-Free"
+    legend2 = str(BIG) + "Scale-Free"
+    Tools.plotDistributionComparisonLogLog([sf_degree, sf_degree2],[legend1,legend2], "Plot_Degree Distribution of ScaleFree networks")
 
-    Tools.plotDistributionComparisonLogLog([sf_degree2, rand_degree], ["100'000 Scale-Free", "Random (10'000 x 100'000"],"Plot_Degree Distribution ScaleFree vs Random Network")
+    # Big scale-free vs random network
+    Tools.plotDistributionComparisonLogLog([sf_degree2, rand_degree], [legend2, "Random (1'000 x 10'000"],"Plot_Degree Distribution ScaleFree vs Random Network")
 
     # TASK 2.1 c
-
-    sf_net_c = ScaleFreeNetwork(1000, 2)
+    # reuse sf_net2 (BIG)
+    sf_net_c = sf_net2
     sf_net_c_degree = DegreeDistribution(sf_net_c).getNormalizedDistribution()
 
     k = len(sf_net_c_degree)
@@ -52,4 +69,4 @@ if __name__== "__main__":
 
     # Optimal theoretical distribution (powerlaw) with the best gamma
     optimal_theoretical = Tools.getScaleFreeDistributionHistogram(gamma_distance[0][0], k)
-    Tools.plotDistributionComparisonLogLog([sf_net_c_degree, optimal_theoretical], ['Scale Free Network', 'PowerLaw'],'Plot_Compare theory to practice')
+    Tools.plotDistributionComparisonLogLog([sf_net_c_degree, optimal_theoretical], ["Scale Free Network" + str(BIG), 'PowerLaw'],'Plot_Compare theory to practice')

@@ -2,7 +2,6 @@
 import random
 from Node import Node
 from AbstractNetwork import AbstractNetwork
-
 class ScaleFreeNetwork(AbstractNetwork):
     """Scale-free network implementation of AbstractNetwork"""
 
@@ -20,69 +19,42 @@ class ScaleFreeNetwork(AbstractNetwork):
             node1.addLinkTo(node2)
             node2.addLinkTo(node1)
 
-        def genProbList():
-
-            # Generate probability range for each nodes
-
-            prob_list = []
-            sumkj = self.degreeSum()
-
-            for key, node in self.nodes.items():
-                # calculate pi
-                # ki = degree of node i
-                #print("Debug: node degree: ", node.degree())
-                ki = node.degree()
-                # Sum kj = sum of all degrees
-
-                prob_list.append(ki / sumkj)
-                #print("Debug select neighbours prob list: ", prob_list)
-
-            # now we have a probability list -> select the number_neighbours future neighbours
-
-            #print("DEBUG probability list generated: ", prob_list)
-            return prob_list
-
-
-
-
-
-
         random.seed()
         print("Debug: ", amount_nodes, " nodes and ", amount_links, "links.... creating ScaleFree network")
 
         # Initial m0 nodes connected to each other
-        #
-        # #QUESTION: is 3 fixed ??? Should it be dynamic ?
-
         m0 = 3
-        # Number of links per node
-        number_neighbours = amount_links
 
-        # Contains the degrees of the initial complete network
-        degree_list = [2,2,2]
-
+        # Create Nodes
         for i in range(0, m0):
             self.appendNode(Node(i))
 
-        symetricConnection(self.getNode(0), self.getNode(1))
-        symetricConnection(self.getNode(1), self.getNode(2))
-        symetricConnection(self.getNode(0), self.getNode(2))
+        # Connect Nodes to each other
+        for i in range(0,amount_links):
+            for j in range(i+1, m0):
+                symetricConnection(self.getNode(i), self.getNode(j%3))
 
-        # useless and slow
-        # http://didar-physics.blogspot.de/2015/02/barabasialbert-model-generated-code.html
-        # https://stackoverflow.com/questions/38008748/python-implementing-a-step-by-step-modified-barabasi-albert-model-for-scale-fr
 
-        # Random failure measure
-        random_failure = 0
+        # Method 1
+        # In a first attempt we used the code below.
+
+
+        def genProbList():
+            prob_list = []
+            sumkj = self.degreeSum()
+
+            for key, node in self.nodes.items():
+                ki = node.degree()
+                prob_list.append(ki / sumkj)
+            return prob_list
+
 
         # new nodes id (without the 3 initial nodes)
         for new_node_id in range(3, amount_nodes - 3):
 
-            #print("Debug: population: ", population)
             new_node = Node(new_node_id)
             self.appendNode(new_node)
 
-            # Just a sequence of all node ids
             population = list(range(0, self.size()))
 
             # Generate probability list of existing nodes
@@ -90,8 +62,8 @@ class ScaleFreeNetwork(AbstractNetwork):
 
             for i in range(amount_links):
 
-
                 while(True):
+                    # choose the neighbour according to its probability
                     chosen_neighbour = random.choices(population, weights=prob_list, k = 1)[0]
 
                     # if it's a new link and it's not a self-connection
@@ -100,16 +72,50 @@ class ScaleFreeNetwork(AbstractNetwork):
                         symetricConnection(new_node,self.getNode(chosen_neighbour))
                         break
 
-                    # Random failure increment
-                    random_failure += 1
 
-            # debug info: print degrees
-            self.degrees = []
-            for id, node in self.nodes.items():
-                self.degrees.append(node.degree())
-            #print(self.degrees)
+        # Method 2
+        # In a second attempt, we used the code below
+        # # the initial network contains 3x2 links
+        # network_degree = 6
 
-
-
-        print("Debug Random failure count: ", random_failure)
+        # # next node ID
+        # id = 3
+        #
+        # while id < amount_nodes:
+        #     #print("debug: id", id)
+        #     new_node = Node(id)
+        #     self.appendNode(new_node)
+        #
+        #     # For each new node, reset the amount of links to 2 (in our case)
+        #     remaining_links = amount_links
+        #
+        #     while remaining_links:
+        #         #print("debug remaining linkl: ",remaining_links)
+        #         # we randomly chose a node in the network
+        #         rand_node = random.choice(self.nodes)
+        #
+        #         # The node must not be already connected or be == to new_node
+        #         if(id != rand_node.id and not rand_node.hasLinkTo(new_node)):
+        #             # The node probability according to its degree and the total network's degree
+        #             node_prob = rand_node.degree() / network_degree
+        #
+        #             # Now we create a random number (uniform between [0,1[ )
+        #             # If the probability of the node is bigger than the random probability, we can connect them
+        #             random_prob = random.random()
+        #             #print("debug node prob ", node_prob, "  random_prob  ", random_prob)
+        #
+        #             if(node_prob > random_prob):
+        #                 rand_node.addLinkTo(new_node)
+        #                 new_node.addLinkTo(rand_node)
+        #
+        #                 # Now we directly update the network's total degree
+        #                 network_degree += 2
+        #
+        #                 #... and substract the number of link we need to create for the new node
+        #                 remaining_links -= 1
+        #
+        #     # This node is done, it's time for the next one
+        #     id += 1
+        #
+        # print("Network created. Size: ", len(self.nodes), "    Total Degree: ", network_degree)
 
