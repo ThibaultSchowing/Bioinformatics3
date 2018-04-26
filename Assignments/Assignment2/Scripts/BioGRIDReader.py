@@ -137,7 +137,7 @@ class BioGRIDReader:
 
         # Get intersection
         indexes = list(set(indexesA).intersection(indexesB))
-
+        
         for i in indexes:
             file.write(self.INTERACTOR_A[i])
             file.write("\t")
