@@ -1,0 +1,128 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+
+% \usepackage{ngerman}  % german documents
+\usepackage{graphicx}  % import graphics einbinden
+\usepackage{listings}  % support source code listing
+\usepackage{amsmath}  % math stuff
+\usepackage{amssymb} % 
+\usepackage{a4wide} % wide pages
+\usepackage{fancyhdr} % nice headers
+\usepackage{float}
+\lstset{basicstyle=\footnotesize,language=Python,breaklines=true,numbers=left, numberstyle=\tiny, stepnumber=5,firstnumber=0, numbersep=5pt} % set up listings
+\pagestyle{fancy}             % header
+\setlength{\parindent}{0pt}   % no indentation
+
+\usepackage[pdfpagemode=None, colorlinks=true,  % url coloring
+           linkcolor=blue, urlcolor=blue, citecolor=blue, plainpages=false, 
+           pdfpagelabels,unicode]{hyperref}
+           
+% change enums style: first level (a), (b), (c)           
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\renewcommand{\labelenumii}{(\arabic{enumii})}
+
+%lecture name
+\newcommand{\lecture}{
+	Bioinformatics III
+}           
+
+%assignment iteration
+\newcommand{\assignment}{
+	Third Assignment
+}
+
+
+%set up names, matricle number, and email
+\newcommand{\authors}{
+  \begin{tabular}{rl}
+    \href{mailto:s8tbscho@stud.uni-saarland.de}{Thibault Schowing} & (2571837)\\
+    \href{mailto:wiebkeschmitt@outlook.de}{Wiebke Schmitt} & (2543675)
+  \end{tabular}
+}
+
+% use to start a new exercise
+\newcommand{\exercise}[1]
+{
+  \stepcounter{subsection}
+  \subsection*{Exercise \thesubsection: #1}
+
+}
+
+\begin{document}
+\title{\Large \lecture \\ \textbf{\normalsize \assignment}}
+\author{\authors}
+
+\setlength \headheight{25pt}
+\fancyhead[R]{\begin{tabular}{r}\lecture \\ \assignment \end{tabular}}
+\fancyhead[L]{\authors}
+
+
+\setcounter{section}{3} % modify for later sheets, i.e. 2, 3, ...
+%\section{Introduction to Python and some Network Properties} % optional, note that section invocation sets the section counter + 1, so adapt the setcounter command
+\maketitle
+
+\exercise{}
+\begin{enumerate}
+
+% A
+\item \textit{Bla instruction bla}\\
+
+
+\newpage
+%\lstinputlisting[label=ex2-a,caption={ScaleFreeNetwork.py}] {../Scripts/ScaleFreeNetwork.py}
+
+
+% B
+\item \textit{bla instructions}\\
+
+
+
+
+% C
+\newpage
+\item \textit{}\\
+
+
+%\lstinputlisting[label=ex2-b, caption={ScaleFreeTest.py}] {../Scripts/ScaleFreeTest.py}
+
+
+\end{enumerate}
+
+
+
+% NEW EXERCICE
+\newpage
+\exercise{Classify real-world network examples}
+\begin{enumerate}
+	\item 
+	
+	
+	\item 
+	
+	
+	\item 
+
+\end{enumerate}
+	
+	
+% NEW EXERCICE
+\newpage
+\exercise{bla}
+\begin{enumerate}
+	\item \textit{bla instructions}\\
+	%\lstinputlisting[label=ex23-c, caption={BioGRIDReader.py}] {../Scripts/BioGRIDReader.py}
+	
+	
+	
+	\item \textit{bla instructions}\\
+	
+	
+	\item \textit{bla instructions}\\
+	
+	
+	
+\end{enumerate}	
+	
+
+
+\end{document}
