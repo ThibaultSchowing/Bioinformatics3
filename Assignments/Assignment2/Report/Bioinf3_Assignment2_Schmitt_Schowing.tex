@@ -151,7 +151,7 @@ Implementation of the missing methods for the ScaleFreeNetwork-class. Listing \r
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{"../Scripts/Plot_Compare theory to practice"}
-	\caption[Theory vs Practice]{ We can affirm that the scale-free distribution follows the power law at least asymptotically. For large values, the probability $P(k)$ for nodes having $ k $ connections to other nodes goes as $P(k) ~ k^{-\lambda}$. The only difference is speed at which the probability goes down when increasing the degree, as we can easily notice on the plot. To improve the fit, it would be a good idea to ignore the high degree nodes and fit the PowerLaw to the majority (fit the slope). }
+	\caption[Theory vs Practice]{ We can affirm that the scale-free distribution follows the power law at least asymptotically. For large values, the probability $P(k)$ for nodes having $ k $ connections to other nodes goes as $P(k) ~ k^{-\lambda}$. The only difference is speed at which the probability goes down when increasing the degree, as we can easily notice on the plot. To improve the fit, it would be a good idea to ignore the high degree nodes and fit the power law to the majority (fit the slope). }
 	\label{fig:compare-theory-to-practice}
 \end{figure}
 
@@ -206,8 +206,8 @@ Implementation of the missing methods for the ScaleFreeNetwork-class. Listing \r
 		\item   7227: Drosophila melanogaster
 	\end{itemize}
 	
-	
-	
+	%todo why order not surprising
+	The order is not surprising at all. All those organism are the most studied in history so it is not a surprise to find many results concerning them. 
 	
 	
 	\item \textit{How big is the human interaction network and which are the 10 proteins with the highest
@@ -237,6 +237,8 @@ Implementation of the missing methods for the ScaleFreeNetwork-class. Listing \r
 	\caption[Human interaction network plot]{Human interaction degree distribution}
 	\label{fig:plot4degree-distribution-generic-network-}
 \end{figure}
+	
+	We can observe that there is indeed a mix between the scale free straight slope and flat probability as it reaches big degrees and the slight curvature as if it was mixed with a bell-curve distribution. Of course, this is closer to a scale free network. Important molecules/proteins play a role in many reaction and more complex ones might have only a few purposes. The bump on the line is the small part of randomness in the nature that makes it different from maths. \\
 	
 	\lstinputlisting[label=ex23-d, caption={GenericNetwork.py}] {../Scripts/GenericNetwork.py}
 	
