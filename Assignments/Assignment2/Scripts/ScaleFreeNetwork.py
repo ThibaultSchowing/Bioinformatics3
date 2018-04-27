@@ -82,39 +82,26 @@ class ScaleFreeNetwork(AbstractNetwork):
         # id = 3
         #
         # while id < amount_nodes:
-        #     #print("debug: id", id)
+        #
         #     new_node = Node(id)
         #     self.appendNode(new_node)
-        #
-        #     # For each new node, reset the amount of links to 2 (in our case)
         #     remaining_links = amount_links
         #
         #     while remaining_links:
-        #         #print("debug remaining linkl: ",remaining_links)
-        #         # we randomly chose a node in the network
         #         rand_node = random.choice(self.nodes)
         #
-        #         # The node must not be already connected or be == to new_node
         #         if(id != rand_node.id and not rand_node.hasLinkTo(new_node)):
-        #             # The node probability according to its degree and the total network's degree
-        #             node_prob = rand_node.degree() / network_degree
         #
-        #             # Now we create a random number (uniform between [0,1[ )
-        #             # If the probability of the node is bigger than the random probability, we can connect them
+        #             node_prob = rand_node.degree() / network_degree
         #             random_prob = random.random()
-        #             #print("debug node prob ", node_prob, "  random_prob  ", random_prob)
         #
         #             if(node_prob > random_prob):
         #                 rand_node.addLinkTo(new_node)
         #                 new_node.addLinkTo(rand_node)
-        #
-        #                 # Now we directly update the network's total degree
+
         #                 network_degree += 2
-        #
-        #                 #... and substract the number of link we need to create for the new node
         #                 remaining_links -= 1
         #
-        #     # This node is done, it's time for the next one
         #     id += 1
         #
         # print("Network created. Size: ", len(self.nodes), "    Total Degree: ", network_degree)

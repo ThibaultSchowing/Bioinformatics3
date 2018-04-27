@@ -14,7 +14,7 @@
       <file leaf-file-name="BioGRIDReader.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Scripts/BioGRIDReader.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2006">
+            <state relative-caret-position="458">
               <caret line="170" column="96" selection-start-line="170" selection-start-column="96" selection-end-line="170" selection-end-column="96" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
@@ -23,7 +23,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GenericNetwork.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GenericNetwork.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Scripts/GenericNetwork.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="289">
@@ -65,8 +65,8 @@
       <file leaf-file-name="ScaleFreeNetwork.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Scripts/ScaleFreeNetwork.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="305">
-              <caret line="76" column="53" selection-start-line="76" selection-start-column="53" selection-end-line="76" selection-end-column="53" />
+            <state relative-caret-position="118">
+              <caret line="84" column="9" selection-start-line="84" selection-start-column="9" selection-end-line="84" selection-end-column="9" />
               <folding>
                 <element signature="e#55#68#0" expanded="true" />
               </folding>
@@ -83,11 +83,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ScaleFreeTest.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ScaleFreeTest.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Scripts/ScaleFreeTest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="458">
-              <caret line="71" column="114" selection-start-line="71" selection-start-column="114" selection-end-line="71" selection-end-column="114" />
+            <state relative-caret-position="16">
+              <caret line="45" column="104" selection-start-line="45" selection-start-column="104" selection-end-line="45" selection-end-column="104" />
               <folding>
                 <element signature="e#73#118#0" expanded="true" />
               </folding>
@@ -121,8 +121,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="3184" />
-    <option name="y" value="-29" />
+    <option name="x" value="2552" />
+    <option name="y" value="-8" />
     <option name="width" value="1455" />
     <option name="height" value="790" />
   </component>
@@ -166,7 +166,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.test">
+  <component name="RunManager" selected="Python.test Read">
     <configuration name="test Read" type="PythonConfigurationType" factoryName="Python">
       <module name="Assignment2" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -455,13 +455,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Scripts/TestReadFile.py" />
-    <entry file="file://$PROJECT_DIR$/Scripts/GenericNetwork.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="22" column="26" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Scripts/Tools.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="292">
@@ -486,16 +479,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/BioGRIDReader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2006">
-          <caret line="170" column="96" selection-start-line="170" selection-start-column="96" selection-end-line="170" selection-end-column="96" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Scripts/Node.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="714">
@@ -505,8 +488,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Scripts/ScaleFreeNetwork.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="76" column="53" selection-start-line="76" selection-start-column="53" selection-end-line="76" selection-end-column="53" />
+        <state relative-caret-position="118">
+          <caret line="84" column="9" selection-start-line="84" selection-start-column="9" selection-end-line="84" selection-end-column="9" />
           <folding>
             <element signature="e#55#68#0" expanded="true" />
           </folding>
@@ -515,11 +498,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Scripts/ScaleFreeTest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="71" column="114" selection-start-line="71" selection-start-column="114" selection-end-line="71" selection-end-column="114" />
+        <state relative-caret-position="16">
+          <caret line="45" column="104" selection-start-line="45" selection-start-column="104" selection-end-line="45" selection-end-column="104" />
           <folding>
             <element signature="e#73#118#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Scripts/BioGRIDReader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="458">
+          <caret line="170" column="96" selection-start-line="170" selection-start-column="96" selection-end-line="170" selection-end-column="96" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Scripts/GenericNetwork.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="22" column="26" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
         </state>
       </provider>
     </entry>

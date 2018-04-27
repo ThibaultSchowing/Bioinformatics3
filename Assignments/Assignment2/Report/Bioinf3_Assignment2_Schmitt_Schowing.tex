@@ -63,6 +63,7 @@
 
 \exercise{The Scale-Free network}
 \begin{enumerate}
+	% A
 \item \textit{Implement the algorithm given in the lecture to set up a scale-free network according to the
 	Barabási-Albert model (see Lecture 2, slide 8). Start from the first three connected nodes
 	and add each new node with a given number of links. Connect the new links with increasing
@@ -72,8 +73,8 @@
 	probabilities to connect to nodes somehow instead of computing them from scratch in each
 	iteration.}\\
 
-Note: We first generated the probability distribution en each iteration and use the function \textit{random.choices(pop, prob
-	)} to select a node according to its probability (Method 1). After an intense reflection and the understanding of what what said during the tutorial, we tried a second option (Method 2) commented in the listing \ref{ex2-a}. The benchmark below (figure \ref{fig:timemethod1}) shows that the first option seems more time-efficient. 
+\textbf{Note:} We first generated the probability distribution en each iteration and use the function \textit{random.choices(pop, prob
+	)} to select a node according to its probability (Method 1). After an intense reflection and the understanding of what what said during the tutorial, we tried a second option (Method 2) commented in the listing \ref{ex2-a}. The benchmark below (figure \ref{fig:timemethod1}) shows that the first option seems more time-efficient and thus we used this one to execute the program with the requested amount of nodes (100'000). 
 
 
 \begin{figure}[H]
@@ -86,11 +87,13 @@ Note: We first generated the probability distribution en each iteration and use 
 \end{figure}
 
 
-Implementation of the missing methods for the ScaleFreeNetwork-class. Listing \ref{ex2-a} shows source code of ScaleFreeNetwork.py.
+Implementation of the missing methods for the ScaleFreeNetwork-class. Listing \ref{ex2-a} shows source code of ScaleFreeNetwork.py and listing \ref{ex2-b} shows how the class has been tested.
 
 \newpage
 \lstinputlisting[label=ex2-a,caption={ScaleFreeNetwork.py}] {../Scripts/ScaleFreeNetwork.py}
 
+
+% B
 \item \textit{Determine the degree distributions for scale-free networks of 10 000 and 100 000 nodes
 	(each with two new links per iteration), respectively, and plot them with double logarithmic
 	axes. A new pre-implemented method in Tools.py will help you with that. What are the
@@ -101,17 +104,17 @@ Implementation of the missing methods for the ScaleFreeNetwork-class. Listing \r
 
 
 
-%TODO insert image with the two scale free and the random distrib
+%TODO img of scale vs scale -> img backup if fail with 100'000 and 10'000
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{"../Scripts/Plot_Degree Distribution of ScaleFree networks"}
-	\caption{Two scale-free network, one with 10000 nodes and one with 100000 nodes.}
+	\caption{Two scale-free network, one with 10000 nodes and one with 100000 nodes. We can observe that the minimal probability depends highly on the network's size -> the bigger the network, the lower the probability can go.}
 	\label{fig:plotdegree-distribution-of-scalefree-networks}
 \end{figure}
 
 
-
+%TODO img of scale vs rand -> img backup if fail with 100'000
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{"../Scripts/Plot_Degree Distribution ScaleFree vs Random Network"}
@@ -121,17 +124,22 @@ Implementation of the missing methods for the ScaleFreeNetwork-class. Listing \r
 
 
 
-\lstinputlisting[label=ex2-b, caption={ScaleFreeTest.py}] {../Scripts/ScaleFreeTest.py}
 
+% C
+\newpage
 \item \textit{The degree distribution of a scale-free network follows a power law, which has the form $P(k) ~ k^{-\lambda}$ To simplify the exercise, we assume $P(k) ~ Ck^{-\lambda}$ with $C$ being a fixed normalization
 	constant to obtain a proper distribution. Try to fit this theoretical distribution to the
-	degree distribution of a random network using the Kolmogorov-Smirnov distance. }
+	degree distribution of a random network using the Kolmogorov-Smirnov distance. }\\
 
 
 
+\newpage
+\lstinputlisting[label=ex2-b, caption={ScaleFreeTest.py}] {../Scripts/ScaleFreeTest.py}
 
+\newpage
 \lstinputlisting[label=ex2-c, caption={Tools.py}] {../Scripts/Tools.py}
 
+\newpage
 \textit{Use the KS distance to determine a $\gamma$ (between 1 and 3, 0.1 steps sufficient) that fits
 	best to the degree distribution of a scale-free network with 10 000 nodes and two new
 	links per iteration. Compare the empirical distribution of the network to the theoretical
@@ -143,7 +151,7 @@ Implementation of the missing methods for the ScaleFreeNetwork-class. Listing \r
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{"../Scripts/Plot_Compare theory to practice"}
-	\caption[Theory vs Practice]{We can see that the theoretical distribution fits the Scale-Free network like linear regression. This doesn't get the information that really few nodes will have high degrees. By fitting the Power-Law distribution only to the lower-degree nodes (consider big hubs as outliers), the power-law would fit the distribution more accurately, at least for the first part. The higher degree nodes would fit a more linear function.}
+	\caption[Theory vs Practice]{ We can affirm that the scale-free distribution follows the power law at least asymptotically. For large values, the probability $P(k)$ for nodes having $ k $ connections to other nodes goes as $P(k) ~ k^{-\lambda}$. The only difference is speed at which the probability goes down when increasing the degree, as we can easily notice on the plot. To improve the fit, it would be a good idea to ignore the high degree nodes and fit the PowerLaw to the majority (fit the slope). }
 	\label{fig:compare-theory-to-practice}
 \end{figure}
 
@@ -165,12 +173,12 @@ Implementation of the missing methods for the ScaleFreeNetwork-class. Listing \r
 	A social network can be considered to be a scale-free network, because people with many
 	friends are more likely to make new friends than people who are not as active socially. It can
 	therefore also be considered to be a clustered network, because there tend to be people that
-	are much more connected than others for geographical reasons.
+	are much more connected than others for geographical reasons. Celebrities can also form some kind of hub with many many connected people and form a local small-world. 
 	
 	
 	\item Broadcasting networks\\
 	
-	This is hierarchical networks. Main TV/Radio companies send contents over cables or satelite connexion. For cables, city-relays, neighbourhood-relays or other structure can transmit the information stream from the central node, to the final one (TV or radio). The signal is directed from the broadcasting company to the client, so is the network.   
+	This is hierarchical networks. Main TV/Radio companies send contents over cables or satellite connexion. For cables, city-relays, neighbourhood-relays or other structure can transmit the information stream from the central node, to the final one (TV or radio). The signal is directed from the broadcasting company to the client, so is the network.   
 	
 
 \end{enumerate}
@@ -185,7 +193,7 @@ Implementation of the missing methods for the ScaleFreeNetwork-class. Listing \r
 	
 	
 	
-	
+	\newpage
 	\item The class getMostAbundantTaxonIDs(n) is listed in the listing \ref{ex23-c} above. 
 	
 	\textbf{The most abundent TaxonIDs are (id, qty):  [('559292', 704012), ('9606', 414501), ('316407', 184023), ('284812', 72149), ('7227', 67935)]}
@@ -194,7 +202,7 @@ Implementation of the missing methods for the ScaleFreeNetwork-class. Listing \r
 		\item 559292: Saccharomyces cerevisiae (Baker's Yeast)
 		\item   9606: Human (Homo sapiens) 
 		\item 316407: Escherichia coli
-		\item 284812: Schizosaccharomyces pombe (Fission yeast)
+		\item 284812: Schizosaccharomyces pombe (Fission Yeast)
 		\item   7227: Drosophila melanogaster
 	\end{itemize}
 	
@@ -226,8 +234,7 @@ Implementation of the missing methods for the ScaleFreeNetwork-class. Listing \r
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{"../Scripts/Plot_Degree Distribution Generic Network "}
-	\caption[Human interaction network plot]{}
-	\caption{}
+	\caption[Human interaction network plot]{Human interaction degree distribution}
 	\label{fig:plot4degree-distribution-generic-network-}
 \end{figure}
 	

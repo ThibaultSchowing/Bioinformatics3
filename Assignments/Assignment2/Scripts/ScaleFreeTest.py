@@ -12,8 +12,8 @@ if __name__== "__main__":
 
     # TASK 2.1 a AND b
     # Number of nodes and link per node
-    SMALL = 1000
-    BIG = 10000
+    SMALL = 10000
+    BIG = 100000
     NB_LINK = 2
 
     # Create first network
@@ -29,7 +29,7 @@ if __name__== "__main__":
     print("Network created -> Time elapsed: ", (time2 - time1)/60, " minutes")
 
     # Create random network
-    rand_net = RandomNetwork(1000, 10000)
+    rand_net = RandomNetwork(10000, 100000)
 
     # Network's normalized distributions
     sf_degree = DegreeDistribution(sf_net).getNormalizedDistribution()
@@ -43,15 +43,14 @@ if __name__== "__main__":
     Tools.plotDistributionComparisonLogLog([sf_degree, sf_degree2],[legend1,legend2], "Plot_Degree Distribution of ScaleFree networks")
 
     # Big scale-free vs random network
-    Tools.plotDistributionComparisonLogLog([sf_degree2, rand_degree], [legend2, "Random (1'000 x 10'000"],"Plot_Degree Distribution ScaleFree vs Random Network")
+    Tools.plotDistributionComparisonLogLog([sf_degree2, rand_degree], [legend2, "Random (1'0000 x 10'0000"],"Plot_Degree Distribution ScaleFree vs Random Network")
 
     # TASK 2.1 c
-    # reuse sf_net2 (BIG)
-    sf_net_c = sf_net2
+    # Find lambda - 10'000 nodes - 2 links
+    sf_net_c = ScaleFreeNetwork(10000,2)
     sf_net_c_degree = DegreeDistribution(sf_net_c).getNormalizedDistribution()
 
     k = len(sf_net_c_degree)
-
     gamma_distance = []
 
     # Foreach gamma, calculate the KS distance
