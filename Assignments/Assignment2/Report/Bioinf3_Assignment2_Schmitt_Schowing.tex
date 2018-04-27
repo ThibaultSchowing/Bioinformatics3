@@ -73,17 +73,17 @@
 	probabilities to connect to nodes somehow instead of computing them from scratch in each
 	iteration.}\\
 
-\textbf{Note:} We first generated the probability distribution en each iteration and use the function \textit{random.choices(pop, prob
-	)} to select a node according to its probability (Method 1). After an intense reflection and the understanding of what what said during the tutorial, we tried a second option (Method 2) commented in the listing \ref{ex2-a}. The benchmark below (figure \ref{fig:timemethod1}) shows that the first option seems more time-efficient and thus we used this one to execute the program with the requested amount of nodes (100'000). 
+\textbf{Note:} We first generated the probability distribution in each iteration and use the function \textit{random.choices(pop, prob)} to select a node according to its probability (Method 1). After an intense reflection and the understanding of what what said during the tutorial, we tried a second option (Method 2) commented in the listing \ref{ex2-a}. The benchmark below (figure \ref{fig:timemethod2} and \ref{fig:timemethod1}) shows that the first option seems more time-efficient and thus we used this one to execute the program with the requested amount of nodes (100'000). 
 
 
 \begin{figure}[H]
 	\centering
+	\label{fig:timemethod2}
+	\caption{Time of execution with method 1 with 1000 and 10'000 nodes}
 	\includegraphics[width=0.7\linewidth]{img/time_method1}
-	\caption{Time of execution with method 1, with 1000 and 10'000 nodes}
-	\includegraphics[width=0.7\linewidth]{img/time_method2}
-	\caption{Time of execution with method 2, with 1000 and 10'000 nodes}
 	\label{fig:timemethod1}
+	\caption{Time of execution with method 2 with 1000 and 10'000 nodes}
+	\includegraphics[width=0.7\linewidth]{img/time_method2}
 \end{figure}
 
 
@@ -109,7 +109,7 @@ Implementation of the missing methods for the ScaleFreeNetwork-class. Listing \r
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{"../Scripts/Plot_Degree Distribution of ScaleFree networks"}
-	\caption{Two scale-free network, one with 10000 nodes and one with 100000 nodes. We can observe that the minimal probability depends highly on the network's size -> the bigger the network, the lower the probability can go.}
+	\caption{Two scale-free network, one with 10000 nodes and one with 100000 nodes. We can observe that the minimal probability depends highly on the network's size: the bigger the network, the lower the probability can go.}
 	\label{fig:plotdegree-distribution-of-scalefree-networks}
 \end{figure}
 
@@ -132,8 +132,6 @@ Implementation of the missing methods for the ScaleFreeNetwork-class. Listing \r
 	degree distribution of a random network using the Kolmogorov-Smirnov distance. }\\
 
 
-
-\newpage
 \lstinputlisting[label=ex2-b, caption={ScaleFreeTest.py}] {../Scripts/ScaleFreeTest.py}
 
 \newpage
