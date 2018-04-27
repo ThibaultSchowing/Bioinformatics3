@@ -61,15 +61,43 @@
 %\section{Introduction to Python and some Network Properties} % optional, note that section invocation sets the section counter + 1, so adapt the setcounter command
 \maketitle
 
+%WIEBKE !!! READ THIS !!! 
+% Usefull with Latex and maths: a list of the symbols ! https://reu.dimacs.rutgers.edu/Symbols.pdf
+
+%EXERCICE 1
 \exercise{}
 \begin{enumerate}
 
 % A
-\item \textit{Bla instruction bla}\\
+\item \textit{Given the states of the features, you want to infer if two proteins are likely to physically
+	interact. In practice, log-likelihood ratios are used in binary classification:}\\
+
+\[ 
+	log\frac{P(C|S)}{P(\bar{C}|S)} 
+\]
+
+\textit{Derive a term that uses observable probabilities such as $ P(S_i|C) $ to calculate the loglikelihood
+	ratio from training data. How does the actual classification work?}\\
 
 
-\newpage
-%\lstinputlisting[label=ex2-a,caption={ScaleFreeNetwork.py}] {../Scripts/ScaleFreeNetwork.py}
+
+First we have: 
+
+\[ P(S_i | C) = \frac{P(C|S_i)P(S_i)}{P(C)} \]
+
+And: 
+
+\[ P(S_i | \bar{C}) = \frac{P(\bar{C}|S_i)P(S_i)}{P(\bar{C})} \]
+
+Then we develop the desired final output
+
+\[ \frac{P(S_i|C)}{P(S_i |\bar{C})}  \Longleftrightarrow \frac{P(S_i | C)P(C)}{P(S_i |\bar{C})P(\bar{C})} = \frac{P(C|S_i)P(S_i)}{P(\bar{C}|S_i)P(S_i)} = \frac{P(C|S_i )}{P(\bar{C}|S_i)}\]
+
+
+
+\[ log\frac{P(C|S)}{P(\bar{C}|S)} = log \prod_{i}^{n} \frac{P(S_i | C)P(C)}{P(S_i |\bar{C})P(\bar{C})} = \sum_{i}^{n} log \frac{P(S_i | C)P(C)}{P(S_i |\bar{C})P(\bar{C})} = \bigwedge(C|S) \]
+
+
 
 
 % B
@@ -103,26 +131,5 @@
 	\item 
 
 \end{enumerate}
-	
-	
-% NEW EXERCICE
-\newpage
-\exercise{bla}
-\begin{enumerate}
-	\item \textit{bla instructions}\\
-	%\lstinputlisting[label=ex23-c, caption={BioGRIDReader.py}] {../Scripts/BioGRIDReader.py}
-	
-	
-	
-	\item \textit{bla instructions}\\
-	
-	
-	\item \textit{bla instructions}\\
-	
-	
-	
-\end{enumerate}	
-	
-
 
 \end{document}
