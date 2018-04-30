@@ -95,23 +95,62 @@ Then we develop the desired final output
 
 
 
-\[ log\frac{P(C|S)}{P(\bar{C}|S)} = log \prod_{i}^{n} \frac{P(S_i | C)P(C)}{P(S_i |\bar{C})P(\bar{C})} = \sum_{i}^{n} log \frac{P(S_i | C)P(C)}{P(S_i |\bar{C})P(\bar{C})} = \bigwedge(C|S) \]
+\[ log\frac{P(C|S)}{P(\bar{C}|S)} = log \prod_{i}^{n} \frac{P(S_i | C)P(C)}{P(S_i |\bar{C})P(\bar{C})} = \sum_{i}^{n} log \frac{P(S_i | C)P(C)}{P(S_i |\bar{C})P(\bar{C})} = \Lambda(C|S) \]
 
+\[ O(C|S) =  \Lambda(C|S) O(C)\]
 
+The posterior odd is calculated by the odds of an event ($ \frac{p(event)}{1-p(event)}$) multiplied by the likelihood of that event\footnote{Slides V4 - 4}. \\
+
+To do the classification, we must interate through the data and calculate all the priors and likelihood. The prior $P(C)$ is made from an educated guess 
+%TODO understand and complete
 
 
 % B
-\item \textit{bla instructions}\\
+\item \textit{Shortly discuss: What are the practical advantages of the logarithm and the likelihood ratio
+	within this framework? State two reasons why this particular type of classifier may perform
+	poorly on a real world dataset.}\\
+
+% https://academic.oup.com/aje/article/153/12/1222/124010
+% http://slideplayer.com/slide/5178261/
+The logarithm increase is a monotonically increasing function of $x$ hence, for any positive value the maximum value of a function $f(x)$, the maximum of $f(x)$ is equal to the maximum of $log(f(x))$. This simplifies the calculation because we don't need the second derivative. A likelihood function is not concave but the log-likelihood is. Also, as seen in part A, with the log-likelihood we can turn a log of products into a sum of logs. The main inconvenient is that this method assume that all the features are independent and do not take in account the eventual correlations between them. 
 
 
 
 
 % C
 \newpage
-\item \textit{}\\
+\item \textit{Use the file training1.tsv to build a model. This basically means to determine all necessary
+	priors and likelihoods from part (a). The file layout is explained in README.txt. Report
+	$P(C)$ and $P(\bar{C})$ as well as the ten $S_i$ (feature number, variant and log-ratio) with the highest
+	absolute log-likelihood ratios. Examine and comment on the results of the training-phase.
+	Which features seem to be the most helpful?}\\
+
+Prior probability $P(C) = 0.78$\\
+Prior probability $P(\bar{C}) = 0.22$\\
+
+ 
 
 
-%\lstinputlisting[label=ex2-b, caption={ScaleFreeTest.py}] {../Scripts/ScaleFreeTest.py}
+
+\begin{table}[H]
+	\centering
+	\caption{10 $S_i$ with the highest absolute log-likelihood ratio}
+	\label{10most}
+	\begin{tabular}{lll}
+		33 & 0 & -3.7214026458194964 \\
+		11 & 3 & -2.565631943311438  \\
+		87 & 1 & -2.4686396773241284 \\
+		53 & 1 & -2.3351082846996056 \\
+		99 & 1 & -2.3061207478263537 \\
+		59 & 1 & -2.2779498708596573 \\
+		80 & 2 & -2.2779498708596573 \\
+		86 & 3 & -2.2550655770260692 \\
+		91 & 3 & -2.2173252490432223 \\
+		97 & 1 & -2.2099451417455995
+	\end{tabular}
+\end{table}
+
+\lstinputlisting[label=ex2-b, caption={bayes.py}] {../Scripts/bayes.py}
 
 
 \end{enumerate}
