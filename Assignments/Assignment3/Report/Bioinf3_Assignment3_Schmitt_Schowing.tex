@@ -9,6 +9,7 @@
 \usepackage{a4wide} % wide pages
 \usepackage{fancyhdr} % nice headers
 \usepackage{float}
+\usepackage{longtable}
 \lstset{basicstyle=\footnotesize,language=Python,breaklines=true,numbers=left, numberstyle=\tiny, stepnumber=5,firstnumber=0, numbersep=5pt} % set up listings
 \pagestyle{fancy}             % header
 \setlength{\parindent}{0pt}   % no indentation
@@ -123,7 +124,8 @@ The logarithm increase is a monotonically increasing function of $x$ hence, for 
 	priors and likelihoods from part (a). The file layout is explained in README.txt. Report
 	$P(C)$ and $P(\bar{C})$ as well as the ten $S_i$ (feature number, variant and log-ratio) with the highest
 	absolute log-likelihood ratios. Examine and comment on the results of the training-phase.
-	Which features seem to be the most helpful?}\\
+	Which features seem to be the most helpful?
+}\\
 
 Prior probability $P(C) = 0.78$\\
 Prior probability $P(\bar{C}) = 0.22$\\
@@ -160,7 +162,6 @@ Prior probability $P(\bar{C}) = 0.22$\\
 \end{enumerate}
 
 
-
 % NEW EXERCICE
 \newpage
 \exercise{Classify real-world network examples}
@@ -170,10 +171,101 @@ Prior probability $P(\bar{C}) = 0.22$\\
 		an example!}
 	
 	
-	\item 
 	
 	
-	\item 
+	\item (1)\textit{Gite the links that you deleted from the network in (iii) by printing the names of the
+		two nodes and their current edge-clustering coefficient in the order of their deletion. Of
+		course, add the output to the PDF/sheet that you hand in. Implement this part as a
+		script or class-based, there are no specifications you need to adjust to.}
+	
+	\begin{table}[H]
+		\centering
+		\caption{Order of removed links}
+		\label{table_links}
+		\begin{tabular}{lll}
+			Tyrion  & Sansa    & 0.33$\bar{3}$  \\
+			Joffrey & Hound    & 0.5    \\
+			Eddard  & Robert   & 0.5                 \\
+			Eddard  & Jon      & 0.5                 \\
+			Joffrey & Jaime    & 1.0                 \\
+			Hound   & Mountain & 1.0                 \\
+			Cersei  & Tyrion   & 1.0                 \\
+			Jaime   & Cersei   & 1.0                 \\
+			Catelyn & Baelish  & 1.0                 \\
+			Sansa   & Baelish  & 1.0                 \\
+			Eddard  & Catelyn  & 1.5                 \\
+			Sansa   & Arya     & 1.5                 \\
+			Eddard  & Sansa    & 1.0                 \\
+			Catelyn & Arya     & 1.0                 \\
+			Joffrey & Cersei   & 2.0                 \\
+			Cersei  & Robert   & 1.0                 \\
+			Samwell & Jon      & 2.0                 \\
+			Joffrey & Robert   & $\infty$ \\
+			Shae    & Tyrion   & $\infty$ \\
+			Eddard  & Arya     & $\infty$ \\
+			Hound   & Arya     & $\infty$ \\
+			Varys   & Baelish  & $\infty$ \\
+			Jaime   & Tyrion   & $\infty$ \\
+			Cersei  & Mountain & $\infty$ \\
+			Catelyn & Sansa    & $\infty$ \\
+			Samwell & Jeor     & $\infty$ \\
+			Jon     & Jeor     & $\infty$
+		\end{tabular}
+	\end{table}
+	
+	
+	\item (2)
+	
+\begin{table}[H]
+	\centering
+	\caption{Inclusion of links, "x" means two subgraphs have been merged.}
+	\label{my-label}
+	\begin{tabular}{|l|l|l|}
+		\hline
+		Link              & Merge & Graph                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                \\ \hline
+		Jon - Jeor        &       & {[}(Jon - Jeor){]}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   \\ \hline
+		Samwell - Jeor    &       & {[}(Jon - Jeor),(Samwell - Jeor){]}                                                                                                                                                                                                                                                                                                                                                                                                                                                                  \\ \hline
+		Catelyn - Sansa   &       & {[}(Catelyn - Sansa){]}                                                                                                                                                                                                                                                                                                                                                                                                                                                                              \\ \hline
+		Cersei - Mountain &       & {[}(Cersei - Mountain){]}                                                                                                                                                                                                                                                                                                                                                                                                                                                                            \\ \hline
+		Jaime - Tyrion    &       & {[}(Jaime - Tyrion){]}                                                                                                                                                                                                                                                                                                                                                                                                                                                                               \\ \hline
+		Varys - Baelish   &       & {[}(Varys - Baelish){]}                                                                                                                                                                                                                                                                                                                                                                                                                                                                              \\ \hline
+		Hound - Arya      &       & {[}(Hound - Arya){]}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 \\ \hline
+		Eddard - Arya     &       & {[}(Hound - Arya),(Eddard - Arya){]}                                                                                                                                                                                                                                                                                                                                                                                                                                                                 \\ \hline
+		Shae - Tyrion     &       & {[}(Jaime - Tyrion),(Shae - Tyrion){]}                                                                                                                                                                                                                                                                                                                                                                                                                                                               \\ \hline
+		Joffrey - Robert  &       & {[}(Joffrey - Robert){]}                                                                                                                                                                                                                                                                                                                                                                                                                                                                             \\ \hline
+		Samwell - Jon     &       & {[}(Jon - Jeor),(Samwell - Jeor),(Samwell - Jon){]}                                                                                                                                                                                                                                                                                                                                                                                                                                                  \\ \hline
+		Cersei - Robert   & x     & {[}(Cersei - Mountain),(Joffrey - Robert), (Cersei - Robert){]}                                                                                                                                                                                                                                                                                                                                                                                                                                      \\ \hline
+		Joffrey - Cersei  &       & \begin{tabular}[c]{@{}l@{}}{[}(Cersei - Mountain),(Joffrey - Robert), (Cersei - Robert),\\ (Joffrey - Cersei){]}\end{tabular}                                                                                                                                                                                                                                                                                                                                                                        \\ \hline
+		Catelyn - Arya    & x     & \begin{tabular}[c]{@{}l@{}}{[}(Catelyn - Sansa),(Hound - Arya),(Eddard - Arya),\\ (Catelyn - Arya){]}\end{tabular}                                                                                                                                                                                                                                                                                                                                                                                   \\ \hline
+		Eddard - Sansa    &       & \begin{tabular}[c]{@{}l@{}}{[}(Catelyn - Sansa),(Hound - Arya),(Eddard - Arya),\\ (Catelyn - Arya),(Eddard - Sansa){]}\end{tabular}                                                                                                                                                                                                                                                                                                                                                                  \\ \hline
+		Sansa - Arya      &       & \begin{tabular}[c]{@{}l@{}}{[}(Catelyn - Sansa),(Hound - Arya),(Eddard - Arya),\\ (Catelyn - Arya),(Eddard - Sansa),(Sansa - Arya){]}\end{tabular}                                                                                                                                                                                                                                                                                                                                                   \\ \hline
+		Eddard - Catelyn  &       & \begin{tabular}[c]{@{}l@{}}{[}(Catelyn - Sansa),(Hound - Arya),(Eddard - Arya),(Catelyn - Arya),\\ (Eddard - Sansa),(Sansa - Arya),(Eddard - Catelyn){]}\end{tabular}                                                                                                                                                                                                                                                                                                                                \\ \hline
+		Sansa - Baelish   & x     & \begin{tabular}[c]{@{}l@{}}{[}(Varys - Baelish),(Sansa - Baelish),(Catelyn - Sansa),\\ (Hound - Arya),(Eddard - Arya),(Catelyn - Arya),\\ (Eddard - Sansa),(Sansa - Arya),(Eddard - Catelyn){]}\end{tabular}                                                                                                                                                                                                                                                                                         \\ \hline
+		Catelyn - Baelish &       & \begin{tabular}[c]{@{}l@{}}{[}(Varys - Baelish),(Sansa - Baelish),(Catelyn - Sansa),\\ (Hound - Arya),(Eddard - Arya),(Catelyn - Arya),\\ (Eddard - Sansa),(Sansa - Arya),(Eddard - Catelyn),\\ (Catelyn - Baelish){]}\end{tabular}                                                                                                                                                                                                                                                                  \\ \hline
+		Jaime - Cersei    & x     & \begin{tabular}[c]{@{}l@{}}{[}(Jaime - Tyrion),(Shae - Tyrion),(Cersei - Mountain),\\ (Joffrey - Robert), (Cersei - Robert),(Joffrey - Cersei){]}\end{tabular}                                                                                                                                                                                                                                                                                                                                       \\ \hline
+		Cersei - Tyrion   &       & \begin{tabular}[c]{@{}l@{}}{[}(Jaime - Tyrion),(Shae - Tyrion),(Cersei - Mountain),\\ (Joffrey - Robert), (Cersei - Robert),(Joffrey - Cersei),\\ (Cersei - Tyrion){]}\end{tabular}                                                                                                                                                                                                                                                                                                                  \\ \hline
+		
+		
+			\end{tabular}
+	\end{table}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|l|l|}
+		\hline
+		Link              & Merge & Graph                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                \\ \hline
+
+		Hound - Mountain  & x     & \begin{tabular}[c]{@{}l@{}}{[}(Varys - Baelish),(Sansa - Baelish),(Catelyn - Sansa),\\ (Hound - Arya),(Eddard - Arya),(Catelyn - Arya),\\ (Eddard - Sansa),(Sansa - Arya),(Eddard - Catelyn),\\ (Catelyn - Baelish),(Jaime - Tyrion),(Shae - Tyrion),\\ (Cersei - Mountain),(Joffrey - Robert), (Cersei - Robert),\\ (Joffrey - Cersei),(Cersei - Tyrion){]}\end{tabular}                                                                                                                            \\ \hline
+		Joffrey - Jaime   &       & \begin{tabular}[c]{@{}l@{}}{[}(Varys - Baelish),(Sansa - Baelish),(Catelyn - Sansa),\\ (Hound - Arya),(Eddard - Arya),(Catelyn - Arya),\\ (Eddard - Sansa),(Sansa - Arya),(Eddard - Catelyn),\\ (Catelyn - Baelish),(Jaime - Tyrion),(Shae - Tyrion),\\ (Cersei - Mountain),(Joffrey - Robert), (Cersei - Robert),\\ (Joffrey - Cersei),(Cersei - Tyrion),(Joffrey - Jaime){]}\end{tabular}                                                                                                          \\ \hline
+		Eddard - Jon      & x     & \begin{tabular}[c]{@{}l@{}}{[}(Varys - Baelish),(Sansa - Baelish),(Catelyn - Sansa),\\ (Hound - Arya),(Eddard - Arya),(Catelyn - Arya),\\ (Eddard - Sansa),(Sansa - Arya),(Eddard - Catelyn),\\ (Catelyn - Baelish),(Jaime - Tyrion),(Shae - Tyrion),\\ (Cersei - Mountain),(Joffrey - Robert), (Cersei - Robert),\\ (Joffrey - Cersei),(Cersei - Tyrion),(Joffrey - Jaime),\\ (Jon - Jeor),(Samwell - Jeor),(Samwell - Jon){]}\end{tabular}                                                         \\ \hline
+		Eddard - Robert   &       & \begin{tabular}[c]{@{}l@{}}{[}(Varys - Baelish),(Sansa - Baelish),(Catelyn - Sansa),\\ (Hound - Arya),(Eddard - Arya),(Catelyn - Arya),\\ (Eddard - Sansa),(Sansa - Arya),(Eddard - Catelyn),\\ (Catelyn - Baelish),(Jaime - Tyrion),(Shae - Tyrion),\\ (Cersei - Mountain),(Joffrey - Robert), (Cersei - Robert),\\ (Joffrey - Cersei),(Cersei - Tyrion),(Joffrey - Jaime),\\ (Jon - Jeor),(Samwell - Jeor),(Samwell - Jon),\\ (Eddard - Robert){]}\end{tabular}                                    \\ \hline
+		Joffrey - Hound   &       & \begin{tabular}[c]{@{}l@{}}{[}(Varys - Baelish),(Sansa - Baelish),(Catelyn - Sansa),\\ (Hound - Arya),(Eddard - Arya),(Catelyn - Arya),\\ (Eddard - Sansa),(Sansa - Arya),(Eddard - Catelyn),\\ (Catelyn - Baelish),(Jaime - Tyrion),(Shae - Tyrion),\\ (Cersei - Mountain),(Joffrey - Robert), (Cersei - Robert),\\ (Joffrey - Cersei),(Cersei - Tyrion),(Joffrey - Jaime),\\ (Jon - Jeor),(Samwell - Jeor),(Samwell - Jon),\\ (Eddard - Robert),(Joffrey - Hound){]}\end{tabular}                  \\ \hline
+		Tyrion - Sansa    &       & \begin{tabular}[c]{@{}l@{}}{[}(Varys - Baelish),(Sansa - Baelish),(Catelyn - Sansa),\\ (Hound - Arya),(Eddard - Arya),(Catelyn - Arya),\\ (Eddard - Sansa),(Sansa - Arya),(Eddard - Catelyn),\\ (Catelyn - Baelish),(Jaime - Tyrion),(Shae - Tyrion),\\ (Cersei - Mountain),(Joffrey - Robert), (Cersei - Robert),\\ (Joffrey - Cersei),(Cersei - Tyrion),(Joffrey - Jaime),\\ (Jon - Jeor),(Samwell - Jeor),(Samwell - Jon),\\ (Eddard - Robert),(Joffrey - Hound),(Tyrion - Sansa){]}\end{tabular} \\ \hline
+	\end{tabular}
+\end{table}
+
+%TODO draw dendogram, include listings
+
 
 \end{enumerate}
 
