@@ -166,21 +166,27 @@ Prior probability $P(\bar{C}) = 0.22$\\
 \newpage
 \exercise{Classify real-world network examples}
 \begin{enumerate}
-	\item \textit{If one of the nodes has a degree of 1, then $\tilde{C}_{i,j}^{(3)} $ is infinite. What is the maximal finite value
-		that the edge-clustering coefficient can take? For which configuration does this occur? Give
-		an example!}
+	\item \textit{If one of the nodes has a degree of 1, then $\tilde{C}_{i,j}^{(3)} $ is infinite. What is the maximal finite value that the edge-clustering coefficient can take? For which configuration does this occur? Give an example!}
+	
+	The edge-clustering coefficient cannot be more than 2. In the layout below we see that the clustering coefficient for the link between node 2 and 3 is equal to $\tilde{C}_{2,3}^{(3)} = \frac{1 + 1}{min(2 - 1, 6 - 1)} = \frac{2}{1}$. We see that no matter the degree of node 3, if we connect more node to node 2 the coefficient will decrease even if the number of possible triplet increase. 
 	
 	
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\linewidth]{expl}
+	\caption{}
+	\label{fig:expl}
+\end{figure}
 	
 	
-	\item (1)\textit{Gite the links that you deleted from the network in (iii) by printing the names of the
+	\item (1)\textit{Give the links that you deleted from the network in (iii) by printing the names of the
 		two nodes and their current edge-clustering coefficient in the order of their deletion. Of
 		course, add the output to the PDF/sheet that you hand in. Implement this part as a
 		script or class-based, there are no specifications you need to adjust to.}
 	
 	\begin{table}[H]
 		\centering
-		\caption{Order of removed links}
+		\caption{Output - Order of removed links}
 		\label{table_links}
 		\begin{tabular}{lll}
 			Tyrion  & Sansa    & 0.33$\bar{3}$  \\
@@ -213,13 +219,23 @@ Prior probability $P(\bar{C}) = 0.22$\\
 		\end{tabular}
 	\end{table}
 	
+	Implementation of the network decomposition:  
 	
-	\item (2)
+	\lstinputlisting[label=exnet-b, caption={testNetwork.py: decompose the network, output in table \ref{table_links}}] {../Scripts/part2/testNetwork.py}
+	
+	Implementation of the other classes. New functions have been added directly in the Network classes. 
+	
+	\lstinputlisting[label=exnet-b, caption={Node.py}] {../Scripts/part2/Node.py}
+	\lstinputlisting[label=exnet-b, caption={AbstractNetwork.py}] {../Scripts/part2/AbstractNetwork.py}
+	\lstinputlisting[label=exnet-b, caption={GenericNetwork.py}] {../Scripts/part2/GenericNetwork.py}
+	
+	(2) \textit{Use the links deleted in (1) in reverse order, i.e., the link that was deleted last is now
+		used first to construct the communities.}
 	
 \begin{table}[H]
 	\centering
 	\caption{Inclusion of links, "x" means two subgraphs have been merged.}
-	\label{my-label}
+	\label{tabitab}
 	\begin{tabular}{|l|l|l|}
 		\hline
 		Link              & Merge & Graph                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                \\ \hline
@@ -266,6 +282,69 @@ Prior probability $P(\bar{C}) = 0.22$\\
 
 %TODO draw dendogram, include listings
 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{dendogram}
+	\caption{Dendogram}
+	\label{fig:dendogram}
+\end{figure}
+
+\item Visualisation of the communities
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{viz}
+	\caption{Visualisation of the network}
+	\label{fig:viz}
+\end{figure}
+
+Here we can identify many communities. The two biggest are the ones we can have by separating the network in the middle ( Sansa / Tyrion, Robert / Eddard, The Hound / Arya). All the nodes have more links inside the communities than outside. 
+
+\begin{table}[H]
+	\centering
+	\caption{The two big communities of the network. }
+	\label{my-borness}
+	\begin{tabular}{|l|l|l|}
+		\hline
+		Node      & $k_{in}$ & $k_{out}$ \\ \hline
+		Arya      & 3        & 1         \\ \hline
+		Eddard    & 3        & 1         \\ \hline
+		Sansa     & 3        & 1         \\ \hline
+		The Hound & 2        & 1         \\ \hline
+		Robert    & 2        & 1         \\ \hline
+		Tyrion    & 3        & 1         \\ \hline
+	\end{tabular}
+\end{table}
+
+Here is two disjointed examples: 
+
+\begin{table}[H]
+	\centering
+	\caption{Stark community. Each member have a $k_{in}$ bigger than the $k_{out}$ so the strong criterion applies. }
+	\label{my-asdf}
+	\begin{tabular}{|l|l|l|}
+		\hline
+		\textbf{Node}    & $k_{in}$ & $k_{out}$ \\ \hline
+		Catelyn & 3        & 1         \\ \hline
+		Arya    & 3        & 1         \\ \hline
+		Eddard  & 3        & 2         \\ \hline
+		Sansa   & 3        & 2         \\ \hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\caption{Jon's community, the strong criterion applies too. }
+	\label{my-label}
+	\begin{tabular}{|l|l|l|}
+		\hline
+		Node    & $k_{in}$ & $k_{out}$ \\ \hline
+		Jon     & 2        & 1         \\ \hline
+		Jeor    & 2        & 0         \\ \hline
+		Samwell & 2        & 0         \\ \hline
+	\end{tabular}
+\end{table}
 
 \end{enumerate}
 
