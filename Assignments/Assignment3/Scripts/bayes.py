@@ -1,9 +1,7 @@
 import math
 import copy
-#
+
 # For all features, compute the probability (prior) to have 0, 1, 2 or 3 depending on the output (0 or 1)
-#
-#
 def priors(features, output_indexes):
     priors = {}
     # Start to 1 to match the instructions
@@ -34,6 +32,7 @@ def log_likelihood(Prior_C, Prior_not_C, P_S_C, P_S_notC):
             log_like[feat-1][val] = p
     return log_like
 
+# Returns the N max likelihood ratios
 def getNMaxLikelihoodRatio(likelihoods, N):
     # As we have to loop N times, we'll need to set the max value to zero
     # in order not to pick it more than once.
@@ -56,8 +55,6 @@ def getNMaxLikelihoodRatio(likelihoods, N):
         t.append(info)
     return t
 
-
-
 # Read data file
 
 def readFile(filename):
@@ -68,13 +65,11 @@ def readFile(filename):
             map(str.strip, line)
             lines.append(line)
 
-        # Convert all the elements in float instead of chars
-        # for line in lines:
-        #     line = list(map(float,line))
+    # Convert all the elements in float instead of chars
     lines = [[float(i) for i in line] for line in lines]
     return lines
 
-lines = readFile("data/training2.tsv")
+lines = readFile("data/training1.tsv")
 
 # Number of features
 nb_features = len(lines[0]) - 1
@@ -93,10 +88,8 @@ outputs = list(data_columns[0])
 
 # Indexes according to outputs (1 or 0, first column)
 interaction_indexes = [i for i,x in enumerate(outputs) if x == 1]
-#print("interact index, ", interaction_indexes)
 
 no_interaction_indexes = [i for i,x in enumerate(outputs) if x == 0]
-#print("no-interact index: ", no_interaction_indexes)
 
 # Prior probabilities
 
@@ -106,7 +99,6 @@ Prior_not_C = 1 - Prior_C
 print("Prior probability of not having a connection: ", Prior_not_C)
 
 # For each feature and possible value, calculate the probability according to the output
-
 
 # P_S_C = Probability of having S (feature) according to output 1
 P_S_C = priors(features, interaction_indexes)
@@ -131,11 +123,9 @@ P_S_notC = priors(features, no_interaction_indexes)
 # Now we compute the log likelihood for every features and possible output
 
 log_like = log_likelihood(Prior_C, Prior_not_C, P_S_C, P_S_notC)
-
 #print(log_like)
 
 # Get the N (ABSOLUTE) max log-likelihood ratios.
-
 maxLikelihoods = getNMaxLikelihoodRatio(log_like, 10)
 
 # Nice printing
@@ -153,12 +143,13 @@ outputs = list(data_columns[0])
 print("Real test outputs: ")
 print(outputs)
 
-prediction = []
+predictiontmp = []
 
 for f in range(len(features)):
     tmp_output = 0
     for v in [0,1,2,3]:
         tmp_output += log_like[f][v]
-    prediction.append(tmp_output)
+    predictiontmp.append(tmp_output)
 
+prediction = [0 if x < 0 else 1 for x in predictiontmp]
 print(prediction)

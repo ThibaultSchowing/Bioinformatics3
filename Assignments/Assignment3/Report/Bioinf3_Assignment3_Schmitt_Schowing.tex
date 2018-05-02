@@ -10,6 +10,11 @@
 \usepackage{fancyhdr} % nice headers
 \usepackage{float}
 \usepackage{longtable}
+\usepackage{xcolor}
+\definecolor{darkpastelgreen}{rgb}{0.01, 0.75, 0.24}
+\definecolor{spirodiscoball}{rgb}{0.06, 0.75, 0.99}
+\definecolor{smalt}{rgb}{0.0, 0.2, 0.6}
+
 \lstset{basicstyle=\footnotesize,language=Python,breaklines=true,numbers=left, numberstyle=\tiny, stepnumber=5,firstnumber=0, numbersep=5pt} % set up listings
 \pagestyle{fancy}             % header
 \setlength{\parindent}{0pt}   % no indentation
@@ -138,7 +143,8 @@ Prior probability $P(\bar{C}) = 0.22$\\
 	\centering
 	\caption{10 $S_i$ with the highest absolute log-likelihood ratio}
 	\label{10most}
-	\begin{tabular}{lll}
+	\begin{tabular}{|l|l|l|}
+		\textbf{Feature} & \textbf{Variant} & \textbf{log-ratio} \\
 		33 & 0 & -3.7214026458194964 \\
 		11 & 3 & -2.565631943311438  \\
 		87 & 1 & -2.4686396773241284 \\
@@ -153,11 +159,12 @@ Prior probability $P(\bar{C}) = 0.22$\\
 \end{table}
 
 
-%TODO explain 
-
+%TODO explain and verify please !!! I'm lost !!!
+The log likelihood ratio explains that if you have the variant X you have log(likelohood) more chance to have a complex (C). If negative, it diminishes this chance. To interpret the results above, if for the feature 33 you have variant 0, you have 3.7 more chance that it doesn't make a complex than with variant 1,2 or 3. So here the feature 33 is the most helpful.
 
 \lstinputlisting[label=ex2-b, caption={bayes.py}] {../Scripts/bayes.py}
 
+For the train and test 1 and 2 we obtain only 0's as a prediction which is not satisfying according to the real outputs. % Maybe we just don't get how to test the created model. 
 
 \end{enumerate}
 
@@ -294,23 +301,23 @@ Prior probability $P(\bar{C}) = 0.22$\\
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\linewidth]{viz}
+	\includegraphics[width=0.7\linewidth]{Inkedviz_LI}
 	\caption{Visualisation of the network}
 	\label{fig:viz}
 \end{figure}
 
-Here we can identify many communities. The two biggest are the ones we can have by separating the network in the middle ( Sansa / Tyrion, Robert / Eddard, The Hound / Arya). All the nodes have more links inside the communities than outside. 
+Here we can identify many communities. The two biggest are the ones we can have by separating the network in the middle (\textcolor{darkpastelgreen}{In green}). All the nodes have more links inside the communities than outside. 
 
 \begin{table}[H]
 	\centering
-	\caption{The two big communities of the network. }
+	\caption{The two big communities of the network separated by the \textcolor{darkpastelgreen}{green} line. All the nodes not cited below have $k_{out} = 0$. }
 	\label{my-borness}
 	\begin{tabular}{|l|l|l|}
 		\hline
-		Node      & $k_{in}$ & $k_{out}$ \\ \hline
+		\textbf{Node}      & $k_{in}$ & $k_{out}$ \\ \hline \hline
 		Arya      & 3        & 1         \\ \hline
 		Eddard    & 3        & 1         \\ \hline
-		Sansa     & 3        & 1         \\ \hline
+		Sansa     & 3        & 1         \\ \hline \hline
 		The Hound & 2        & 1         \\ \hline
 		Robert    & 2        & 1         \\ \hline
 		Tyrion    & 3        & 1         \\ \hline
@@ -321,7 +328,7 @@ Here is two disjointed examples:
 
 \begin{table}[H]
 	\centering
-	\caption{Stark community. Each member have a $k_{in}$ bigger than the $k_{out}$ so the strong criterion applies. }
+	\caption{Stark community in \textcolor{spirodiscoball}{light blue}. Each member have a $k_{in}$ bigger than the $k_{out}$ so the strong criterion applies. }
 	\label{my-asdf}
 	\begin{tabular}{|l|l|l|}
 		\hline
@@ -335,7 +342,7 @@ Here is two disjointed examples:
 
 \begin{table}[H]
 	\centering
-	\caption{Jon's community, the strong criterion applies too. }
+	\caption{Jon's community in \textcolor{smalt}{dark blue}, the strong criterion applies too. }
 	\label{my-label}
 	\begin{tabular}{|l|l|l|}
 		\hline
