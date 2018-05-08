@@ -116,7 +116,7 @@ Then we develop the desired final output
 
 The posterior odd is calculated by the odds of an event ($ \frac{p(event)}{1-p(event)}$) multiplied by the likelihood of that event\footnote{Slides V4 - 4}. \\
 
-To do the classification, we must interate through the data and calculate all the priors and likelihood. The prior $P(C)$ is made from an educated guess 
+To do the classification, we must iterate through the data and calculate all the priors and likelihood. The prior $P(C)$ is made from an educated guess 
 %TODO understand and complete
 
 
@@ -169,7 +169,7 @@ Prior probability $P(\bar{C}) = 0.22$\\
 
 
 %TODO explain and verify please !!! I'm lost !!!
-The log likelihood ratio explains that if you have the variant X you have log(likelohood) more chance to have a complex (C). If negative, it diminishes this chance. To interpret the results above, if for the feature 33 you have variant 0, you have 3.7 more chance that it doesn't make a complex than with variant 1,2 or 3. So here the feature 33 is the most helpful. For the train and test 1 and 2 we obtain only 0's as a prediction which is not satisfying according to the real outputs. % Maybe we just don't get how to test the created model. 
+The log likelihood ratio explains that if you have the variant X you have log(likelihood) more chance to have a complex (C). If negative, it diminishes this chance. To interpret the results above, if for the feature 33 you have variant 0, you have 3.7 more chance that it doesn't make a complex than with variant 1,2 or 3. So here the feature 33 is the most helpful. For the train and test 1 and 2 we obtain only 0's as a prediction which is not satisfying according to the real outputs. % Maybe we just don't get how to test the created model. 
 
 \lstinputlisting[label=ex2-b, caption={bayes.py}] {../Scripts/bayes.py}
 
@@ -376,6 +376,10 @@ Here is two disjointed examples:
 	\end{tabular}
 \end{table}
 
+
 \end{enumerate}
+
+
+
 
 \end{document}
