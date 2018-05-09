@@ -192,24 +192,24 @@ kz
 	
 	For the Harmonic force we have: 
 	
-	\[ F_{h}(\vec{r}_{i,j}) = -\nabla E_{h}(\vec{r}_{i,j})  \]
+	%\[ F_{h}(\vec{r}_{i,j}) = -\nabla E_{h}(\vec{r}_{i,j})  \]
 	
-	K is the spring constant, because it's constant we can drop it: 
-	\[ F_{h}(\vec{r}_{i,j}) = -\nabla\frac{1}{2} \norm{\vec{r}}^2 \]
+	%K is the spring constant, because it's constant we can drop it: 
+	%\[ F_{h}(\vec{r}_{i,j}) = -\nabla\frac{1}{2} \norm{\vec{r}}^2 \]
 	
-	\[-\frac{1}{2} \nabla\left(\sqrt{(x_i - x_j)^2 + (y_i - y_j)^2 }\right)^2 = -\frac{1}{2} \nabla(x_i - x_j)+(y_i - y_j) \]
+	%\[-\frac{1}{2} \nabla\left(\sqrt{(x_i - x_j)^2 + (y_i - y_j)^2 }\right)^2 = -\frac{1}{2} \nabla(x_i - x_j)+(y_i - y_j) \]
 	
-	We apply the partial derivatives: 
+%We apply the partial derivatives: 
 	
-	\[= -\frac{1}{2} \begin{pmatrix}
-	y_i - y_j\\
-	x_i - x_j
-	\end{pmatrix} \]
+	%\[= -\frac{1}{2} \begin{pmatrix}
+%	y_i - y_j\\
+%	x_i - x_j
+%	\end{pmatrix} \]
 
 
-	OR : 
+%	OR : 
 	
-	\[ = -\begin{pmatrix}
+	\[ F_{h}(\vec{r}_{ij}) = -\nabla E_{h}(\vec{r}_{i,j})  = -\begin{pmatrix}
 	x_i - y_j\\
 	y_i - y_j
 	\end{pmatrix} \]
@@ -217,7 +217,7 @@ kz
 	
 	For the Coulomb force:
 	
-	\[ -k_1 k_2 \begin{pmatrix}
+	\[F_{c}(\vec{r_{ij}}) = k_1 k_2 \begin{pmatrix}
 	\frac{x_i - x_j}{\left( (x_i - x_j)^2 + (y_i - y_j)^2 \right)^{\frac{3}{2}}}\\
 	\frac{y_i - y_j}{\left( (x_i - x_j)^2 + (y_i - y_j)^2 \right)^{\frac{3}{2}}}
 	\end{pmatrix} \]
@@ -225,10 +225,20 @@ kz
 	% C
 	\item \textit{\textbf{Understanding the Coulomb and harmonic energy:} How does the Coulomb energy and harmonic energy change if the degree of both nodes is increased or decreased? What happens if the distance between two nodes is increased or decreased?}
 	
+	%NOT Sure what the "spring constant" is for the harmonic and neither what the harmonic energy is... (something with attraction for connected nodes)
+			
+		%	Here we will only have degrees $\geq 0$ which means that all the force are going to be repulsive. 
+		If the degree of both nodes increases, the harmonic force is not affected but Coulomb force will increase with a factor $ -k_1 k_2 $ as seen in (b). \\
+		
+		However, if the distance increase, both Coulomb and harmonic will be affected. The Harmonic energy is  $\frac{1}{2}||\vec{r^2}||^2$ and the Coulomb $ \frac{k_i k_j}{||\vec{r}_{ij}||} $ so if we increase the distance, Coulomb energy is going to decrease and Harmonic energy to increase. 
+	
 	
 	% D
-	\item \textit{\textbf{\textbf{Understanding the forces:} Why is the Coulomb force the repulsive
-			force and the harmonic force the attractive force?}}
+	\item \textit{\textbf{\textbf{Understanding the forces:} Why is the Coulomb force the repulsive force and the harmonic force the attractive force?}}
+		
+		% The harmonic force is here only if there is an edge. Keep connected nodes together and try to repulse the non connected part away. 
+		In our case, all the node will have a positive charge which means that they are all going to repel each other. However, the objective is to keep connected nodes close to each other and and at the same time spread the rest of the graph away to give it a nice display. The Coulomb force is the basic force between every node according to their degrees and distance, disregarding their connection. The Harmonic force is applied here only when two nodes are connected to each other and because it has opposite sign, as seen in (b), it will temper the force between the two connected nodes and allow to keep them close ot each other.  
+		
 	
 	
 	% E
