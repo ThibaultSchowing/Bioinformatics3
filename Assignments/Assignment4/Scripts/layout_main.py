@@ -3,6 +3,7 @@ from tools import plot_layout, plot_energies
 
 
 file_paths = ['star.txt', 'square.txt', 'star++.txt', 'dog.txt']
+file_paths = ['dog.txt']
 
 for file_path in file_paths:
     # read the file into your layout class

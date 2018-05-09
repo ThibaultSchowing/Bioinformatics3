@@ -32,11 +32,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="layout_main.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="layout_main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/layout_main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="25" column="69" selection-start-line="25" selection-start-column="69" selection-end-line="25" selection-end-column="69" />
+            <state relative-caret-position="85">
+              <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
@@ -44,10 +44,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="layout.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="layout.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/layout.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1226">
+            <state relative-caret-position="1124">
               <caret line="137" column="52" lean-forward="true" selection-start-line="137" selection-start-column="52" selection-end-line="137" selection-end-column="52" />
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
@@ -192,16 +192,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/layout_main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="69" selection-start-line="25" selection-start-column="69" selection-end-line="25" selection-end-column="69" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/generic_network.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-780" />
@@ -209,10 +199,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/layout.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1226">
+        <state relative-caret-position="1124">
           <caret line="137" column="52" lean-forward="true" selection-start-line="137" selection-start-column="52" selection-end-line="137" selection-end-column="52" />
           <folding>
             <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/layout_main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
           </folding>
         </state>
       </provider>

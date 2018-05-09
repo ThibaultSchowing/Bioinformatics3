@@ -259,7 +259,7 @@ kz
 	\newpage
 	\item \textit{\textbf{Simulated annealing:} Explain why simulated annealing is a worthwhile optimisation principle in practice.}\\
 	 % first position random -> might have a long distance to do before beeing in the right place -> first big coarse moves to lower the big gapes
-	Simulated annealing will approximate the global minimum (unlike Gradient descent, which will find a precise local minima). These methods avoid getting stuck in a local minima by making big random jumps in the beginning and reduce their size as we stabilize the layout. If a node is "stuck" in a force-field in which it does not belong, a random force might help it to get out. If a node is already in a good position, this random force might false a little bit the scheme but won't break the overall structure. As the temperature is decreasing, the random force won't have the ability to displace the node far away of their position. The more iterations, the less amount of temperature. \\
+	Simulated annealing will approximate the global minimum (unlike Gradient descent, which will find a precise local minima). These methods avoid getting stuck in a local minima by making big random jumps in the beginning and reduce their size as we stabilize the layout. If a node is "stuck" in a force-field in which it does not belong,see figure \ref{fig:dognormalerror}, a random force might help it to get out. If a node is already in a good position, this random force might false a little bit the scheme but won't break the overall structure. As the temperature is decreasing, the random force won't have the ability to displace the node far away of their position. The more iterations, the less amount of temperature. \\
 	
 	
 	
@@ -322,6 +322,26 @@ kz
 	\includegraphics[width=0.5\linewidth]{../Scripts/dog_annealing}
 	\caption{}
 	\label{fig:dgannealing}
+\end{figure}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{../Scripts/star++_energies}
+	\caption{Energies for the star++ graph}
+	\label{fig:starenergies}
+\end{figure}
+
+We can see in figure \ref{fig:starenergies}, the total energy lower quicker with the normal layout than with the Simulated Annealing. Both meet around zero after around 200 iterations. 
+
+
+As said in (f), a node can randomly get stuck somewhere where the forces can't simply make it move and the Simulated Annealing can be useful. In figure \ref{fig:dognormalerror}. After having ran the simulations many times, no such error appeared when using the Simulated Annealing layout. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{../Scripts/dog_normal_error}
+	\caption{One of the dog's front leg got stuck trying to catch a ball on his back. }
+	\label{fig:dognormalerror}
 \end{figure}
 
 
