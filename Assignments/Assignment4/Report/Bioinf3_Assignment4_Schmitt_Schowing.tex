@@ -237,22 +237,107 @@ kz
 	\item \textit{\textbf{\textbf{Understanding the forces:} Why is the Coulomb force the repulsive force and the harmonic force the attractive force?}}
 		
 		% The harmonic force is here only if there is an edge. Keep connected nodes together and try to repulse the non connected part away. 
-		In our case, all the node will have a positive charge which means that they are all going to repel each other. However, the objective is to keep connected nodes close to each other and and at the same time spread the rest of the graph away to give it a nice display. The Coulomb force is the basic force between every node according to their degrees and distance, disregarding their connection. The Harmonic force is applied here only when two nodes are connected to each other and because it has opposite sign, as seen in (b), it will temper the force between the two connected nodes and allow to keep them close ot each other.  
+		In our case, all the node will have a positive charge (the degree) which means that they are all going to repel each other. However, the objective is to keep connected nodes close to each other and at the same time spread the rest of the graph away to give it a nice display. The Coulomb force is the basic force between every node according to their degrees and distance, disregarding their connection. The Harmonic force is applied here only when two nodes are connected to each other and because it has opposite sign, as seen in (b), it will temper the force between the two connected nodes and allow to keep them close ot each other.  
 		
 	
 	
 	% E
+	\newpage
 	\item \textit{\textbf{Implementing the force directed layout algorithm}}
 	
+		\lstinputlisting[label=lst-1, caption={layout\string_main.py}] {../Scripts/layout\string_main.py}
+		\lstinputlisting[label=lst-1, caption={layout.py}] {../Scripts/layout.py}
+		\lstinputlisting[label=lst-1, caption={node.py}] {../Scripts/node.py}
+		\lstinputlisting[label=lst-1, caption={tools.py}] {../Scripts/tools.py}
+		\lstinputlisting[label=lst-1, caption={generic\string_network.py}] {../Scripts/generic\string_network.py}
+		
+		
+		
+		
 	
 	% F
-	\item \textit{\textbf{Simulated annealing:} Explain why simulated annealing is a worthwhile optimisation principle in practice.}
+	\newpage
+	\item \textit{\textbf{Simulated annealing:} Explain why simulated annealing is a worthwhile optimisation principle in practice.}\\
+	 % first position random -> might have a long distance to do before beeing in the right place -> first big coarse moves to lower the big gapes
+	Simulated annealing will approximate the global minimum (unlike Gradient descent, which will find a precise local minima). These methods avoid getting stuck in a local minima by making big random jumps in the beginning and reduce their size as we stabilize the layout. If a node is "stuck" in a force-field in which it does not belong, a random force might help it to get out. If a node is already in a good position, this random force might false a little bit the scheme but won't break the overall structure. As the temperature is decreasing, the random force won't have the ability to displace the node far away of their position. The more iterations, the less amount of temperature. \\
+	
 	
 	
 	% G
-	\item \textit{\textbf{Applying the layout algorithms}}
+	\item \textit{\textbf{Applying the layout algorithms}}\\
+	
+	
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\linewidth]{../Scripts/star_normal}
+	\caption{}
+	\label{fig:starnormal}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\linewidth]{../Scripts/star_annealing}
+	\caption{}
+	\label{fig:starannealing}
+\end{figure}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\linewidth]{../Scripts/square_normal}
+	\caption{}
+	\label{fig:squarenormal}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\linewidth]{../Scripts/square_annealing}
+	\caption{}
+	\label{fig:squareannealing}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\linewidth]{../Scripts/star++_normal}
+	\caption{}
+	\label{fig:starpnormal}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\linewidth]{../Scripts/star++_annealing}
+	\caption{}
+	\label{fig:starpannealing}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\linewidth]{../Scripts/dog_normal}
+	\caption{}
+	\label{fig:dgnormal}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\linewidth]{../Scripts/dog_annealing}
+	\caption{}
+	\label{fig:dgannealing}
+\end{figure}
+
+
+
+
 
 \end{enumerate}
+
+
+
+
+
+
+
+
+
 
 
 % NEW EXERCICE
