@@ -20,27 +20,23 @@ class Layout:
         # initial square to distribute nodes
         self.size = 50
 
-
     def init_positions(self):
         """
         Initialise or reset the node positions, forces and charge.
         """
 
-        netsize = len(self.network.nodes)
-
         # Set up the positions and charge
         for key, node in self.network.nodes.items():
 
-            #Pick a coordinate between 0 and 50 (initial square)
+            # Pick a coordinate between 1 and 50 (initial square)
             node.pos_x = random.randint(1,self.size + 1)
             node.pos_y = random.randint(1,self.size + 1)
-            #print("Random posx: ", node.pos_x, " and posy ", node.pos_y)
 
+            # The charge is the node degree
             node.charge = node.degree()
 
-        # Calculate the force
+        # Calculate the forces
         self.calculate_forces()
-
 
     def calculate_forces(self):
         """
@@ -48,7 +44,7 @@ class Layout:
         """
 
         # For all pair of nodes...
-        for pair in itertools.combinations(self.network.nodes.items(),2):
+        for pair in itertools.combinations(self.network.nodes.items(), 2):
 
             node1 = pair[0][1]
             node2 = pair[1][1]
@@ -73,7 +69,6 @@ class Layout:
             node2.force_x -= fx
             node2.force_y -= fy
 
-
     def add_random_force(self, temperature):
         """
         Add a random force within [- temperature * interval, temperature * interval] to each node.
@@ -97,7 +92,6 @@ class Layout:
             node.force_x = 0
             node.force_y = 0
 
-
     def calculate_energy(self):
         """
         Calculate the total energy of the network in the current iteration.
@@ -117,6 +111,7 @@ class Layout:
             Eh = 0
             if node1.has_edge_to(node2):
                 Eh = ((node1.pos_x - node2.pos_x)**2 + (node1.pos_y - node2.pos_y)**2)/2
+
             energy_total += Ec + Eh
 
 
@@ -150,6 +145,7 @@ class Layout:
         temperature = 100000
         for i in range(iterations):
             # TODO: DECREASE THE TEMPERATURE IN EACH ITERATION. YOU CAN BE CREATIVE.
+            # Decrease the temperature of 80% at each loop. (It decreases a first time before being used...)
             temperature = 0.2 * temperature
             # there is nothing to do here for you
             self.calculate_forces()
