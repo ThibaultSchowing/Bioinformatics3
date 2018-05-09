@@ -37,7 +37,7 @@ def plot_energies(energy_lists, legend, title):
 
     # set the x-axis and y-axis labels
     plt.xlabel('iteration')
-    plt.ylabel('E')
+    plt.ylabel('Total Energy')
 
     # set the legend, title, clean up the plot layout and show it
     plt.legend(legend)

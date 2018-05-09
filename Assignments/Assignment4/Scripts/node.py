@@ -5,10 +5,10 @@ class Node:
         self.neighbour_nodes = set()
 
         # fields for the layout algorithm
-        self.pos_x = 0
-        self.pos_y = 0
-        self.force_x = 0
-        self.force_y = 0
+        self.pos_x = 0.0
+        self.pos_y = 0.0
+        self.force_x = 0.0
+        self.force_y = 0.0
         self.charge = 0
 
     def __eq__(self, node):
