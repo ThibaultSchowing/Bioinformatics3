@@ -142,7 +142,7 @@ class Layout:
         """
         self.init_positions()
         energies = []
-        temperature = 100000
+        temperature = 1000000
         for i in range(iterations):
             # TODO: DECREASE THE TEMPERATURE IN EACH ITERATION. YOU CAN BE CREATIVE.
             # Decrease the temperature of 80% at each loop. (It decreases a first time before being used...)
