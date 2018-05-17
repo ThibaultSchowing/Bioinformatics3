@@ -7,13 +7,10 @@ class UniprotReader:
         Initialization, read in file and build any data structure that makes you happy
         '''
 
-        content_start = False
-
         # structure containing ENTRY : [list of other names]
-        self.mapping = defaultdict(list)
+        self.mapping = defaultdict(set)
 
         # structure containing other names : ENTRY
-        other_gene_names = set()
         self.reverse_mapping = defaultdict(set)
 
         self.ENTRY = []
@@ -46,14 +43,11 @@ class UniprotReader:
 
         #TODO separate protein names into a table (space separated entries)
 
-        # Construct mapping
+        # Construct mapping and reverse mapping
         for i in range(0, len(self.ENTRY)):
-            self.mapping[self.ENTRY[i]] = self.GENE_NAMES[i]
-
-            # Construct the reverse mapping:  Gene_names : ENTRY
-            for names in self.GENE_NAMES[i]:
-                # .add() on a set add only if value is not already present
-                self.reverse_mapping[names].add(self.ENTRY[i])
+            for gene in self.GENE_NAMES[i]:
+                self.mapping[self.ENTRY[i]].add(gene)
+                self.reverse_mapping[gene].add(self.ENTRY[i])
 
 
     def get_uniprot_names_mapping(self):

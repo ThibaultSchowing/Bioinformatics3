@@ -8,6 +8,7 @@ class GenericNetwork:
     def __init__(self):
         # key: node identifier, value: Node-object
         self.nodes = {}
+        self.nb_edges = 0
 
     def read_from_tsv(self, file_path):
         """
@@ -69,22 +70,25 @@ class GenericNetwork:
         self.nodes[node_1.identifier].add_edge(node_2)
         self.nodes[node_2.identifier].add_edge(node_1)
 
-    def add_edge_str(self, node1, node2):
-        """
+        # increment the number of edge of 1
+        self.nb_edges += 1
 
-        :param node1:
-        :param node2:
-        :return:
-        """
-        # raise an error if the nodes are not in the network
-        if node1 not in self.nodes.keys():
-            raise KeyError('There is no node in the network with identifier:', node_1)
-        if node2 not in self.nodes.keys():
-            raise KeyError('There is no node in the network with identifier:', node_2)
-
-        # add the (undirected) edge
-        self.nodes[node1].add_edge(self.nodes[node2])
-        self.nodes[node2].add_edge(self.nodes[node1])
+    # def add_edge_str(self, node1, node2):
+    #     """
+    #
+    #     :param node1:
+    #     :param node2:
+    #     :return:
+    #     """
+    #     # raise an error if the nodes are not in the network
+    #     if node1 not in self.nodes.keys():
+    #         raise KeyError('There is no node in the network with identifier:', node_1)
+    #     if node2 not in self.nodes.keys():
+    #         raise KeyError('There is no node in the network with identifier:', node_2)
+    #
+    #     # add the (undirected) edge
+    #     self.nodes[node1].add_edge(self.nodes[node2])
+    #     self.nodes[node2].add_edge(self.nodes[node1])
 
     def get_node(self, identifier):
         """
@@ -116,6 +120,7 @@ class GenericNetwork:
         :return: number of nodes in the network
         """
         return len(self.nodes.keys())
+
 
     def max_degree(self):
         """
