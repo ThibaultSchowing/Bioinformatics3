@@ -30,6 +30,7 @@ class GenericNetwork:
                 if len(columns) < 2:
                     continue
 
+                # We ignore if there is more than one connection
                 # create the two nodes and remove potential whitespace such as new-line from their identifiers
                 node_1 = Node(columns[0].strip())
                 node_2 = Node(columns[1].strip())

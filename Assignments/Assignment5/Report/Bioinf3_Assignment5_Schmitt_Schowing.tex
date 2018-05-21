@@ -11,6 +11,7 @@
 \usepackage{float}
 \usepackage{longtable}
 \usepackage{xcolor}
+\usepackage{booktabs}
 \definecolor{darkpastelgreen}{rgb}{0.01, 0.75, 0.24}
 \definecolor{spirodiscoball}{rgb}{0.06, 0.75, 0.99}
 \definecolor{smalt}{rgb}{0.0, 0.2, 0.6}
@@ -111,41 +112,122 @@
 \begin{enumerate}
 	
 	% A
-	\item \textit{asdf}
+	\item \textit{Adding annotations to PPI-networks}\\
+	
+		%TODO listing at the end
+		The listings for this exercise are at the end of the document.
 
 		%\lstinputlisting[label=lst-1, caption={layout\string_main.py}] {../Scripts/layout\string_main.py}
 
-		
+	\item \textit{Generating an overview}\\
+	
+	
+	
+	
+	
+	
+	For Chicken: 
+	
+	\begin{table}[H]
+		\centering
+		\caption{Chicken network overview}
+		\label{chickentableoverview}
+		\begin{tabular}{llllll}
+			\hline
+			\multicolumn{1}{|l|}{Interactions in the network}     & \multicolumn{1}{l|}{300} & \multicolumn{1}{l|}{}                           & \multicolumn{1}{l|}{}    & \multicolumn{1}{l|}{}               & \multicolumn{1}{l|}{}     \\ \hline
+			\multicolumn{1}{|l|}{Proteins in the network}         & \multicolumn{1}{l|}{281} & \multicolumn{1}{l|}{Protein without annotation} & \multicolumn{1}{l|}{44}  & \multicolumn{1}{l|}{Percentage}     & \multicolumn{1}{l|}{15.6} \\ \hline
+			\multicolumn{1}{|l|}{\textbf{Annotation per protein}} & \multicolumn{1}{l|}{}    & \multicolumn{1}{l|}{}                           & \multicolumn{1}{l|}{}    & \multicolumn{1}{l|}{}               & \multicolumn{1}{l|}{}     \\ \hline
+			\multicolumn{1}{|l|}{Smallest number}                 & \multicolumn{1}{l|}{0}   & \multicolumn{1}{l|}{Average number}             & \multicolumn{1}{l|}{7.7} & \multicolumn{1}{l|}{Biggest number} & \multicolumn{1}{l|}{88}   \\ \hline
+			\multicolumn{1}{|l|}{\textbf{Protein per annotation}} & \multicolumn{1}{l|}{}    & \multicolumn{1}{l|}{}                           & \multicolumn{1}{l|}{}    & \multicolumn{1}{l|}{}               & \multicolumn{1}{l|}{}     \\ \hline
+			\multicolumn{1}{|l|}{Smallest number}                 & \multicolumn{1}{l|}{1}   & \multicolumn{1}{l|}{Average number}             & \multicolumn{1}{l|}{1.55} & \multicolumn{1}{l|}{Biggest number} & \multicolumn{1}{l|}{27}  \\ \hline
+			&                          &                                                 &                          &                                     &                          
+		\end{tabular}
+	\end{table}
+
+	For pig: 
+	
+	\begin{table}[H]
+		\centering
+		\caption{Pig network overview}
+		\label{pignetworkoverview}
+		\begin{tabular}{llllll}
+			\hline
+			\multicolumn{1}{|l|}{Interactions in the network}     & \multicolumn{1}{l|}{50} & \multicolumn{1}{l|}{}                           & \multicolumn{1}{l|}{}    & \multicolumn{1}{l|}{}               & \multicolumn{1}{l|}{}     \\ \hline
+			\multicolumn{1}{|l|}{Proteins in the network}         & \multicolumn{1}{l|}{51} & \multicolumn{1}{l|}{Protein without annotation} & \multicolumn{1}{l|}{13}  & \multicolumn{1}{l|}{Percentage}     & \multicolumn{1}{l|}{25.5} \\ \hline
+			\multicolumn{1}{|l|}{\textbf{Annotation per protein}} & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}                           & \multicolumn{1}{l|}{}    & \multicolumn{1}{l|}{}               & \multicolumn{1}{l|}{}     \\ \hline
+			\multicolumn{1}{|l|}{Smallest number}                 & \multicolumn{1}{l|}{0}  & \multicolumn{1}{l|}{Average number}             & \multicolumn{1}{l|}{5.5} & \multicolumn{1}{l|}{Biggest number} & \multicolumn{1}{l|}{40}   \\ \hline
+			\multicolumn{1}{|l|}{\textbf{Protein per annotation}} & \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}                           & \multicolumn{1}{l|}{}    & \multicolumn{1}{l|}{}               & \multicolumn{1}{l|}{}     \\ \hline
+			\multicolumn{1}{|l|}{Smallest number}                 & \multicolumn{1}{l|}{1}  & \multicolumn{1}{l|}{Average number}             & \multicolumn{1}{l|}{1.13} & \multicolumn{1}{l|}{Biggest number} & \multicolumn{1}{l|}{5} \\ \hline
+			&                         &                                                 &                          &                                     &                          
+		\end{tabular}
+	\end{table}
+	
+	
+	for Human: 
+	
+	
+	\begin{table}[H]
+		\centering
+		\caption{Human network overview}
+		\label{humanoverview}
+		\begin{tabular}{llllll}
+			\hline
+			\multicolumn{1}{|l|}{Interactions in the network}     & \multicolumn{1}{l|}{275472} & \multicolumn{1}{l|}{}                           & \multicolumn{1}{l|}{}      & \multicolumn{1}{l|}{}               & \multicolumn{1}{l|}{}     \\ \hline
+			\multicolumn{1}{|l|}{Proteins in the network}         & \multicolumn{1}{l|}{17087}  & \multicolumn{1}{l|}{Protein without annotation} & \multicolumn{1}{l|}{2262}  & \multicolumn{1}{l|}{Percentage}     & \multicolumn{1}{l|}{13.2} \\ \hline
+			\multicolumn{1}{|l|}{\textbf{Annotation per protein}} & \multicolumn{1}{l|}{}       & \multicolumn{1}{l|}{}                           & \multicolumn{1}{l|}{}      & \multicolumn{1}{l|}{}               & \multicolumn{1}{l|}{}     \\ \hline
+			\multicolumn{1}{|l|}{Smallest number}                 & \multicolumn{1}{l|}{0}      & \multicolumn{1}{l|}{Average number}             & \multicolumn{1}{l|}{7.22}  & \multicolumn{1}{l|}{Biggest number} & \multicolumn{1}{l|}{184}  \\ \hline
+			\multicolumn{1}{|l|}{\textbf{Protein per annotation}} & \multicolumn{1}{l|}{}       & \multicolumn{1}{l|}{}                           & \multicolumn{1}{l|}{}      & \multicolumn{1}{l|}{}               & \multicolumn{1}{l|}{}     \\ \hline
+			\multicolumn{1}{|l|}{Smallest number}                 & \multicolumn{1}{l|}{1}      & \multicolumn{1}{l|}{Average number}             & \multicolumn{1}{l|}{10.6} & \multicolumn{1}{l|}{Biggest number} & \multicolumn{1}{l|}{1554} \\ \hline
+			&                             &                                                 &                            &                                     &                          
+		\end{tabular}
+	\end{table}
+
+	\newpage
+	\item \textit{Examining the most/least common annotations}
+	
+	
+	
+	
+		% Please add the following required packages to your document preamble:
+		% \usepackage{booktabs}
+		% \usepackage{graphicx}
+		\begin{table}[H]
+			\centering
+			\caption{Function of the 5 most common GO identifiers of the human network. }
+			\label{my-label}
+				\begin{tabular}{|l|l|l|}
+					\hline
+					\textbf{GO id} & \textbf{Quantity} & \textbf{Biological Process}                                                                                                                                           \\ \hline
+					GO:0006351     & 1562              & The cellular synthesis of RNA on a template of DNA.                                                                                                                   \\ \hline
+					GO:0045944     & 1029              & \begin{tabular}[c]{@{}l@{}}Any process that activates or increases the frequency, \\ rate or extent of transcription from an RNA polymerase II promoter.\end{tabular} \\ \hline
+					GO:0007165     & 1010              & Signal transduction                                                                                                                                                   \\ \hline
+					GO:0006357     & 960               & \begin{tabular}[c]{@{}l@{}}Any process that modulates the frequency, rate or extent \\ of transcription mediated by RNA polymerase II.\end{tabular}                   \\ \hline
+					GO:0006355     & 765               & \begin{tabular}[c]{@{}l@{}}Any process that modulates the frequency, rate or extent \\ of cellular DNA-templated transcription\end{tabular}                           \\ \hline
+				\end{tabular}
+		\end{table}
+	
+	We can observe that these annotations concerns general process happening almost in every cell. This explains why they are the most common in opposition as the annotations in the table below, which concerns specific reaction or process concerning particular location on molecules. 
+	
+	
+	
+	\begin{table}[H]
+		\centering
+		\caption{Function of the 5 least common GO identifiers of the human network}
+		\label{my-label}
+		\begin{tabular}{|l|l|l|}
+			\hline
+			\textbf{GO id} & \textbf{Quantity} & \textbf{Biological Process}                 \\ \hline
+			GO:0000003     & 1                 & Reproduction                                \\ \hline
+			GO:0000011     & 1                 & Vacuole inheritance                         \\ \hline
+			GO:0000032     & 1                 & Cell wall mannoprotein biosynthetic process \\ \hline
+			GO:0000053     & 1                 & Argininosuccinate metabolic process         \\ \hline
+			GO:0000097     & 1                 & Sulfur amino acid biosynthetic process      \\ \hline
+		\end{tabular}
+	\end{table}
+
+
 
 
 \end{enumerate}
-
-
-
-
-
-
-
-
-
-
-
-% NEW EXERCICE
-\newpage
-\exercise{asdf Modular Decomposition}
-
-\begin{enumerate}
-	
-	% A
-	\item \textit{dddddddddddddd}
-	
-	%\lstinputlisting[label=lst-1, caption={layout\string_main.py}] {../Scripts/layout\string_main.py}
-	
-	
-	
-	
-\end{enumerate}
-
-
 
 \end{document}

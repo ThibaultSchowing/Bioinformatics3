@@ -67,11 +67,13 @@ class GOReader:
         idx_go_id = 3
         idx_onto_id = 4
 
+        # For every entry, fill the mappers.
+        # The commented mappers are not used but could be
         for entry_line in self.DATA:
-            self.goid_accessnb[entry_line[idx_go_id]].add(entry_line[idx_access_nb])
+            #self.goid_accessnb[entry_line[idx_go_id]].add(entry_line[idx_access_nb])
             self.accessnb_goid[entry_line[idx_access_nb]].add(entry_line[idx_go_id])
-            self.alternativename_goid[entry_line[idx_alter_name]].add(entry_line[idx_go_id])
-            self.goid_alternativename[entry_line[idx_go_id]].add(entry_line[idx_alter_name])
+            #self.alternativename_goid[entry_line[idx_alter_name]].add(entry_line[idx_go_id])
+            #self.goid_alternativename[entry_line[idx_go_id]].add(entry_line[idx_alter_name])
 
 
 
@@ -84,8 +86,6 @@ class GOReader:
         #     for elem in self.goid_accessnb[key]:
         #         print(elem)
 
-    #TODO function that takes a protein name and return GO:IDs
-
     def get_GO_IDs(self, proteinID):
         """
         Get a protein name, returns all GO ids related to it
@@ -94,13 +94,9 @@ class GOReader:
         """
 
         lst1 = []
-        #print("Add OG for protein ", proteinID)
-
-        # certainly useless - TODO
         for prot in proteinID:
             tmp = self.accessnb_goid[prot]
             lst1.extend(list(tmp))
-
 
         return lst1
 
