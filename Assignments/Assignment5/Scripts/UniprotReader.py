@@ -20,6 +20,7 @@ class UniprotReader:
         self.GENE_NAMES = []
         self.ORGANISM = []
 
+        # Read file
         content_start = False
         with open(filename, "r") as f:
             for line in f:
@@ -40,9 +41,6 @@ class UniprotReader:
                     content_start = True
                     continue
 
-
-        #TODO separate protein names into a table (space separated entries)
-
         # Construct mapping and reverse mapping
         for i in range(0, len(self.ENTRY)):
             for gene in self.GENE_NAMES[i]:
@@ -55,3 +53,12 @@ class UniprotReader:
 
     def get_names_uniprot_mapping(self):
         return self.reverse_mapping
+
+
+    # Print mapping to file or to console
+    # OPTIONAL
+    def print_mapping(self):
+        print("TODO")
+
+    def print_reverse_mapping(self):
+        print("TODO")

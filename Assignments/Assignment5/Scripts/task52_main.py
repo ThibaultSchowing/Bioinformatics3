@@ -11,7 +11,7 @@ if __name__== "__main__":
     # ======================================================================================================= #
 
     #TODO check version (mini)
-    path_chicken_network = "../Data/sup51/chicken_network_mini.tsv"
+    path_chicken_network = "../Data/sup51/chicken_network.tsv"
     chicken_network = GenericNetwork()
     chicken_network.read_from_tsv(path_chicken_network)
 
@@ -24,11 +24,11 @@ if __name__== "__main__":
     Anet_chicken = AnnotatedNetwork(path_chicken_network, path_chicken_ontology, path_chicken_uniprot)
     Anet_chicken.generate_overview()
     #common_chicken_GOids = Anet_chicken.get_common_GOid(5)
-    #print("Most common chicken GOids - occurrence: ", common_chicken_GOids[0],
-    #      "\nLeast common chicken GOids - occurrence: ", common_chicken_GOids[1])
+    # print("Most common chicken GOids - occurrence: ", common_chicken_GOids[0],
+    #       "\nLeast common chicken GOids - occurrence: ", common_chicken_GOids[1])
 
-    Anet_chicken.annotation_enrichment(5)
-    #Anet_chicken.annotation_combination(2, 100, 3)
+    #Anet_chicken.annotation_enrichment(5)
+    Anet_chicken.annotation_combination(2, 100, 3)
 
 
 

@@ -2,6 +2,8 @@ from UniprotReader import UniprotReader
 from generic_network import GenericNetwork
 from GOreader import GOReader
 
+import numpy as np
+
 from collections import defaultdict
 import itertools
 from itertools import product, combinations, chain
@@ -223,10 +225,10 @@ class AnnotatedNetwork:
 
             N_minus_Ka = N - Ka
 
-            # Trying to optimize here !
+            # Trying to optimize here ! (not bad, can do better !)
             if ka == 0:
                 self.annot_probability[A] = 1
-                print(A, "\t pA: ", 1)
+                # print(A, "\t pA: ", 1)
                 continue
 
             #TODO Correct probability calculus !!! WRONG HERE !!!
@@ -235,30 +237,30 @@ class AnnotatedNetwork:
                 nCr_Ka_i = nCr(Ka, i)
                 nCr_N_minus_Ka_n_i = nCr(N_minus_Ka, n - i)
 
-                print("\nn = ", n,
-                      "\nN = ", N,
-                      "\nKa = ", Ka,
-                      "\nka = ", ka,
-                      "\ni = ", i,
-                      "\nnCr(Ka,i) = ", nCr_Ka_i,
-                      "\nmin(Ka, n) = ", min(Ka, n),
-                      "\nnCr(N-Ka, n-i) = ", nCr_N_minus_Ka_n_i, "\n")
+                # print("\nn = ", n,
+                #       "\nN = ", N,
+                #       "\nKa = ", Ka,
+                #       "\nka = ", ka,
+                #       "\ni = ", i,
+                #       "\nnCr(Ka,i) = ", nCr_Ka_i,
+                #       "\nmin(Ka, n) = ", min(Ka, n),
+                #       "\nnCr(N-Ka, n-i) = ", nCr_N_minus_Ka_n_i, "\n")
 
                 pA += (nCr_Ka_i * nCr_N_minus_Ka_n_i) / ncr_Nn
 
             self.annot_probability[A] = pA
 
-            print(A, "\t pA: ", pA)
+            # print(A, "\t pA: ", pA)
 
 
         # The number and percentage of annotations A with pA < 0.05, pA > 0.5, pA > 0
         pa_005 = pa_05 = pa_095 = 0
         for A in self.annot_probability:
-            if self.annot_probability[A] < 0.05:
+            if self.annot_probability[A] <= 0.05:
                 pa_005 += 1
-            if self.annot_probability[A] > 0.5:
+            if self.annot_probability[A] < 0.95:
                 pa_05 += 1
-            if self.annot_probability[A] > 0.95:
+            if self.annot_probability[A] >= 0.95:
                 pa_095 += 1
 
         # Percentages
@@ -270,76 +272,147 @@ class AnnotatedNetwork:
         pct_095 = pa_095 / tot_annot
 
         print("Number of annotation with pA < 0.05: ", pa_005, "\t\tPercentage: ", pct_005)
-        print("Number of annotation with pA > 0.5: ", pa_05, "\t\tPercentage: ", pct_05)
+        print("Number of annotation with pA > 0.5 & < 0.95: ", pa_05, "\t\tPercentage: ", pct_05)
         print("Number of annotation with pA > 0.95: ", pa_095, "\t\tPercentage: ", pct_095)
-        print("\n\n\n")
+        print("\n")
 
 
         # The n annotations with the smallest pA and the n annotations with the highest pA.
         # If there are several annotations with the same pA, choose the ones that are associated
         # with more proteins first
 
-        # Create a (GO, pA, Nb-prot) list
+        # Create a (GO, pA, Nb-prot) list for the later sort
         annot_prob_prot = []
         for A in self.annot_probability:
-            annot_prob_prot.append((A, self.annot_probability[A], len(self.go_net[A])))
+            annot_prob_prot.append((A, self.annot_probability[A], len(self.go_net[A]), len(self.annot_interaction_pairs[A])))
 
-        # All the Annotation A with their probabilities and number of protein
-        for e in annot_prob_prot:
-            print(e)
+        # # All the Annotation A with their probabilities and number of protein
+        # for e in annot_prob_prot:
+        #     print(e)
 
         # gives  [('GO-id', p(A), nb_protein), (..., ..., ...)] with P(a) ordered ASC
-        sorted_probabilities_ASC = [(v[0], v[1], v[2]) for v in sorted(annot_prob_prot, key=lambda kv: (kv[1], kv[2]))]
-
+        sorted_probabilities_ASC = [(v[0], v[1], v[2], v[3]) for v in sorted(annot_prob_prot, key=lambda kv: (kv[1], kv[2]))]
 
         # gives  [('GO-id', p(A), nb_protein), (..., ..., ...)] with P(a) ordered DSC
-        sorted_probabilities_DSC = [(v[0], v[1], v[2]) for v in sorted(annot_prob_prot, key=lambda kv: (-kv[1], -kv[2]))]
+        sorted_probabilities_DSC = [(v[0], v[1], v[2], v[3]) for v in sorted(annot_prob_prot, key=lambda kv: (-kv[1], -kv[2]))]
 
         # Take the "top" firsts
         smallest_prob = list(itertools.islice(sorted_probabilities_ASC, top))
         biggest_prob = list(itertools.islice(sorted_probabilities_DSC, top))
 
-        print("\n\n(GO:id  |  pA  |  Nb Protein)\n")
+        print("\n\n(GO:id  |  pA  |  Nb Protein | Nb Interact. Protein)\n")
         print("Five smallest: \n", smallest_prob)
         print("Five biggest: \n", biggest_prob)
 
-    # def annotation_combination(self, k, r, m):
-    #     """
-    #
-    #     :param k: combination size
-    #     :param r: number of random distribution
-    #     :param m: m combinations with the smallest pc and the m annotations with the highest pc
-    #     :return:
-    #     """
-    #
-    #     annotation_probability = defaultdict(float)
-    #
-    #     # number of protein in the network
-    #     n = self.network.size()
-    #
-    #     # number of protein with annotation A
-    #     # len(self.go_net[A]
-    #
-    #     # For each annotation, compute its probability
-    #     # go_net -> {GO_id : [prot1, prot2, ...]}
-    #     for A in self.go_net:
-    #         annotation_probability[A] = len(self.go_net[A]) / n
-    #
-    #     # Generate a list of all annotation combinations of size k that occur in the annotated network
-    #     # https://stackoverflow.com/questions/22799053/combinations-of-elements-of-different-tuples-in-the-list
-    #
-    #     L = []
-    #     for node in self.net_go:
-    #         L.append(self.net_go[node])
-    #
-    #     def powerset(iterable):
-    #         "powerset minus the empty element"
-    #         s = list(iterable)
-    #         return chain.from_iterable(combinations(s, k))
-    #
-    #         print[list(chain.from_iterable(c)) for c in product(*(powerset(x) for x in L))]
-    #
-    #
-    #     # for A in annotation_probability:
-    #     #     print(A, "\t", len(self.go_net[A]), "\t\t", annotation_probability[A])
+    def annotation_combination(self, k, r, m):
+        """
 
+        :param k: combination size
+        :param r: number of random distribution
+        :param m: m combinations with the smallest pc and the m annotations with the highest pc
+        :return:
+        """
+
+        annotation_probability = defaultdict(float)
+
+        # number of protein in the network
+        n = self.network.size()
+
+        # number of protein with annotation A
+        # len(self.go_net[A]
+
+        # For each annotation, compute its probability
+        # go_net -> {GO_id : [prot1, prot2, ...]}
+        for A in self.go_net:
+            annotation_probability[A] = len(self.go_net[A]) / n
+
+        # Generate a list of all annotation combinations of size k that occur in the annotated network
+        # https://stackoverflow.com/questions/22799053/combinations-of-elements-of-different-tuples-in-the-list
+
+
+        #all_combinations = list(combinations(self.go_net, k))
+
+        # Combination set contains all combination of k annotation contained in the network
+        combination_dict = defaultdict(list)
+        for node in self.net_go:
+            if len(self.net_go[node]) < k:
+                continue
+
+            tmp_combinations = combinations(self.net_go[node], k)
+
+            # For each k-combination for this node
+            for combination in tmp_combinations:
+                # The combination are sorted in order to avoid adding (a,b) and (b,a)
+                s_combination = tuple(sorted(combination))
+                if s_combination in combination_dict:
+                    combination_dict[s_combination][0] += 1
+                else:
+                    combination_dict[s_combination].append(1)
+
+
+
+        #
+        # for A in annotation_probability:
+        #     print(A, "\t", len(self.go_net[A]), "\t\t", annotation_probability[A])
+
+        # i
+
+        # For each combination (C1, C2, ...) in the network...
+        for C in combination_dict:
+            # Cn = how often this combination occurs in the network
+             #nc = combination_dict[C]
+
+            Pe_c = annotation_probability[C[0]] * annotation_probability[C[1]]
+            combination_dict[C].append(Pe_c)
+
+
+
+
+        #
+        # for key in combination_dict:
+        #     print(key, ":\t", combination_dict[key])
+
+        for key in combination_dict:
+            #probability_list = [combination_dict[key][1]] * n
+            prob = combination_dict[key][1]
+
+            # nr = number of random sample in which C occurs at least as much as in the original network
+            nr = 0
+            for _ in range(0, r):
+                random_list = np.random.choice([0, 1], size=n, p=[1 - prob, prob])
+
+                # C in the actual network appears combination_dict[key][0] times
+                # number of occurence in random network
+                nb_occ = np.count_nonzero(random_list)
+
+
+                if nb_occ >= combination_dict[key][0]:
+                    nr += 1
+            # Calculating the probability of having
+            pc = nr / r
+            combination_dict[key].append(pc)
+
+
+        # combination_dict = (c1, c2) : [nb_occ, prob, rand_prob]
+
+        pc_0001 = pc_005 = pc_05 = 0
+        nb_C = len(combination_dict)
+        for c in combination_dict:
+            pc = combination_dict[c][2]
+            if pc < 0.001:
+                pc_0001 += 1
+            elif pc < 0.005:
+                pc_005 += 1
+            elif pc > 0.05:
+                pc_05 += 1
+
+        # percentages
+        pct_0001 = pc_0001/nb_C
+        pct_005 = pc_005/nb_C
+        pct_05 = pc_05/nb_C
+
+        print("pc < 0.001: ", pc_0001, "\t\t", pct_0001, "%")
+        print("pc < 0.005: ", pc_005, "\t\t", pct_005, "%")
+        print("pc < 0.05: ", pc_05, "\t\t", pct_05, "%")
+
+        # M = 3 bla bla shit
