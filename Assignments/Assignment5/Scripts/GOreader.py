@@ -68,7 +68,7 @@ class GOReader:
         idx_onto_id = 4
 
         # For every entry, fill the mappers.
-        # The commented mappers are not used but could be
+        # The commented mappers are not used but could be useful
         for entry_line in self.DATA:
             #self.goid_accessnb[entry_line[idx_go_id]].add(entry_line[idx_access_nb])
             self.accessnb_goid[entry_line[idx_access_nb]].add(entry_line[idx_go_id])

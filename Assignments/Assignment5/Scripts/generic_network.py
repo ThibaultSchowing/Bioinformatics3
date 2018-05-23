@@ -39,10 +39,12 @@ class GenericNetwork:
                 self.add_node(node_2)
                 self.add_edge(node_1, node_2)
 
-    ''''
-    
-    '''
+
     def get_nodes(self):
+        """
+
+        :return: the dict of nodes
+        """
         return copy.deepcopy(self.nodes)
 
 
@@ -73,23 +75,6 @@ class GenericNetwork:
 
         # increment the number of edge of 1
         self.nb_edges += 1
-
-    # def add_edge_str(self, node1, node2):
-    #     """
-    #
-    #     :param node1:
-    #     :param node2:
-    #     :return:
-    #     """
-    #     # raise an error if the nodes are not in the network
-    #     if node1 not in self.nodes.keys():
-    #         raise KeyError('There is no node in the network with identifier:', node_1)
-    #     if node2 not in self.nodes.keys():
-    #         raise KeyError('There is no node in the network with identifier:', node_2)
-    #
-    #     # add the (undirected) edge
-    #     self.nodes[node1].add_edge(self.nodes[node2])
-    #     self.nodes[node2].add_edge(self.nodes[node1])
 
     def get_node(self, identifier):
         """
@@ -122,6 +107,12 @@ class GenericNetwork:
         """
         return len(self.nodes.keys())
 
+    def nb_edges(self):
+        """
+
+        :return: number of edges
+        """
+        return self.nb_edges()
 
     def max_degree(self):
         """
@@ -162,6 +153,7 @@ class GenericNetwork:
         if node1.has_edge_to(node2) and node2.has_edge_to(node1):
             node1.remove_edge(node2)
             node2.remove_edge(node1)
+            self.nb_edges -= 1
             return True
         else:
             return False
@@ -204,59 +196,6 @@ class GenericNetwork:
         ret = sorted(lst)
         ret = [ret for ret, _ in itertools.groupby(ret)]
         return ret
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        #
-        # # find cliques of n nodes
-        #
-        # clique_result.increment()
-        # print("Candidates: ", candidates)
-        #
-        #
-        # # Stop condition
-        # if not candidates and not excluded:
-        #     if len(clique) >= self.SIZE_CLIQUE:
-        #         clique_result.save_clique(clique)
-        #     return
-        #
-        #
-        # pivot = self.choose_random(candidates) or self.choose_random(excluded)
-        # print("Pivot: ", pivot)
-        # print("self.NEIGHBOURS[pivot] = ", self.NEIGHBOURS[pivot])
-        #
-        #
-        # for v in list(candidates.difference(self.NEIGHBOURS[pivot])):
-        #     new_candidates = candidates.intersection(self.NEIGHBOURS[v])
-        #     print("New candidates: ", new_candidates)
-        #     new_excluded = excluded.intersection(self.NEIGHBOURS[v])
-        #     print("New excluded: ", new_excluded)
-        #
-        #     # recursion
-        #     self.find_cliques(clique + [v], new_candidates, new_excluded, clique_result)
-        #     candidates.remove(v)
-        #     excluded.add(v)
-        #
-        #
-        #
-        #
-        #
-        #
-        #
-        #
 
 
 

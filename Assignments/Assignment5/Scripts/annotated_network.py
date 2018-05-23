@@ -1,19 +1,16 @@
 from UniprotReader import UniprotReader
 from generic_network import GenericNetwork
 from GOreader import GOReader
-
 import numpy as np
-
 from collections import defaultdict
 import itertools
-from itertools import product, combinations, chain
-
+from itertools import combinations
 import math
 
-# https://stackoverflow.com/questions/4941753/is-there-a-math-ncr-function-in-python
+
 def nCr(n,r):
     """
-
+    # https://stackoverflow.com/questions/4941753/is-there-a-math-ncr-function-in-python
     :param n: Total number of object in the set
     :param r: Number of object in the subset
     :return: Number of possible subset
@@ -50,7 +47,7 @@ class AnnotatedNetwork:
             goids = self.GO.get_GO_IDs(uniprot_id)
             self.net_go[id] = goids
 
-        # Reverse mapping GO to proteins
+        # Reverse mapping GO to proteins(net)
         # {GO annot : [node, node, ...]}
         self.go_net = defaultdict(set)
 
@@ -60,26 +57,12 @@ class AnnotatedNetwork:
             for annot in list_annot:
                 self.go_net[annot].add(node)
 
-
         # Completing GO in the network and quantity
         # {GO : qty}
-        self.go_qty = defaultdict(dict)
+        self.go_qty = defaultdict(int)
 
         for key in self.go_net:
             self.go_qty[key] = len(self.go_net[key])
-
-
-        # # For every node in the network..
-        # for key in self.net_go:
-        #     # get all the GO ids of the node
-        #     values = self.net_go[key]
-        #
-        #     # for all GO ids, increment the counter
-        #     for go in values:
-        #         if go in self.go_qty:
-        #             self.go_qty[go] += 1
-        #         else:
-        #             self.go_qty[go] = 1
 
         # COMPUTE ANNOTATION QUANTITY OCCURRENCE
         # number of protein
@@ -137,7 +120,7 @@ class AnnotatedNetwork:
         :return: nada
         """
         # Task 52
-        print("\n\n--------Annotated Network Overview--------\n")
+        print("\n--------Annotated Network Overview--------\n")
         print("Total protein in the network: ", len(self.network.nodes))
         print("Total interactions in the network: ", self.network.nb_edges)
         print("Total unique annotation: ", len(self.go_net))
@@ -231,7 +214,6 @@ class AnnotatedNetwork:
                 # print(A, "\t pA: ", 1)
                 continue
 
-            #TODO Correct probability calculus !!! WRONG HERE !!!
             pA = 0
             for i in range(ka, min(Ka, n) + 1):
                 nCr_Ka_i = nCr(Ka, i)
@@ -250,9 +232,6 @@ class AnnotatedNetwork:
 
             self.annot_probability[A] = pA
 
-            # print(A, "\t pA: ", pA)
-
-
         # The number and percentage of annotations A with pA < 0.05, pA > 0.5, pA > 0
         pa_005 = pa_05 = pa_095 = 0
         for A in self.annot_probability:
@@ -265,17 +244,14 @@ class AnnotatedNetwork:
 
         # Percentages
         tot_annot = len(self.go_net)
-
-        # Percentages with pA < 0.05
         pct_005 = pa_005 / tot_annot
         pct_05 = pa_05 / tot_annot
         pct_095 = pa_095 / tot_annot
 
-        print("Number of annotation with pA < 0.05: ", pa_005, "\t\tPercentage: ", pct_005)
-        print("Number of annotation with pA > 0.5 & < 0.95: ", pa_05, "\t\tPercentage: ", pct_05)
-        print("Number of annotation with pA > 0.95: ", pa_095, "\t\tPercentage: ", pct_095)
+        print("Number of annotation with pA < 0.05         : ", pa_005, "-> ", pct_005*100, "%")
+        print("Number of annotation with pA > 0.5 & < 0.95 : ", pa_05, "-> ", pct_05*100, "%")
+        print("Number of annotation with pA > 0.95         : ", pa_095, "->", pct_095*100, "%")
         print("\n")
-
 
         # The n annotations with the smallest pA and the n annotations with the highest pA.
         # If there are several annotations with the same pA, choose the ones that are associated
@@ -301,8 +277,13 @@ class AnnotatedNetwork:
         biggest_prob = list(itertools.islice(sorted_probabilities_DSC, top))
 
         print("\n\n(GO:id  |  pA  |  Nb Protein | Nb Interact. Protein)\n")
-        print("Five smallest: \n", smallest_prob)
-        print("Five biggest: \n", biggest_prob)
+        print("Five smallest Pa: \n")
+        for e in smallest_prob:
+            print(e)
+
+        print("\nFive biggest Pa: \n")
+        for e in biggest_prob:
+            print(e)
 
     def annotation_combination(self, k, r, m):
         """
@@ -328,8 +309,6 @@ class AnnotatedNetwork:
 
         # Generate a list of all annotation combinations of size k that occur in the annotated network
         # https://stackoverflow.com/questions/22799053/combinations-of-elements-of-different-tuples-in-the-list
-
-
         #all_combinations = list(combinations(self.go_net, k))
 
         # Combination set contains all combination of k annotation contained in the network
@@ -350,12 +329,8 @@ class AnnotatedNetwork:
                     combination_dict[s_combination].append(1)
 
 
-
-        #
         # for A in annotation_probability:
         #     print(A, "\t", len(self.go_net[A]), "\t\t", annotation_probability[A])
-
-        # i
 
         # For each combination (C1, C2, ...) in the network...
         for C in combination_dict:
@@ -364,11 +339,7 @@ class AnnotatedNetwork:
 
             Pe_c = annotation_probability[C[0]] * annotation_probability[C[1]]
             combination_dict[C].append(Pe_c)
-
-
-
-
-        #
+        # DEBUG - infos
         # for key in combination_dict:
         #     print(key, ":\t", combination_dict[key])
 
@@ -388,12 +359,13 @@ class AnnotatedNetwork:
 
                 if nb_occ >= combination_dict[key][0]:
                     nr += 1
-            # Calculating the probability of having
+            # Calculating and adding the probability pc to the dict "combination_dict"
             pc = nr / r
             combination_dict[key].append(pc)
 
+        # IMPORTANT - structure of combination dict.
+        # combination_dict = (c1, c2) : [nb_occ, expect_prob, rand_prob]
 
-        # combination_dict = (c1, c2) : [nb_occ, prob, rand_prob]
 
         pc_0001 = pc_005 = pc_05 = 0
         nb_C = len(combination_dict)
@@ -411,8 +383,22 @@ class AnnotatedNetwork:
         pct_005 = pc_005/nb_C
         pct_05 = pc_05/nb_C
 
-        print("pc < 0.001: ", pc_0001, "\t\t", pct_0001, "%")
-        print("pc < 0.005: ", pc_005, "\t\t", pct_005, "%")
-        print("pc < 0.05: ", pc_05, "\t\t", pct_05, "%")
+        print("pc < 0.001 : ", pc_0001, "-> ", pct_0001 * 100, "%")
+        print("pc < 0.005 : ", pc_005, "-> ", pct_005 * 100, "%")
+        print("pc < 0.05  : ", pc_05, "-> ", pct_05 * 100, "%")
 
-        # M = 3 bla bla shit
+        combination_dict_sorted_ASC = sorted(combination_dict.items(), key=lambda e: e[1][2])
+        combination_dict_sorted_DSC = sorted(combination_dict.items(), key=lambda e: -e[1][2])
+
+        # Take the "m" firsts
+        smallest_prob = list(itertools.islice(combination_dict_sorted_ASC, m))
+        biggest_prob = list(itertools.islice(combination_dict_sorted_DSC, m))
+
+        print("\n\n(GO:ids  |  Occurence in the data  |  Pe(C) | Pc)\n")
+        print("Three smallest Pc: \n")
+        for e in smallest_prob:
+            print(e)
+
+        print("\nThree biggest Pc: \n")
+        for e in biggest_prob:
+            print(e)

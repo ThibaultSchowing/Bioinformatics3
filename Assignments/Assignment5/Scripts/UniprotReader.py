@@ -1,7 +1,9 @@
 from collections import defaultdict
 
 class UniprotReader:
-    '''Reads uniprot tab files'''
+    '''
+    Reads uniprot tab files
+    '''
     def __init__(self, filename):
         '''
         Initialization, read in file and build any data structure that makes you happy
@@ -47,13 +49,11 @@ class UniprotReader:
                 self.mapping[self.ENTRY[i]].add(gene)
                 self.reverse_mapping[gene].add(self.ENTRY[i])
 
-
     def get_uniprot_names_mapping(self):
         return self.mapping
 
     def get_names_uniprot_mapping(self):
         return self.reverse_mapping
-
 
     # Print mapping to file or to console
     # OPTIONAL
