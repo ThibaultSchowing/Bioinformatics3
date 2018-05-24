@@ -162,14 +162,14 @@ Please be aware that the function to extract the cliques is still not optimal he
 \begin{enumerate}
 	
 	% A
-	\item \textit{Adding annotations to PPI-networks}\\
+	\item \textbf{Adding annotations to PPI-networks}\\
 	
 		%TODO listing at the end
 		The listings for this exercise are at the end of the document.
 
 		%\lstinputlisting[label=lst-1, caption={layout\string_main.py}] {../Scripts/layout\string_main.py}
 
-	\item \textit{Generating an overview}\\
+	\item \textbf{Generating an overview}\\
 	
 	
 	
@@ -236,7 +236,10 @@ Please be aware that the function to extract the cliques is still not optimal he
 	\end{table}
 
 	\newpage
-	\item \textit{Examining the most/least common annotations}
+	\item \textbf{Examining the most/least common annotations}\textit{Implement a function that returns
+		the n most common and n least common GO identifiers in a given annotated network. If
+		there are several GO identifiers that are associated with the same number of proteins, choose
+		the ones with the lower lexicographical order first.}
 	
 	
 	
@@ -260,7 +263,7 @@ Please be aware that the function to extract the cliques is still not optimal he
 				\end{tabular}
 		\end{table}
 	
-	We can observe that these annotations concerns general process happening almost in every cell. This explains why they are the most common in opposition as the annotations in the table below, which concerns specific reaction or process concerning particular location on molecules. 
+	We can observe that these annotations concerns general process happening almost in every cell. This explains why they are the most common in opposition as the annotations in the table below, which concerns specific reaction or process concerning particular location or molecules. 
 	
 	
 	
@@ -329,8 +332,10 @@ Please be aware that the function to extract the cliques is still not optimal he
 	%TODO comment and answer question
 	TODO
 	
+	The closer the p-value to zero, the more significant the GO term associated with the group of protein is. The five GO term with the lowest p-value describe very specific process in opposition to the ones with the five highest p-value.
+	
 	\textit{Are interacting proteins functionally more similar than non–interacting protein ?}\\
-	No, the annotations of the interacting proteins...
+	???????   No real similarity between the interacting protein and the non-interacting. 
 	
 	\textit{Was this to be expected? Why (not)?}
 	
