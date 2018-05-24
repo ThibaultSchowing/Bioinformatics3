@@ -85,22 +85,18 @@
 
 %EXERCICE 1
 \exercise{Cliques and Network Evolution}
+All the listings are at the end of the exercise. 
 \begin{enumerate}
 
 % A
 \item \textit{Reading network files}\\ 
-The class GenericNetwork contains the functions to read the network from a file and also the function to count cliques.
-
-\lstinputlisting[label=lst-1, caption={generic\textunderscore network.py}] {../Scripts/generic\string_network.py}
-
+The class GenericNetwork in listing \ref{lst-1} contains the functions to read the network from a file and also the function to count cliques (and remove smaller cliques included in bigger ones).
 
 
 % B
-\newpage
 \item \textit{Finding Cliques}\\
 
-The function to find cliques of n nodes in a network is in the class generic\textunderscore network.py in listing \ref{lst-1}. This function returns the list of cliques of size n. In the main program (listing \ref{lst-2}), the function \textit{remove\textunderscore contained\textunderscore cliques} remove the smaller cliques contained in the bigger one as requested. \textbf{The code seems to work, but the execution time is too long.} We are aware that this is not the optimal solution. 
-
+The function to find cliques of n nodes in a network is in the class generic\textunderscore network.py in listing \ref{lst-1}. This function returns the list of cliques of size n. In the same file, the function \textit{remove\textunderscore contained\textunderscore cliques} remove the smaller cliques contained in the bigger one as requested.  
 
 
 
@@ -109,38 +105,48 @@ The function to find cliques of n nodes in a network is in the class generic\tex
 
 In the listing \ref{lst-2}, the main program is executed and different functions are implemented. The function evolve takes a network and a number of time steps and randomly remove or add edges in the network. 
 
-\lstinputlisting[label=lst-2, caption={main5.py}] {../Scripts/main5.py}
-
 
 
 % D
-\newpage
-\item \textit{Cliques in evolving networks.}
-Due to the execution time, this has been run on a minimized version of the rat network.
+\item \textbf{Cliques in evolving networks.}\textit{Read in the rat network and report the number of cliques of size 3, 4 and 5 at the beginning and after letting it evolve for 100 and 1000 time steps. Also plot the number of cliques of size 3, 4 and 5 at the beginning and after each time step as a function of time with t = 100. Comment on your results.}
+
+After 100 evolution we obtain the following graph.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\linewidth]{img/100randomMiniRat}
-	\caption{Evolution of the number of cliques during 100 randomization steps on a randomly minimized version of the rat network. }
-	\label{fig:100randomminirat}
+	\includegraphics[width=0.7\linewidth]{img/100randomRatNetwork}
+	\caption{Evolution of the number of cliques during 100 evolution steps. One edge is randomly added or deleted during each step.}
+	\label{fig:100randomratnetwork}
 \end{figure}
+
+To emphasis the effects of this evolution of the network, we changed 10 edges at each iteration. One can see that the effects of this evolution are really small on the cliques. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{img/evolv10nodesAtEachStep}
+	\caption{Evolution of the number of cliques during 100 evolution steps. \textbf{Ten} edges are randomly added or deleted during each step.}
+	\label{fig:evolv10nodesateachstep}
+\end{figure}
+
+After 1000 steps of evolution we obtain \textbf{408} cliques of size 3, \textbf{28} cliques of size 4 and \textbf{16} cliques of size 5 which is similar to the values obtained in figure  \ref{fig:evolv10nodesateachstep}.  
 
 
 
 % E
-\item \textit{Randomizing Network}
-The class \textit{randomized\textunderscore network} builds a randomized network. Randomizing a network this way, keep its degree (number of edges) the same but change the topological structure of the graph. According to the Wikipedia definition of Degree-preserving randomization: "\textit{Degree Preserving Randomization is a technique used in Network Science that aims to assess whether or not variations observed in a given graph could simply be an artifact of the graph's inherent structural properties rather than properties unique to the nodes, in an observed network.} "(\url{https://en.wikipedia.org/wiki/Degree-preserving_randomization}, Mai 2018). In other words, we use the randomization to verify whether the topology of the original graph is due to randomness or has a specific structure. \\
+\item \textbf{Randomizing Network}
+The class \textit{randomized\textunderscore network}, in listing \ref{lst-3}, builds a randomized network. Randomizing a network this way, keeps its degree (number of edges) the same but changes the topological structure of the graph. According to the Wikipedia definition of Degree-preserving randomization: "\textit{Degree Preserving Randomization is a technique used in Network Science that aims to assess whether or not variations observed in a given graph could simply be an artifact of the graph's inherent structural properties rather than properties unique to the nodes, in an observed network.} "(\url{https://en.wikipedia.org/wiki/Degree-preserving_randomization}, Mai 2018). In other words, we use the randomization to verify whether the topology of the original graph is due to randomness or has a specific structure depending on certain nodes. \\
 
+According to our algorithm, the rat network contains \textbf{510} cliques of size 3, \textbf{44} of size 4 and \textbf{23} of size 5. Once randomized, and with the same cliques algorithm, we obtained (during one of the many execution) values like \textbf{3291} cliques of size 3, \textbf{630} of size 4 and \textbf{8781} of size 5. We can deduce here that our network doesn't have a random structure and thus, that the node properties of the nodes (proteins) are not an artifact of the network's structure.  
 
-
-\lstinputlisting[label=lst-2, caption={randomized\textunderscore network.py}] {../Scripts/randomized\string_network.py}
 
 
 
 % F
-\newpage
-\item \textit{Examining motif enrichment}\\
-Please be aware that the function to extract the cliques is still not optimal here. 
+\item \textbf{Examining motif enrichment}\\
+The motif enrichment is realised in the class motif\textunderscore enrichment.py in listing \ref{lst-4}. \\
+
+For each randomization, we obtained really high values for the number of cliques (all around \textbf{3300} cliques of size 3, \textbf{600} of size 4 and \textbf{9000} of size 5) which gave \textbf{p-values of 1 for every clique size} meaning that in 100\% of the cases our cliques were as significant as a random pick. 
+
 
 
 
@@ -148,9 +154,17 @@ Please be aware that the function to extract the cliques is still not optimal he
 \end{enumerate}
 
 
+\newpage
+\lstinputlisting[label=lst-1, caption={generic\textunderscore network.py}] {../Scripts/generic\string_network.py}
 
+\newpage
+\lstinputlisting[label=lst-2, caption={main5.py}] {../Scripts/main5.py}
 
+\newpage
+\lstinputlisting[label=lst-3, caption={randomized\textunderscore network.py}] {../Scripts/randomized\string_network.py}
 
+\newpage
+\lstinputlisting[label=lst-4, caption={motif\textunderscore enrichment.py}] {../Scripts/motif\string_enrichment.py}
 
 
 
@@ -165,7 +179,7 @@ Please be aware that the function to extract the cliques is still not optimal he
 	\item \textbf{Adding annotations to PPI-networks}\\
 	
 		%TODO listing at the end
-		The listings for this exercise are at the end of the document.
+		The listings for this exercise are at the end of the document. The listing \ref{lst-21} contains the main program. The listings \ref{lst-22} and \ref{lst-23} contains the parser-object for the Uniprot and GO files. Finally, the listing \ref{lst-24} contains the AnnotatedNetwork class and its methods. 
 
 		%\lstinputlisting[label=lst-1, caption={layout\string_main.py}] {../Scripts/layout\string_main.py}
 
@@ -329,15 +343,14 @@ Please be aware that the function to extract the cliques is still not optimal he
 	\end{table}
 	
 	
-	%TODO comment and answer question
-	TODO
-	
 	The closer the p-value to zero, the more significant the GO term associated with the group of protein is. The five GO term with the lowest p-value describe very specific process in opposition to the ones with the five highest p-value.
 	
 	\textit{Are interacting proteins functionally more similar than non–interacting protein ?}\\
-	???????   No real similarity between the interacting protein and the non-interacting. 
+	\textit{Was this to be expected? Why (not)?}\\
 	
-	\textit{Was this to be expected? Why (not)?}
+	No real similarity between the interacting protein and the non-interacting. The interacting proteins seem to have a more specific GO than the non-interacting ones and thus, more precise information. 
+	
+	
 	
 	%e
 	\newpage
@@ -383,19 +396,18 @@ Please be aware that the function to extract the cliques is still not optimal he
 	\end{table}
 	
 	
-	%TODO Briefly comment the results
-	TODO - COMMENT
+	
 	
 	\newpage
 	\item Listings:
 	
-	\lstinputlisting[label=lst-1, caption={task52\textunderscore main.py}] {../Scripts/task52\string_main.py}
+	\lstinputlisting[label=lst-21, caption={task52\textunderscore main.py}] {../Scripts/task52\string_main.py}
 	\newpage
-	\lstinputlisting[label=lst-1, caption={UniprotReader.py}] {../Scripts/UniprotReader.py}
+	\lstinputlisting[label=lst-22, caption={UniprotReader.py}] {../Scripts/UniprotReader.py}
 	\newpage
-	\lstinputlisting[label=lst-1, caption={GOreader.py}] {../Scripts/GOreader.py}
+	\lstinputlisting[label=lst-23, caption={GOreader.py}] {../Scripts/GOreader.py}
 	\newpage
-	\lstinputlisting[label=lst-1, caption={annotated\textunderscore network.py}] {../Scripts/annotated\string_network.py}
+	\lstinputlisting[label=lst-24, caption={annotated\textunderscore network.py}] {../Scripts/annotated\string_network.py}
 	
 	
 	

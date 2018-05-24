@@ -30,15 +30,10 @@ class GOReader:
                     self.GO_IDENTIFIER.append(line_tab[4])
                     self.ONTOLOGY_INDICATOR.append(line_tab[8])
 
-        # for i in range(0, len(self.DB_NAME)):
-        #     print(self.DB_NAME[i], "\t", self.ACCESS_NUMBER[i], "\t", self.ALTERNATIVE_NAME[i], "\t", self.GO_IDENTIFIER[i], "\t", self.ONTOLOGY_INDICATOR[i])
-
         # Create a data structure with all information
-
 
         self.DATA = []
         for i in range(0, len(self.DB_NAME)):
-            #TODO delete DATA if not used
 
             entry_line = [self.DB_NAME[i],
                               self.ACCESS_NUMBER[i], # real name in uniprot
@@ -75,31 +70,18 @@ class GOReader:
             #self.alternativename_goid[entry_line[idx_alter_name]].add(entry_line[idx_go_id])
             #self.goid_alternativename[entry_line[idx_go_id]].add(entry_line[idx_alter_name])
 
-
-
-
-
-        # print("Verify mapers")
-        #
-        # for key in self.goid_accessnb:
-        #     print("\nKey: ", key)
-        #     for elem in self.goid_accessnb[key]:
-        #         print(elem)
-
     def get_GO_IDs(self, proteinID):
         """
         Get a protein name, returns all GO ids related to it
         :param proteinID:
         :return:
         """
-
         lst1 = []
         for prot in proteinID:
             tmp = self.accessnb_goid[prot]
             lst1.extend(list(tmp))
 
         return lst1
-
 
     def get_data(self):
         return self.DATA

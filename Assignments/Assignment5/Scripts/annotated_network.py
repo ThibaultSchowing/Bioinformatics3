@@ -219,15 +219,6 @@ class AnnotatedNetwork:
                 nCr_Ka_i = nCr(Ka, i)
                 nCr_N_minus_Ka_n_i = nCr(N_minus_Ka, n - i)
 
-                # print("\nn = ", n,
-                #       "\nN = ", N,
-                #       "\nKa = ", Ka,
-                #       "\nka = ", ka,
-                #       "\ni = ", i,
-                #       "\nnCr(Ka,i) = ", nCr_Ka_i,
-                #       "\nmin(Ka, n) = ", min(Ka, n),
-                #       "\nnCr(N-Ka, n-i) = ", nCr_N_minus_Ka_n_i, "\n")
-
                 pA += (nCr_Ka_i * nCr_N_minus_Ka_n_i) / ncr_Nn
 
             self.annot_probability[A] = pA
@@ -262,10 +253,6 @@ class AnnotatedNetwork:
         for A in self.annot_probability:
             annot_prob_prot.append((A, self.annot_probability[A], len(self.go_net[A]), len(self.annot_interaction_pairs[A])))
 
-        # # All the Annotation A with their probabilities and number of protein
-        # for e in annot_prob_prot:
-        #     print(e)
-
         # gives  [('GO-id', p(A), nb_protein), (..., ..., ...)] with P(a) ordered ASC
         sorted_probabilities_ASC = [(v[0], v[1], v[2], v[3]) for v in sorted(annot_prob_prot, key=lambda kv: (kv[1], kv[2]))]
 
@@ -293,7 +280,6 @@ class AnnotatedNetwork:
         :param m: m combinations with the smallest pc and the m annotations with the highest pc
         :return:
         """
-
         annotation_probability = defaultdict(float)
 
         # number of protein in the network
@@ -328,7 +314,6 @@ class AnnotatedNetwork:
                 else:
                     combination_dict[s_combination].append(1)
 
-
         # for A in annotation_probability:
         #     print(A, "\t", len(self.go_net[A]), "\t\t", annotation_probability[A])
 
@@ -339,12 +324,9 @@ class AnnotatedNetwork:
 
             Pe_c = annotation_probability[C[0]] * annotation_probability[C[1]]
             combination_dict[C].append(Pe_c)
-        # DEBUG - infos
-        # for key in combination_dict:
-        #     print(key, ":\t", combination_dict[key])
 
         for key in combination_dict:
-            #probability_list = [combination_dict[key][1]] * n
+            # probability_list = [combination_dict[key][1]] * n
             prob = combination_dict[key][1]
 
             # nr = number of random sample in which C occurs at least as much as in the original network
@@ -356,7 +338,6 @@ class AnnotatedNetwork:
                 # number of occurence in random network
                 nb_occ = np.count_nonzero(random_list)
 
-
                 if nb_occ >= combination_dict[key][0]:
                     nr += 1
             # Calculating and adding the probability pc to the dict "combination_dict"
@@ -365,7 +346,6 @@ class AnnotatedNetwork:
 
         # IMPORTANT - structure of combination dict.
         # combination_dict = (c1, c2) : [nb_occ, expect_prob, rand_prob]
-
 
         pc_0001 = pc_005 = pc_05 = 0
         nb_C = len(combination_dict)

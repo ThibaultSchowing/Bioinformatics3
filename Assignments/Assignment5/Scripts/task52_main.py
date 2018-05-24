@@ -12,7 +12,6 @@ if __name__== "__main__":
           "\n----------------------------------------------------------------\n")
     # ======================================================================================================= #
 
-    #TODO check version (mini)
     path_chicken_network = "../Data/sup51/chicken_network.tsv"
     chicken_network = GenericNetwork()
     chicken_network.read_from_tsv(path_chicken_network)
@@ -28,9 +27,6 @@ if __name__== "__main__":
     # GENERATE OVERVIEW
     Anet_chicken.generate_overview()
 
-    # # COMMON GO:IDs - Only requested for human
-    # common_chicken_GOids = Anet_chicken.get_common_GOid(5)
-
     # ANNOTATION ENRICHMENT
     print("\n\nInvestigating annotation enrichment for the chicken network\n")
     Anet_chicken.annotation_enrichment(5)
@@ -38,8 +34,6 @@ if __name__== "__main__":
     # ANNOTATION COMBINATION
     print("\n\nInvestigating annotation combinations for the chicken network\n")
     Anet_chicken.annotation_combination(2, 100, 3)
-
-
 
     # ======================================================================================================= #
     print("\n\n----------------------------------------------------------------"
@@ -59,11 +53,6 @@ if __name__== "__main__":
 
     Anet_pig = AnnotatedNetwork(path_pig_network, path_pig_ontology, path_pig_uniprot)
     Anet_pig.generate_overview()
-
-    # # Only requested for human
-    # # common_pig_GOids = Anet_pig.get_common_GOid(5)
-
-
 
     # ======================================================================================================= #
     print("\n\n----------------------------------------------------------------"
@@ -85,6 +74,3 @@ if __name__== "__main__":
     Anet_human.generate_overview()
 
     common_human_GOids = Anet_human.get_common_GOid(5)
-
-
-

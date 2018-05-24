@@ -1,13 +1,13 @@
 from node import Node
-import itertools
+from itertools import combinations
 import copy
-
 
 
 class GenericNetwork:
     def __init__(self):
         # key: node identifier, value: Node-object
         self.nodes = {}
+        self.edges = []
         self.nb_edges = 0
 
     def read_from_tsv(self, file_path):
@@ -39,14 +39,28 @@ class GenericNetwork:
                 self.add_node(node_2)
                 self.add_edge(node_1, node_2)
 
+        # set (or reset) the self.edges list with all unique edge.
+        self.reset_edges()
+
+    def reset_edges(self):
+        # Add the edges avoiding the duplicates (A-B and B-A)
+        tmp_edges = []
+        visited = []
+        for node in self.nodes:
+            visited.append(node)
+            for neighbour in self.nodes[node].neighbour_nodes:
+                if neighbour not in visited:
+                    tmp_edges.append({node, neighbour})
+        self.edges = tmp_edges
+
+        #print("Nb edges: ", self.nb_edges)
+        #print("len edges: ", len(self.edges))
 
     def get_nodes(self):
         """
-
         :return: the dict of nodes
         """
         return copy.deepcopy(self.nodes)
-
 
     def add_node(self, node):
         """
@@ -75,6 +89,7 @@ class GenericNetwork:
 
         # increment the number of edge of 1
         self.nb_edges += 1
+        self.edges.append({str(node_1), str(node_2)})
 
     def get_node(self, identifier):
         """
@@ -109,10 +124,9 @@ class GenericNetwork:
 
     def nb_edges(self):
         """
-
         :return: number of edges
         """
-        return self.nb_edges()
+        return self.nb_edges
 
     def max_degree(self):
         """
@@ -137,9 +151,9 @@ class GenericNetwork:
         return niceprint
 
     # remove the link between two nodes and return true or false if link don't exist.
-    def remove_link(self, node1, node2):
+    def remove_edge(self, node1, node2):
         """
-
+        Remove edge between two nodes in the different structures.
         :param node1:
         :param node2:
         :return:
@@ -154,48 +168,79 @@ class GenericNetwork:
             node1.remove_edge(node2)
             node2.remove_edge(node1)
             self.nb_edges -= 1
+            self.edges.remove({str(node1), str(node2)})
             return True
         else:
             return False
 
-    # Find all the cliques of k nodes in the network
-    # We tried an other recursive manner (Bron-Kerbosch with pivot) but missed time to succeed
-    def find_cliques(self, k):
+    @staticmethod
+    def remove_contained_cliques(cliques3, cliques4, cliques5):
+        """
+        Remove the cliques of size n-1 included in the cliques of size n
+        :param cliques3:
+        :param cliques4:
+        :param cliques5:
+        :return:
+        """
+        # Contains all cliques 4 contained in the list of cliques of size 5
+        contained_cliques_4 = []
+        # For each cliques 4, check if it is part on a clique 5
+        for clique4 in cliques4:
+            for clique5 in cliques5:
+                if clique4.issubset(clique5):
+                    if clique4 not in contained_cliques_4:
+                        contained_cliques_4.append(clique4)
 
-        # main loop (recursive)
-        def clique_loop(k, list):
+        # Remove the contained cliques
+        for clique in contained_cliques_4:
+            cliques4.remove(clique)
 
-            # Recursivity stop condition
-            if k == 1:
-                return list
-            else:
-                tmp_list = []
-                for tuple in list:
-                    for node1 in self.nodes.keys():
-                        if node1 in tuple:
-                            break
-                        else:
-                            for node2 in tuple:
-                                hasLink = True
+        # Now the clique 4 list is emptied of its bad cliques, we can check for the size 3
+        contained_cliques_3 = []
+        for clique3 in cliques3:
+            for clique4 in cliques4:
+                if clique3.issubset(clique4):
+                    if clique3 not in contained_cliques_3:
+                        contained_cliques_3.append(clique3)
 
-                                if not self.nodes[node1].has_edge_to(self.nodes[node2]):
-                                    hasLink = False
+        for clique in contained_cliques_3:
+            cliques3.remove(clique)
 
-                        if hasLink:
-                            tmp_list.append(tuple + (node1,))
+        return cliques3, cliques4, cliques5
 
-                return clique_loop(k - 1, tmp_list)
+    def find_cliques(self):
+        """
+        # Finds cliques of size 3, 4 and 5
+        # second attempt with the set of connections
+        # HELP SOURCE: https://medium.com/100-days-of-algorithms/day-64-k-clique-c03fdc565b1e
 
-        # Here we call the main loop, the list argument contains a map object
-        # nodelist == iterable containing all the nodes keys formatted: (x, )
+        :return: the cliques, without the smaller cliques already included in bigger ones
+        """
+        k = 3
+        edges_list = self.edges
 
+        # While there is edges and k <=5
+        while edges_list and k <= 5:
 
-        # http://www.secnetix.de/olli/Python/lambda_functions.hawk
-        nodelist = map(lambda x: (x,), self.nodes.keys())
-        lst = clique_loop(k, nodelist)
-        ret = sorted(lst)
-        ret = [ret for ret, _ in itertools.groupby(ret)]
-        return ret
+            cliques_tmp = []
+            for u, v in combinations(edges_list, 2):
+                w = u ^ v
+                if len(w) == 2:
+                    node1 = list(w)[0]
+                    node2 = list(w)[1]
+                    if self.nodes[node1].has_edge_to(self.nodes[node2]):
+                        if (u | v) not in cliques_tmp:
+                            cliques_tmp.append(u | v)
+            # We need to remove eventual duplicates (set)
 
+            edges_list = list(map(set, cliques_tmp))
+            if k == 3:
+                cliques3 = edges_list
+            elif k == 4:
+                cliques4 = edges_list
+            elif k == 5:
+                cliques5 = edges_list
 
+            k += 1
 
+        return self.remove_contained_cliques(cliques3, cliques4, cliques5)
