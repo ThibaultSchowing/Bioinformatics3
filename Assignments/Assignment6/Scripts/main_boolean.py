@@ -1,4 +1,6 @@
 from boolean_network import BooleanNetwork
+import ast
+import collections
 
 print("Assignment 6 - Wiebke Schmitt and Thibault Schowing")
 
@@ -50,6 +52,7 @@ print("                Part 2")
 print("=========================================\n")
 
 
+
 # Save: Start & Orbit-size & Attractors & Basin of Attraction coverage
 # for the LaTeX report
 tmp_file_line = ""
@@ -68,10 +71,6 @@ with open('Orbits.txt', 'w+') as f:
             relative_ssc) + "\%\\\\ \\hline \n"
         f.write(tmp_file_line)
 
-    # TODO: Periodic orbit ?? Basin of attraction ?? WTF ?
-
-    # Get and print the list of the basins of attractions
-
 
     # ATTENTION ! Because of frozenset, the order is not respected.
     list_attractors = net.count_attractors()
@@ -85,6 +84,7 @@ with open('Orbits.txt', 'w+') as f:
     print("Orbits details")
     print("==============")
 
+    # Manual reordering for nice display... sorry.
     list_attractors = [[0],
                        [1, 3, 7, 23, 55, 63, 13],
                        [4, 18, 36, 26],
@@ -94,5 +94,18 @@ with open('Orbits.txt', 'w+') as f:
     for orbit in list_attractors:
         print("\nCurrent orbit: ", list(orbit))
         print("Binary evolution: ")
-        percentages = net.average_occupancies_in_orbit(list(orbit), True)
+        percentages = net.average_occupancies_in_orbit(list(orbit), False)
         print("Average occupancy:\n", percentages)
+
+    # Get the bassins of attraction for each cyclic attractors
+    print("======================")
+    print("Basins of attractions")
+    print("======================")
+    set_basin = net.get_basin_of_attraction()
+
+    for e in set_basin:
+        # Number of states leading to the attractor
+        nb_states_basin = len(set_basin[e])
+        # Relative state space occupation
+        relative_sso = (nb_states_basin / net.nb_states) * 100
+        print(e, ": ", set_basin[e], "\tState Space Occupation: ", relative_sso, "%")
