@@ -89,7 +89,7 @@ class BooleanNetwork:
 
     def orbit(self, start_state):
         """
-
+        Return many things, orbit is a random name here
         :param start_state:
         :return: see comments below
         """

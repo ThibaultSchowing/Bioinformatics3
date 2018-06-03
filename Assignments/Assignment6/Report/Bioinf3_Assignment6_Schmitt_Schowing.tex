@@ -315,13 +315,74 @@ In the listing \ref{asdf} the binary transitions are presented for each attracto
 	% A
 	\item \textbf{A}\\
 
-		%\lstinputlisting[label=lst-1, caption={layout\string_main.py}] {../Scripts/layout\string_main.py}
+		\lstinputlisting[label=lsdddt-1, caption={r}] {../ScriptsR/Assignment6Part2\string_schmitt\string_schowing.R}
 	
 	%B
-	\item \textbf{B}\\
+	\item \textbf{Top ten up and down-regulated proteins}\\
+	In this scrip, we vary the parameters \textit{fdr.output} and \textit{nperms}. The \textit{fdr.output} varies between 0.1 and 1 (0.1 increment) and the permutations between 100 and 1000 (100 increment). The up-regulated and down-regulated proteins are stored in a file called \textit{outputSAM.txt}.\\
+	During these variations, the top 10 proteins (up and down) do not vary but the fold-change does. Here is a example of the output with the parameters \textit{fdr.output = 0.4} and \textit{nperms = 400}. All the informations are saved in the file \textit{outputSAM.txt} for each steps with the code in listing \ref{lsdddt-1}.
+	
+%\begin{table}[H]
+%	\centering
+%	\caption{Up Regulated Proteins}
+%	\label{my-label}
+%	\begin{tabular}{|l|l|l|l|}
+%		\hline
+%		Protein                                                                                                        & Gene ID & Fold Change & Gene name \\ \hline
+%		\begin{tabular}[c]{@{}l@{}}Protein kinase C-binding\\ protein 1\end{tabular}                                   & 1117    & 3.074       & ZMYND8    \\ \hline
+%		\begin{tabular}[c]{@{}l@{}}Tropomyosin alpha-1\\ chain\end{tabular}                                            & 2078    & 3.776       & TPM1      \\ \hline
+%		\begin{tabular}[c]{@{}l@{}}Eukaryotic peptide\\ chain release factor GTP\\ -binding subunit ERF3A\end{tabular} & 2182    & 3.003       & GSPT1     \\ \hline
+%		Syntenin-1                                                                                                     & 1489    & 8.613       & SDCBP     \\ \hline
+%		\begin{tabular}[c]{@{}l@{}}Specle targeted \\ PIP5K1A-regulated poly\\ (A) plymerase\end{tabular}              & 1116    & 3.206       & TUT1      \\ \hline
+%		\begin{tabular}[c]{@{}l@{}}Vacuolar protin sorting-\\ associated protein 28 \\ homolog\end{tabular}            & 1018    & 2.263       & VPS28     \\ \hline
+%		\begin{tabular}[c]{@{}l@{}}Engulfment and cell\\ mobility protein 2\end{tabular}                               & 344     & 2.345       & ELMO2     \\ \hline
+%		\begin{tabular}[c]{@{}l@{}}Ribonucleoside-diphosphate\\ reductase subunit M2\end{tabular}                      & 2411    & 3.011       & RRM2      \\ \hline
+%		\begin{tabular}[c]{@{}l@{}}Charged multivesicular\\ body protein 1a\end{tabular}                               & 1226    & 2.286       & CHMP1A    \\ \hline
+%		Tuftelin                                                                                                       & 82      & 2.649       & TUFT1     \\ \hline
+%	\end{tabular}
+%\end{table}
+%	
 	
 	
-	
+	\begin{table}[H]
+		\centering
+		\caption{Top ten Up regulated proteins}
+		\label{my-label}
+		\begin{tabular}{|l|l|l|l|}
+			\hline
+			Gene ID & Protein                                                                                   & Gene Name & Fold Change \\ \hline
+			3004    & Disabled Homolog 2                                                                        & DAB2      & 3.074       \\ \hline
+			2083    & Heme oxygenase 1                                                                          & HMOX1     & 3.776       \\ \hline
+			477     & \begin{tabular}[c]{@{}l@{}}Interferon-related\\ developmental \\ regulator 1\end{tabular} & IFRD1     & 3.003       \\ \hline
+			3861    & \begin{tabular}[c]{@{}l@{}}EPM2A-interacting\\ protein 1\end{tabular}                     & EPM1AIP1  & 8.613       \\ \hline
+			1790    & Disabled homolog 1                                                                        & DAB1      & 3.206       \\ \hline
+			2376    & \begin{tabular}[c]{@{}l@{}}Cellular retinoic \\ acid-binding \\ protein 2\end{tabular}    & CRABP2    & 2.263       \\ \hline
+			898     & Asparagine symthetase                                                                     & ASNS      & 2.345       \\ \hline
+			3332    & \begin{tabular}[c]{@{}l@{}}EKC/KEOPS complex\\ subunit LAGE3\end{tabular}                 & LAGE3     & 3.011       \\ \hline
+			1428    & \begin{tabular}[c]{@{}l@{}}Dehydrogenase/reductase\\ SDR family member 7\end{tabular}     & DHRS7     & 2.286       \\ \hline
+			5246    & Actin-related protein 10                                                                  & ACTR10    & 2.649       \\ \hline
+		\end{tabular}
+	\end{table}
+
+	\begin{table}[H]
+		\centering
+		\caption{Top ten Down Regulated Protein}
+		\label{my-label}
+		\begin{tabular}{|l|l|l|l|}
+			\hline
+			Gene ID & Protein                                                                                                       & Gene Name & Fold Change \\ \hline
+			2018    & Alpha-galactosidase A                                                                                         & GLA       & 0.245       \\ \hline
+			3162    & \begin{tabular}[c]{@{}l@{}}Receptor-type tyrosine-protein\\ phosphatase eta\end{tabular}                      & PTPRJ     & 0.303       \\ \hline
+			3325    & \begin{tabular}[c]{@{}l@{}}Protein disulfide-isomerase\\ A5\end{tabular}                                      & PDIA5     & 0.148       \\ \hline
+			1669    & \begin{tabular}[c]{@{}l@{}}EGF-like repeat and\\ discoidin I-like \\ domain-containing protein 3\end{tabular} & EDIL3     & 0.207       \\ \hline
+			3026    & \begin{tabular}[c]{@{}l@{}}Spectrin beta chain\\ non-erythrocytic 1\end{tabular}                              & SPTBN1    & 0.258       \\ \hline
+			868     & \begin{tabular}[c]{@{}l@{}}Integrin alpha-V heavy+light \\ chains\end{tabular}                                & IDGAV     & 0.142       \\ \hline
+			4009    & \begin{tabular}[c]{@{}l@{}}DnaJ homolog subfamily C\\ member10\end{tabular}                                   & DNAJC10   & 0.186       \\ \hline
+			3264    & \begin{tabular}[c]{@{}l@{}}Spectrin alpha chain, \\ non-erythrocytic1\end{tabular}                            & SPTAN1    & 0.364       \\ \hline
+			309     & \begin{tabular}[c]{@{}l@{}}Cathepsin B light + heavy \\ chains\end{tabular}                                   & CTSB      & 0.282       \\ \hline
+			1051    & Protocadherin-7                                                                                               & PCDH7     & 0.072       \\ \hline
+		\end{tabular}
+	\end{table}
 	
 	
 \end{enumerate}
