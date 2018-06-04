@@ -318,9 +318,9 @@ In the listing \ref{asdf} the binary transitions are presented for each attracto
 		\lstinputlisting[label=lsdddt-1, caption={r}] {../ScriptsR/Assignment6Part2\string_schmitt\string_schowing.R}
 	
 	%B
-	\item \textbf{Top ten up and down-regulated proteins}\\
-	In this scrip, we vary the parameters \textit{fdr.output} and \textit{nperms}. The \textit{fdr.output} varies between 0.1 and 1 (0.1 increment) and the permutations between 100 and 1000 (100 increment). The up-regulated and down-regulated proteins are stored in a file called \textit{outputSAM.txt}.\\
-	During these variations, the top 10 proteins (up and down) do not vary but the fold-change does. Here is a example of the output with the parameters \textit{fdr.output = 0.4} and \textit{nperms = 400}. All the informations are saved in the file \textit{outputSAM.txt} for each steps with the code in listing \ref{lsdddt-1}.
+	\item \textbf{Top ten up and down-regulated proteins for the rna2 set}\\
+	In the scrip, we vary the parameters \textit{fdr.output} and \textit{nperms}. The \textit{fdr.output} varies between 0.1 and 1 (0.1 increment) and the permutations between 100 and 1000 (100 increment). The up-regulated and down-regulated proteins are stored in a file called \textit{outputSAM.txt}.\\
+	During these variations, the top 10 proteins (up and down) do not vary but the fold-change does. Here is a example of the output with the parameters \textit{fdr.output = 0.4} and \textit{nperms = 400}. All the informations are saved in the file \textit{outputSAMx2.txt} for each steps with the code in listing \ref{lsdddt-1}. The two output files (x1 and x2) match the sets used in the scripts. The table \ref{my-asdf} and \ref{my-qwer} include the results for the second set (x2).
 	
 %\begin{table}[H]
 %	\centering
@@ -347,7 +347,7 @@ In the listing \ref{asdf} the binary transitions are presented for each attracto
 	\begin{table}[H]
 		\centering
 		\caption{Top ten Up regulated proteins}
-		\label{my-label}
+		\label{my-asdf}
 		\begin{tabular}{|l|l|l|l|}
 			\hline
 			Gene ID & Protein                                                                                   & Gene Name & Fold Change \\ \hline
@@ -367,7 +367,7 @@ In the listing \ref{asdf} the binary transitions are presented for each attracto
 	\begin{table}[H]
 		\centering
 		\caption{Top ten Down Regulated Protein}
-		\label{my-label}
+		\label{my-qwer}
 		\begin{tabular}{|l|l|l|l|}
 			\hline
 			Gene ID & Protein                                                                                                       & Gene Name & Fold Change \\ \hline
@@ -383,6 +383,17 @@ In the listing \ref{asdf} the binary transitions are presented for each attracto
 			1051    & Protocadherin-7                                                                                               & PCDH7     & 0.072       \\ \hline
 		\end{tabular}
 	\end{table}
+	
+	
+	
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{../ScriptsR/Rplot}
+	\caption{Graph of the results of a SAM analysis with parameters fdr.output = 0.2 and nperms = 100 with the first set of rna. The Delta value is 0.24, letting many genes marked as over- or under-expressed. }
+	\label{fig:rplot}
+\end{figure}
+	
+	
 	
 	
 \end{enumerate}

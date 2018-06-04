@@ -30,21 +30,18 @@ x <- normalize.quantiles(x)
 
 df.quantile_normalized[,1:9] <- x
 
-# Differential expression analysis
+# Differential expression analysis - two sets:
+
 x <- subset(df.quantile_normalized, select=c("control.1","control.2", "control.3", "rna1.1", "rna1.2", "rna1.3"))
 x2 <- subset(df.quantile_normalized, select=c("control.1","control.2", "control.3", "rna2.1", "rna2.2", "rna2.3"))
 
 x <- as.matrix(x)
 x2 <- as.matrix(x2)
 
-y <- subset(df["Gene.names"])
 
+# First experiment (with first set of rna)
+# Run once and plot the results
 
-
-dim(x)
-
-
-# First experiment (first set of rna)
 df.analysis1 <- SAM(x,y = c(1,1,1,2,2,2) ,
                    resp.type=c("Two class unpaired"),
                    genenames = df[["Gene.names"]],
@@ -59,12 +56,23 @@ df.analysis1 <- SAM(x,y = c(1,1,1,2,2,2) ,
                    fdr.output = 0.20,
                    eigengene.number = 1)
 
+# Plot the result:
+plot(df.analysis1)
 
+# Delta cutoff
+df.analysis1$del
+
+# Other informations
 summary(df.analysis1)
+
+# Tables we're looking for: genes.up and .low. Here we have some number and size
 df.analysis1$siggenes.table
 
+# Let's do it with a variation of the parameters fdr.output and nperms and write the results to a file.
+# NOTE: depending if the set x or x2 were used, the filename has to be changed manually.
+
 # Open file for output
-fileConn<-file("outputSAM.txt", "w")
+fileConn<-file("outputSAMx2.txt", "w")
 
 write(c("Assignment 6 - SAM function output with variating fdr.output and nperms"), fileConn, append = TRUE)
 
@@ -85,6 +93,7 @@ for(i in 1:10){
     line = paste(c("nperms", per), collapse = " ")
     write(line, fileConn, append = TRUE)
     
+    #NOTE: here passing the gene names didn't work. No idea why. 
     
     
     df.analysis1 <- SAM(x2,y = c(1,1,1,2,2,2) ,
@@ -121,6 +130,7 @@ for(i in 1:10){
 close(fileConn)
 
 df.analysis1$siggenes.table$genes.up
+df.analysis1$del
 
 
 # From the tables, we get the following row 
