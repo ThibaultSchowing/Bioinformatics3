@@ -23,6 +23,8 @@
 \definecolor{red}{rgb}{1.0, 0.0, 0.0}
 \definecolor{green}{rgb}{0.0, 1.0, 0.0}
 
+% for multiple figures
+\usepackage{subcaption}
 
 
 \lstset{basicstyle=\footnotesize,language=Python,breaklines=true,numbers=left, numberstyle=\tiny, stepnumber=5,firstnumber=0, numbersep=5pt} % set up listings
@@ -81,17 +83,83 @@
 \maketitle
 
 %EXERCICE 1
-\exercise{AAAAAAAAAAAAAAAA}
+\exercise{Missing Data Imputation}
 All the listings are at the end of the exercise. 
 \begin{enumerate}
 
 % A
-\item \textbf{WEEEEEEEEE}\\ 
+\item \textbf{The script}\\ 
+\lstinputlisting[label=qtew-1, caption={Missing data imputation script}] {../Scripts/assignment7Part1.R}
 
-% B
-\item \textbf{Implementation}\\
 
-\textit{When does aaaaaaaaaaaaaaaaaaaaaaaa and why?}\\
+%B
+\item \textbf{Playing with the new mean and new standard deviation}\\
+
+In figure \ref{fig:fig} we vary the mean and and standard deviation of the imputed data distribution. We can see the imputed data distribution sliding to the right when we change the new mean to a higher quartile and getting thinner when we take a smaller fraction of the original SD. The nicest fit is with one third of the original standard deviation and the 5\% quartile as the new mean (figure \ref{fig:sfig2}). In figure \ref{fig:rplacd} we show the distribution of the data after having replaced the NAs with the values generated with the same parameters as in figure \ref{fig:sfig2}.
+
+\begin{figure}
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.8\linewidth]{img/mean1sd13}
+		\caption{New mean is the 1\% quartile of the data \\ distribution and SD is 1/3 of the original SD}
+		\label{fig:sfig1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.8\linewidth]{img/mean5sd13}
+		\caption{New mean is the 5\% quartile of the data \\ distribution and SD is 1/3 of the original SD}
+		\label{fig:sfig2}
+	\end{subfigure}\\
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.8\linewidth]{img/mean10sd13}
+		\caption{New mean is the 10\% quartile of the data \\ distribution and SD is 1/3 of the original SD}
+		\label{fig:sfig3}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.8\linewidth]{img/mean15sd13}
+		\caption{New mean is the 15\% quartile of the data \\ distribution and SD is 1/3 of the original SD}
+		\label{fig:sfig4}
+	\end{subfigure}\\
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.8\linewidth]{img/mean5sd1}
+		\caption{New mean is the 5\% quartile of the data \\ distribution and SD is the original SD}
+		\label{fig:sfig5}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.8\linewidth]{img/mean5sd12}
+		\caption{New mean is the 5\% quartile of the data \\ distribution and SD is 1/2 of the original SD}
+		\label{fig:sfig6}
+	\end{subfigure}\\
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.8\linewidth]{img/mean5sd14}
+		\caption{New mean is the 5\% quartile of the data \\ distribution and SD is 1/4 of the original SD}
+		\label{fig:sfig7}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.8\linewidth]{img/mean5sd15}
+		\caption{New mean is the 5\% quartile of the data \\ distribution and SD is 1/5 of the original SD}
+		\label{fig:sfig8}
+	\end{subfigure}\\
+	\caption{Variations of the new mean and the new standard deviation according to the one of the original distribution.}
+	\label{fig:fig}
+\end{figure}
+
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{img/rplacd}
+	\caption{Data distribution after replacement of the NAs with the generated values.}
+	\label{fig:rplacd}
+\end{figure}
+
+
 
 \end{enumerate}
 
@@ -106,16 +174,13 @@ All the listings are at the end of the exercise.
 
 % NEW EXERCICE
 \newpage
-\exercise{Differential AAAAAAAAAAAAAAAAAAAAAA}
+\exercise{DREAM challenge}
 \begin{enumerate}
 	
 	% A
-	\item \textbf{A}\\
+	\item \textbf{NOT IMPLEMENTED}\\
 
 		%\lstinputlisting[label=lsdddt-1, caption={r}] {../ScriptsR/Assignment6Part2\string_schmitt\string_schowing.R}
-	
-	%B
-	\item \textbf{aaaaaaaaaaaaaaaaaaaaa}\\
 	
 	
 	
