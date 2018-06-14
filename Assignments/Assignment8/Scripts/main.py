@@ -4,6 +4,12 @@ from correlation import CorrelationMatrix
 from cluster import CorrelationClustering
 
 def dict_to_file(dict, path):
+    """
+
+    :param dict: Dictionnary you want to write to file
+    :param path: Path or filename
+    :return:
+    """
     fout = path
     fo = open(fout, "w")
 
@@ -18,7 +24,6 @@ def exercise_1():
     data_methylation = DataMatrix("./methylation.tsv")
 
     # Uses the Shapiro-Wilk test to test if the data follow a normal distribution
-
     ALPHA = 0.05
 
     not_normal_expression_genes = data_expression.not_normal_distributed(ALPHA, True)
@@ -44,17 +49,58 @@ def exercise_1():
 
 
 def exercise_3():
-    # TODO
-    cm = CorrelationMatrix(DataMatrix("./expression.tsv"), "Pearson", True)
-    pass
+    #
+
+    # Read data
+    data_expression = DataMatrix("./expression.tsv")
+    data_methylation = DataMatrix("./methylation.tsv")
+
+    NETWORK_THRESHOLD = 0.75
+
+    # Expression
+    cm = CorrelationMatrix(data_expression, "Pearson", True)
+    cn = CorrelationNetwork(cm,NETWORK_THRESHOLD)
+    cn.to_sif("./schmitt_schowing_expression_network_pearson.sif")
+
+    cm = CorrelationMatrix(data_expression, "Spearman", True)
+    cn = CorrelationNetwork(cm, NETWORK_THRESHOLD)
+    cn.to_sif("./schmitt_schowing_expression_network_spearman.sif")
+
+    cm = CorrelationMatrix(data_expression, "Kendall", True)
+    cn = CorrelationNetwork(cm, NETWORK_THRESHOLD)
+    cn.to_sif("./schmitt_schowing_expression_network_kendall.sif")
+
+    # Methylation
+    cm = CorrelationMatrix(data_methylation, "Pearson", True)
+    cn = CorrelationNetwork(cm,NETWORK_THRESHOLD)
+    cn.to_sif("./schmitt_schowing_methylation_network_pearson.sif")
+
+    cm = CorrelationMatrix(data_methylation, "Spearman", True)
+    cn = CorrelationNetwork(cm, NETWORK_THRESHOLD)
+    cn.to_sif("./schmitt_schowing_methylation_network_spearman.sif")
+
+    cm = CorrelationMatrix(data_methylation, "Kendall", True)
+    cn = CorrelationNetwork(cm, NETWORK_THRESHOLD)
+    cn.to_sif("./schmitt_schowing_methylation_network_kendall.sif")
+
+
 
 
 def exercise_4():
     # TODO
+    # correlation matrix -> columns and not rows
+
+    data_expression = DataMatrix("./expression.tsv")
+    data_methylation = DataMatrix("./methylation.tsv")
+
+
+    cm = CorrelationMatrix(data_methylation, "Kendall", False)
+    cc = CorrelationClustering(cm)
+
     pass
 
 # only execute the following if this module is the entry point of the program, not when it is imported into another file
 if __name__ == '__main__':
-    exercise_1()
-    exercise_3()
+    #exercise_1()
+    #exercise_3()
     exercise_4()

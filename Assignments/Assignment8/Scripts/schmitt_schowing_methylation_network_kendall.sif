@@ -1,0 +1,88 @@
+Alox12	0.82	Acvrl1
+Ccm2	0.84	Acvr1b
+Cdh1	0.77	Acvrl1
+Cryba1	0.76	Ccm2
+Gabra2	0.75	Acvr1b
+Gabra2	0.78	Ccm2
+Gabra2	0.81	Cdh1
+Gpa33	0.8	Acvr1b
+Gpa33	0.78	Ccm2
+Gpr107	0.78	Acvr1b
+Gpr107	0.8	Ccm2
+Gpr107	0.75	Cryba1
+Gpr107	0.81	Gabra2
+Gpr107	0.79	Gpa33
+Haao	0.77	Ccm2
+Haao	0.78	Gabra2
+Hk2	0.77	Axin2
+Hk2	0.75	Ccm2
+Hk2	0.79	Cdh1	Gabra2
+Ins2	0.79	Acvr1b	Alox12
+Ins2	0.78	Acvrl1	Cdh1	Hk2
+Ins2	0.81	Ccm2
+Ins2	0.89	Gabra2
+Ins2	0.75	Gpa33
+Ins2	0.77	Haao
+Itgb2	0.75	Acvrl1
+Kat2b	0.79	Axin2
+Kat2b	0.8	Hoxb6
+Loxl3	0.77	Acvr1b
+Loxl3	0.8	Cdh1	Gabra2
+Loxl3	0.75	Galnt1	Hk2
+Loxl3	0.78	Gpa33
+Loxl3	0.81	Ins2
+Myo18a	0.75	Acvr1b
+Myo18a	0.78	Ccm2
+Myo18a	0.77	Cryba1
+Ngfr	0.78	Acvrl1	Cdh1
+Ngfr	0.77	Alox12	Ccm2
+Ngfr	0.75	Drp2	Glra1	Hk2
+Ngfr	0.82	Gabra2
+Ngfr	0.88	Ins2
+Oprm1	0.75	Cdh1
+Oprm1	0.79	Ins2	Loxl3
+Pih1d2	0.79	Haao
+Pih1d2	0.77	Ins2
+Pparg	0.75	Gabra2
+Pparg	0.77	Ins2
+Pparg	0.79	Pih1d2
+Rab5b	0.75	Narf
+Raf1	0.75	Myo18a
+Rem1	0.78	Acvr1b	Ccm2
+Rem1	0.77	Myo18a
+Scmh1	0.78	Acvr1b
+Scmh1	0.75	Ccm2
+Scnn1g	0.78	Myo18a
+Scnn1g	0.8	Rem1
+Slc22a18	0.77	Acvr1b
+Slc22a18	0.79	Ccm2
+Slc22a18	0.82	Gpa33
+Slc22a18	0.75	Gpr107	Rem1
+Spg7	0.75	Acvr1b	Itgb2	Slc22a18
+Spg7	0.79	Acvrl1
+Spg7	0.77	Gpr107
+Tbx2	0.77	Acvr1b	Loxl3	Ngfr
+Tbx2	0.79	Ccm2
+Tbx2	0.75	Cdh1	Gpr107
+Tbx2	0.85	Gabra2
+Tbx2	0.84	Ins2
+Tbx2	0.78	Rem1
+Tmprss2	0.82	Acvr1b
+Tmprss2	0.75	Alox12
+Tmprss2	0.81	Ccm2	Slc22a18
+Tmprss2	0.76	Cryba1	Spg7
+Tmprss2	0.77	Gabra2
+Tmprss2	0.85	Gpa33
+Tmprss2	0.78	Gpr107	Ins2	Tbx2
+Tmprss2	0.9	Loxl3
+Trappc10	0.82	Pih1d2
+Trappc10	0.79	Pparg
+Wap	0.78	Acvrl1
+Wap	0.79	Hk2
+Wnt3	0.81	Gpa33
+Wnt3	0.8	Loxl3
+Wnt3	0.84	Tmprss2
+Wnt9a	0.79	Ccm2	Scnn1g
+Wnt9a	0.76	Cryba1
+Wnt9a	0.87	Myo18a
+Wnt9a	0.78	Rem1

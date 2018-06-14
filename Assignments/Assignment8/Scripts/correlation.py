@@ -7,7 +7,7 @@ def rank(x):
     :param x: a list of values
     :return: ranking of the input list
     """
-    # TODO
+
     return stats.rankdata(x)
 
 
@@ -17,8 +17,9 @@ def pearson_correlation(x, y):
     :param y: a list of values
     :return: Pearson correlation coefficient of X and Y
     """
-    # TODO
+
     return stats.pearsonr(x, y)[0]
+
 
 def spearman_correlation(x, y):
     """
@@ -26,8 +27,9 @@ def spearman_correlation(x, y):
     :param y: a list of values
     :return: Spearman correlation coefficient of X and Y
     """
-    # TODO
+
     return stats.spearmanr(x, y)[0]
+
 
 def kendall_correlation(x, y):
     """
@@ -35,8 +37,9 @@ def kendall_correlation(x, y):
     :param y: a list of values
     :return: Kendall-B correlation coefficient of X and Y
     """
-    # TODO
+
     return stats.kendalltau(x, y)[0]
+
 
 class CorrelationMatrix(dict):
     """
@@ -80,5 +83,5 @@ class CorrelationMatrix(dict):
             self[(name_2, name_1)] = correlation
 
 
-        print("correlation matrix")
-        print(self)
+        #print("correlation matrix")
+        #print(self)

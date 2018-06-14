@@ -25,6 +25,9 @@ class CorrelationClustering:
         """
         Initialises and executes hierarchical clustering based on a correlation matrix.
         :param correlation_matrix: a CorrelationMatrix (see correlation.py)
+
+        Structure of correlation matrix:
+        {('Abhd15', 'Acvr1b'): -0.20814079896736404, ('Acvr1b', 'Abhd15'): -0.20814079896736404, ('Abhd15', 'Acvrl1'): -0.13245323570650439,
         """
         # distance metric
         self.d = correlation_matrix
@@ -39,11 +42,51 @@ class CorrelationClustering:
         """
         # TODO
 
+        # Create a set of unique correlation (a, b, corr) but not (b, a, corr)
+
+        interactions = []
+        for tup, corr in self.d.items():
+            correlation = str(round(corr, 2))
+            node0 = tup[0]
+            node1 = tup[1]
+
+            tmp = [node0, node1, correlation]
+            tmp.sort(reverse=True)
+            interactions.append(tmp)
+
+        # create set of unique node connections (corr, src, dest)
+        self.set_interractions = set(tuple(i) for i in interactions)
+
+        # set of nodes (experiments)
+        self.set_experiment = set(i[0] for i in interactions)
+
+
+        all_individual_clusters = []
+        for element in self.set_experiment:
+            tmp_cluster = Cluster([element])
+            all_individual_clusters.append(tmp_cluster)
+
+        print("test")
+        print(self.average_linkage(all_individual_clusters[0], all_individual_clusters[1]))
+        new_cluster = all_individual_clusters[0].union(all_individual_clusters[1])
+        print(new_cluster)
+        print("test caca")
+        print(self.average_linkage(new_cluster, all_individual_clusters[2]))
+
+
     def average_linkage(self, cluster_1, cluster_2):
         """
         :return: average linkage between cluster 1 and cluster 2
         """
         # TODO
+
+        sum = 0
+        for key1 in cluster_1:
+            for key2 in cluster_2:
+                sum += abs(self.d[(key1, key2)])
+
+        return (1/(len(cluster_1) * len(cluster_2)) * sum)
+
 
     def trace_to_tsv(self, file_path):
         """
