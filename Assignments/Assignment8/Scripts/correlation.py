@@ -6,6 +6,7 @@ def rank(x):
     """
     :param x: a list of values
     :return: ranking of the input list
+    Note: not used because of laziness
     """
 
     return stats.rankdata(x)

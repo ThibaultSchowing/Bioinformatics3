@@ -122,6 +122,6 @@ def exercise_4():
 
 # only execute the following if this module is the entry point of the program, not when it is imported into another file
 if __name__ == '__main__':
-    exercise_1()
-    exercise_3()
+    #exercise_1()
+    #exercise_3()
     exercise_4()

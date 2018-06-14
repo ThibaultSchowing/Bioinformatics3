@@ -44,21 +44,8 @@ class CorrelationClustering:
         """
         # Create a set of unique correlation (a, b, corr) but not (b, a, corr)
 
-        interactions = []
-        for tup, corr in self.d.items():
-            correlation = str(round(corr, 2))
-            node0 = tup[0]
-            node1 = tup[1]
-
-            tmp = [node0, node1, correlation]
-            tmp.sort(reverse=True)
-            interactions.append(tmp)
-
-        # create set of unique node connections (corr, src, dest)
-        set_interractions = set(tuple(i) for i in interactions)
-
         # set of nodes (experiments)
-        set_experiment = set(i[0] for i in interactions)
+        set_experiment = set(i for i in self.d.names)
 
         all_individual_clusters = []
         for element in set_experiment:
@@ -68,7 +55,6 @@ class CorrelationClustering:
         # while we have more than one cluster
 
         while len(all_individual_clusters) > 1:
-
             # Compute linkage for all pair
             all_pairs = list(itertools.combinations(all_individual_clusters, 2))
 
@@ -82,7 +68,6 @@ class CorrelationClustering:
 
             # Now we have the two clusters to merge: merge them and remove them from the list
             # First add them to the trace
-            #self.trace.append(str(all_pairs[index_max_linkage][0]) + " - " + str(all_pairs[index_max_linkage][1]) + " - " + str(max_linkage) )
             self.trace.append([all_pairs[index_max_linkage][0], all_pairs[index_max_linkage][1], max_linkage])
             new_cluster = all_pairs[index_max_linkage][0].union(all_pairs[index_max_linkage][1])
 
@@ -90,7 +75,7 @@ class CorrelationClustering:
             all_individual_clusters.remove(all_pairs[index_max_linkage][0])
             all_individual_clusters.remove(all_pairs[index_max_linkage][1])
 
-            # Append the new cluster resulting from the merging of the two old ones blah
+            # Append the new cluster resulting from the merging of the two old ones
             all_individual_clusters.append(new_cluster)
 
 
