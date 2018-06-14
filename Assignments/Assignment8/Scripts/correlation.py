@@ -82,6 +82,3 @@ class CorrelationMatrix(dict):
             self[(name_1, name_2)] = correlation
             self[(name_2, name_1)] = correlation
 
-
-        #print("correlation matrix")
-        #print(self)

@@ -28,18 +28,14 @@ class CorrelationNetwork:
         # Sort the set
         set_interractions = sorted(set_interractions)
 
-        #for tup in set_interractions:
-            #print(tup)
-
-
+        # Make a dataframe
         df_interractions = pd.DataFrame.from_records(set_interractions)
 
-        df_interractions.columns = ['src','dest','corr']
-        #print(df_interractions)
+        # Set columns names
+        df_interractions.columns = ['src', 'dest', 'corr']
 
         # Creating a dictionary with the structure as below:
         #   dict (src, corr): [dest]
-        #
         self.dc_interact = collections.defaultdict(list)
 
         # Fill the dictionary with unique src - correlation id and a dest. list
@@ -51,13 +47,6 @@ class CorrelationNetwork:
             # If the correlation is big enough, add it to the dictionary
             tmp_tuple = (row['src'], row['corr'])
             self.dc_interact[tmp_tuple].append(row['dest'])
-
-        # Debug printing for verification
-        #for key, value in self.dc_interact.items():
-        #    print(key, ": ", self.dc_interact[key])
-
-
-
 
     def to_sif(self, file_path):
         """

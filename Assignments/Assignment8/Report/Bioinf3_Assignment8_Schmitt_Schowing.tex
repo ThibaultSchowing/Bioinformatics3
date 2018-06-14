@@ -49,7 +49,7 @@
 
 %assignment iteration
 \newcommand{\assignment}{
-	Seventh Assignment
+	Eighth Assignment
 }
 
 
@@ -78,86 +78,40 @@
 \fancyhead[L]{\authors}
 
 
-\setcounter{section}{7} % modify for later sheets, i.e. 2, 3, ...
+\setcounter{section}{8} % modify for later sheets, i.e. 2, 3, ...
 %\section{Introduction to Python and some Network Properties} % optional, note that section invocation sets the section counter + 1, so adapt the setcounter command
 \maketitle
 
 %EXERCICE 1
-\exercise{Missing Data Imputation}
+\exercise{Data Preprocessing}
 
 \begin{enumerate}
 
 % A
-\item \textbf{The script}\\ 
-\lstinputlisting[label=qtew-1, caption={Missing data imputation script}] {../Scripts/assignment7Part1.R}
+\item \textbf{Data matrix:}\textit{The supplement contains the data\string_matrix.py–file with the outline of a
+	DataMatrix–class in which you should complete. }\\ 
+
+\lstinputlisting[label=qtew-1, caption={Data Matrix class script}] {../Scripts/data\string_matrix.py}
 
 
 %B
-\item \textbf{Playing with the new mean and new standard deviation}\\
+\item \textbf{Process expression and methylation data:}\textit{In the function exercise 1() in main.py,
+	use your DataMatrix–class to read in the expression and methylation tables given in the
+	supplement and write the processed matrices into files.} \footnote{The files are attached with the source files in the email.}\\
 
-In figure \ref{fig:fig} we vary the mean and and standard deviation of the generated data distribution. We can see the generated data distribution sliding to the right when we change the new mean to a higher quartile and getting thinner when we take a smaller fraction of the original SD. The nicest fit is with one third of the original standard deviation and the 5\% quartile as the new mean (figure \ref{fig:sfig2}). In figure \ref{fig:rplacd} we show the distribution of the data after having replaced the NAs with the values generated with the same parameters as in figure \ref{fig:sfig2}.
-
-\begin{figure}
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=.8\linewidth]{img/mean1sd13}
-		\caption{New mean is the 1\% quartile of the data \\ distribution and SD is 1/3 of the original SD}
-		\label{fig:sfig1}
-	\end{subfigure}%
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=.8\linewidth]{img/mean5sd13}
-		\caption{New mean is the 5\% quartile of the data \\ distribution and SD is 1/3 of the original SD}
-		\label{fig:sfig2}
-	\end{subfigure}\\
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=.8\linewidth]{img/mean10sd13}
-		\caption{New mean is the 10\% quartile of the data \\ distribution and SD is 1/3 of the original SD}
-		\label{fig:sfig3}
-	\end{subfigure}%
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=.8\linewidth]{img/mean15sd13}
-		\caption{New mean is the 15\% quartile of the data \\ distribution and SD is 1/3 of the original SD}
-		\label{fig:sfig4}
-	\end{subfigure}\\
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=.8\linewidth]{img/mean5sd1}
-		\caption{New mean is the 5\% quartile of the data \\ distribution and SD is the original SD}
-		\label{fig:sfig5}
-	\end{subfigure}%
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=.8\linewidth]{img/mean5sd12}
-		\caption{New mean is the 5\% quartile of the data \\ distribution and SD is 1/2 of the original SD}
-		\label{fig:sfig6}
-	\end{subfigure}\\
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=.8\linewidth]{img/mean5sd14}
-		\caption{New mean is the 5\% quartile of the data \\ distribution and SD is 1/4 of the original SD}
-		\label{fig:sfig7}
-	\end{subfigure}%
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=.8\linewidth]{img/mean5sd15}
-		\caption{New mean is the 5\% quartile of the data \\ distribution and SD is 1/5 of the original SD}
-		\label{fig:sfig8}
-	\end{subfigure}\\
-	\caption{Variations of the new mean and the new standard deviation according to the one of the original distribution.}
-	\label{fig:fig}
-\end{figure}
+\lstinputlisting[label=qtew-1, caption={Main programm}] {../Scripts/main.py}
 
 
+\textit{For each input file, report the number of genes and samples whose data does not follow a
+	normal distribution with $\alpha$ = 0.05.}\\
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.7\linewidth]{img/rplacd}
-	\caption{Data distribution after replacement of the NAs with the generated values.}
-	\label{fig:rplacd}
-\end{figure}
+Number of genes whose data does not follow a normal distribution (EXPRESSION):  73\\
+
+Number of sample whose data does not follow a normal distribution (EXPRESSION):  19\\
+
+Number of genes whose data does not follow a normal distribution (METHYLATION):  66\\
+
+Number of sample whose data does not follow a normal distribution (METHYLATION):  19\\
 
 
 
@@ -174,13 +128,94 @@ In figure \ref{fig:fig} we vary the mean and and standard deviation of the gener
 
 % NEW EXERCICE
 \newpage
-\exercise{DREAM challenge}
+\exercise{Correlation Measures}
+\lstinputlisting[label=qtew-1, caption={Correlation matrix}] {../Scripts/correlation.py}
+
+
+
+% NEW EXERCICE
+\newpage
+\exercise{Gene Co–Expression Networks}
 \begin{enumerate}
 	
 	% A
-	\item \textbf{NOT IMPLEMENTED}\\
+	\item \textbf{Network construction}\\
+	
+	\lstinputlisting[label=lsdddt-1, caption={Correlation network}] {../Scripts/network.py}
+	
+	
+	% B
+	\item \textbf{Network visualisation\footnote{The files are attached with the source files in the email.}}
+	
+	
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{img/schmitt_schowing_expression_network_kendall.png}
+	\caption{Expression network with Kendall correlation}
+	\label{fig:schmittschowingexpressionnetworkkendall}
+\end{figure}
 
-		%\lstinputlisting[label=lsdddt-1, caption={r}] {../ScriptsR/Assignment6Part2\string_schmitt\string_schowing.R}
+	
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{img/schmitt_schowing_expression_network_pearson.png}
+	\caption{Expression network with Pearson correlation}
+	\label{fig:schmittschowingexpressionnetworkpearson}
+\end{figure}
+
+	
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{img/schmitt_schowing_expression_network_spearman.png}
+	\caption{Expression network with Spearman correlation}
+	\label{fig:schmittschowingexpressionnetworkspearman}
+\end{figure}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{img/schmitt_schowing_methylation_network_kendall}
+	\caption{Methylation network with Kendall correlation}
+	\label{fig:schmittschowingmethylationnetworkkendall}
+\end{figure}
+
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{img/schmitt_schowing_methylation_network_pearson}
+	\caption{Methylation network with Pearson correlation}
+	\label{fig:schmittschowingmethylationnetworkpearson}
+\end{figure}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{img/schmitt_schowing_methylation_network_spearman}
+	\caption{Methylation network with Spearman correlation}
+	\label{fig:schmittschowingmethylationnetworkspearman}
+\end{figure}
+
+
+
+
+	% C
+	\item \textbf{Discussion:}\textit{Briefly comment on the similarities and difference between the networks.
+		Explain and discuss your results.}\\
+	We observe that the number of correlated genes expression 
+	
+	
+\end{enumerate}
+
+% NEW EXERCICE
+\newpage
+\exercise{Blah}
+\begin{enumerate}
+	
+	% A
+	\item \textbf{Blah}\\
+	
+	%\lstinputlisting[label=lsdddt-1, caption={r}] {../ScriptsR/Assignment6Part2\string_schmitt\string_schowing.R}
 	
 	
 	

@@ -1,3 +1,5 @@
+import itertools
+
 class Cluster(frozenset):
     """
     This class behaves like a frozenset, meaning it only contains unique items like a set but you cannot add or remove
@@ -40,8 +42,6 @@ class CorrelationClustering:
         """
         Hierarchically clusters the elements in the input correlation matrix and stores each step in the trace.
         """
-        # TODO
-
         # Create a set of unique correlation (a, b, corr) but not (b, a, corr)
 
         interactions = []
@@ -55,38 +55,57 @@ class CorrelationClustering:
             interactions.append(tmp)
 
         # create set of unique node connections (corr, src, dest)
-        self.set_interractions = set(tuple(i) for i in interactions)
+        set_interractions = set(tuple(i) for i in interactions)
 
         # set of nodes (experiments)
-        self.set_experiment = set(i[0] for i in interactions)
-
+        set_experiment = set(i[0] for i in interactions)
 
         all_individual_clusters = []
-        for element in self.set_experiment:
+        for element in set_experiment:
             tmp_cluster = Cluster([element])
             all_individual_clusters.append(tmp_cluster)
 
-        print("test")
-        print(self.average_linkage(all_individual_clusters[0], all_individual_clusters[1]))
-        new_cluster = all_individual_clusters[0].union(all_individual_clusters[1])
-        print(new_cluster)
-        print("test caca")
-        print(self.average_linkage(new_cluster, all_individual_clusters[2]))
+        # while we have more than one cluster
+
+        while len(all_individual_clusters) > 1:
+
+            # Compute linkage for all pair
+            all_pairs = list(itertools.combinations(all_individual_clusters, 2))
+
+            index_max_linkage = 0
+            max_linkage = 0
+            for i in range(len(all_pairs)):
+                tmp_linkage = self.average_linkage(all_pairs[i][0], all_pairs[i][1])
+                if tmp_linkage > max_linkage:
+                    max_linkage = tmp_linkage
+                    index_max_linkage = i
+
+            # Now we have the two clusters to merge: merge them and remove them from the list
+            # First add them to the trace
+            #self.trace.append(str(all_pairs[index_max_linkage][0]) + " - " + str(all_pairs[index_max_linkage][1]) + " - " + str(max_linkage) )
+            self.trace.append([all_pairs[index_max_linkage][0], all_pairs[index_max_linkage][1], max_linkage])
+            new_cluster = all_pairs[index_max_linkage][0].union(all_pairs[index_max_linkage][1])
+
+            # Remove the two clusters that are gonna be merged from the list
+            all_individual_clusters.remove(all_pairs[index_max_linkage][0])
+            all_individual_clusters.remove(all_pairs[index_max_linkage][1])
+
+            # Append the new cluster resulting from the merging of the two old ones blah
+            all_individual_clusters.append(new_cluster)
+
 
 
     def average_linkage(self, cluster_1, cluster_2):
         """
         :return: average linkage between cluster 1 and cluster 2
         """
-        # TODO
 
-        sum = 0
+        sum_ = 0
         for key1 in cluster_1:
             for key2 in cluster_2:
-                sum += abs(self.d[(key1, key2)])
+                sum_ += abs(self.d[(key1, key2)])
 
-        return (1/(len(cluster_1) * len(cluster_2)) * sum)
-
+        return 1/(len(cluster_1) * len(cluster_2)) * sum_
 
     def trace_to_tsv(self, file_path):
         """
@@ -97,4 +116,12 @@ class CorrelationClustering:
         Column 2: linkage value
         :param file_path: path to the output file
         """
-        # TODO
+
+        f = open(file_path, "w")  # opens file
+
+        # At each step we have the two merged cluster and their linkage value
+        for step in self.trace:
+            f.write(str(step[0]) + "\t" + str(step[1]) + "\t" + str(round(step[2], 4)) + "\n")
+
+        f.close()
+

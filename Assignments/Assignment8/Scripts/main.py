@@ -8,7 +8,7 @@ def dict_to_file(dict, path):
 
     :param dict: Dictionnary you want to write to file
     :param path: Path or filename
-    :return:
+    :return: nada
     """
     fout = path
     fo = open(fout, "w")
@@ -93,14 +93,35 @@ def exercise_4():
     data_expression = DataMatrix("./expression.tsv")
     data_methylation = DataMatrix("./methylation.tsv")
 
+    # With the expression data
+    cm = CorrelationMatrix(data_expression, "Kendall", False)
+    cc = CorrelationClustering(cm)
+    cc.trace_to_tsv("schmitt_schowing_expression_cluster_kendall.tsv")
 
+    cm = CorrelationMatrix(data_expression, "Pearson", False)
+    cc = CorrelationClustering(cm)
+    cc.trace_to_tsv("schmitt_schowing_expression_cluster_pearson.tsv")
+
+    cm = CorrelationMatrix(data_expression, "Spearman", False)
+    cc = CorrelationClustering(cm)
+    cc.trace_to_tsv("schmitt_schowing_expression_cluster_spearman.tsv")
+
+    # With the methylation data
     cm = CorrelationMatrix(data_methylation, "Kendall", False)
     cc = CorrelationClustering(cm)
+    cc.trace_to_tsv("schmitt_schowing_methylation_cluster_kendall.tsv")
 
-    pass
+    cm = CorrelationMatrix(data_methylation, "Pearson", False)
+    cc = CorrelationClustering(cm)
+    cc.trace_to_tsv("schmitt_schowing_methylation_cluster_pearson.tsv")
+
+    cm = CorrelationMatrix(data_methylation, "Spearman", False)
+    cc = CorrelationClustering(cm)
+    cc.trace_to_tsv("schmitt_schowing_methylation_cluster_spearman.tsv")
+
 
 # only execute the following if this module is the entry point of the program, not when it is imported into another file
 if __name__ == '__main__':
-    #exercise_1()
-    #exercise_3()
+    exercise_1()
+    exercise_3()
     exercise_4()

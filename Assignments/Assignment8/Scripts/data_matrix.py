@@ -38,7 +38,7 @@ class DataMatrix:
         self.df = self.df.groupby('Index').mean()
 
         # Print to console to have a nice overview
-        print(self.df)
+        # print(self.df)
 
 
     def get_rows(self):
