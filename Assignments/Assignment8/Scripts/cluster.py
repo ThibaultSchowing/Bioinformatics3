@@ -120,6 +120,7 @@ class CorrelationClustering:
         f = open(file_path, "w")  # opens file
 
         # At each step we have the two merged cluster and their linkage value
+        # The linkage value is rounded to 4 digits to make it nice
         for step in self.trace:
             f.write(str(step[0]) + "\t" + str(step[1]) + "\t" + str(round(step[2], 4)) + "\n")
 
