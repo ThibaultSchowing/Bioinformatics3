@@ -222,7 +222,7 @@ Number of sample whose data does not follow a normal distribution (METHYLATION):
 	
 	\item \textbf{Discussion: }\textit{Can hierarchical clustering be used to differentiate between blood cells and skin tissues? Are there differences between the correlation coefficients or data type? Why?}\\
 	
-	Let's first recall the two different types of cells. In this experiment we have the samples HSC, MPP1, MPP2, CLP, CMP, GMP, MEP, CD4, CD8, B cell, Eryth, Granu and Mono that are from blood cells, whereas the samples TBSC, ABSC, MTAC, CLDC, EPro and EDif from skin tissues. In the listing \ref{samersdfae} at line 15, one of the last merge, we can see that the two merged cluster are from samples from different cells (blood or skin) meaning that the clustering is working well\footnote{Notice that here, the ABSC sample is not present due to a too small correlation with the others, and therefore, is not present in the .}. We can assume here that the genes in a skin cell or in a blood cell are not expressed and/or methylated in the same way as the function of the cells are not the same. 
+	Let's first recall the two different types of cells. In this experiment we have the samples HSC, MPP1, MPP2, CLP, CMP, GMP, MEP, CD4, CD8, B cell, Eryth, Granu and Mono that are from blood cells, whereas the samples TBSC, ABSC, MTAC, CLDC, EPro and EDif from skin tissues. In the listing \ref{samersdfae} at line 15, one of the last merge, we can see that the two merged cluster are from samples from different cells (blood or skin) meaning that the clustering is working well\footnote{Notice that here, the ABSC sample is not present due to a too small correlation with the others, and therefore, is not present in the dendrogram.}. We can assume here that the genes in a skin cell or in a blood cell are not expressed and/or methylated in the same way as the function of the cells are not the same. 
 	
 	\lstinputlisting[language={}, label=samersdfae, caption={Hierarchical clustering example with methylation data and Pearson correlation}] {../Scripts/schmitt\string_schowing\string_methylation\string_cluster\string_pearson.tsv}
 	
@@ -233,6 +233,9 @@ Number of sample whose data does not follow a normal distribution (METHYLATION):
 		\caption{Dendrogram of the clustering in listing \ref{samersdfae}. The blue nodes are skin cells, and the orange one blood cells.}
 		\label{fig:clusteringmethylationpearsondendrogram}
 	\end{figure}
+
+
+	\lstinputlisting[language={}, label=samersdfae, caption={Hierarchical clustering example with expression data and Pearson correlation. The clustering is also separating the skin and blood cells very well. }] {../Scripts/schmitt\string_schowing\string_expression\string_cluster\string_pearson.tsv}
 	
 
 	
