@@ -205,17 +205,82 @@
 
 % NEW EXERCICE
 \newpage
-\exercise{asdf}
+\exercise{FFEK Algorithm}
 \begin{enumerate}
 	
 	% A
-	\item \textbf{asdf}\\
+	\item \textbf{Apply the Ford, Fulkerson, Edmonds, and Karp (FFEK) algorithm explained in the lecture to
+		determine the s-t-cut and the capacity of the network given below.
+		For each iteration, give the indices of the nodes, the resulting f-augmenting path with its capacity,
+		and the updated val(f). Sketch the newly found f-augmenting paths. Also update the currents
+		through the arcs.
+		If you find multiple possible paths from s to t with the same length, then choose the one with the
+		highest $\Delta q$}\\
 	
 	%\lstinputlisting[label=lsdddt-1, caption={Correlation network}] {../Scripts/network.py}
 	
 	
-	% B
-	\item \textbf{asdf}
+	\textbf{FFEK iterations\footnote{Helpful video: \url{youtube.com/watch?v=GiN3jRdgxU4}}} For each iteration, the displayed graph is the result after applying the FFEK algorithm. The traces of the algorithm are stored in the queue (net nodes to visit), the Visited nodes and the trace which indicates from which node a node has been discovered. The "current" list store the order of the nodes on which the algorithm is applied and the resulting path and flow are also marked in the table. The figure \ref{fig:fuckingflownetmaxflow} shows the final flows and capacity.\\
+	
+	The max flow here is 11 and so is the min-cut. For example, we can split the vertex as \{S, a, b, c, d, e, f \} and \{g, h, i, j, k, t\} and the value of the cut is $ 5 + 2 + 4 = 11 $.
+	
+	
+	
+	
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{img/fuckingFlowNetiter1}
+	\caption{Iteration 1}
+	\label{fig:fuckingflownetiter1}
+\end{figure}
+
+	
+	
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{img/fuckingFlowNetiter2e}
+	\caption{Iteration 2}
+	\label{fig:fuckingflownetiter2e}
+\end{figure}
+	
+	
+	
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{img/fuckingFlowNetiter3}
+	\caption{Iteration 3}
+	\label{fig:fuckingflownetiter3}
+\end{figure}
+	
+	
+	
+	
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{img/fuckingFlowNetiter4}
+	\caption{Iteration 4}
+	\label{fig:fuckingflownetiter4}
+\end{figure}
+	
+	
+	
+	
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{img/fuckingFlowNetiter5}
+	\caption{Iteration 5 - Final iteration}
+	\label{fig:fuckingflownetiter5}
+\end{figure}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{img/fuckingFlowNetMaxFlow}
+	\caption{Resulting maximum flow}
+	\label{fig:fuckingflownetmaxflow}
+\end{figure}
+
+
 
 \end{enumerate}
 
